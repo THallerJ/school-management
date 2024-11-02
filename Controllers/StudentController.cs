@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using school_management.Data;
+using school_management.Models;
 
 namespace school_management.Controllers
 {
@@ -13,9 +14,9 @@ namespace school_management.Controllers
         }
         
         [HttpGet("get_all")]
-        public IActionResult GetAll() 
+        public IActionResult GetAll()
         {
-            var students = _context.Students.ToList();
+            List<Student> students = [.. _context.Students];
             return Ok(students);
         }
     }

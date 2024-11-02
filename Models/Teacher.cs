@@ -1,7 +1,13 @@
-﻿namespace school_management.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace school_management.Models
 {
     public class Teacher
     {
+        // TODO: GENEERATE TABLES AGAIN
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public required string FirstName { get; set; }
