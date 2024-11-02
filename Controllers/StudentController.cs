@@ -1,16 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using school_management.Data;
 
 namespace school_management.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/student")]
     public class StudentController : ControllerBase
     {
-        [HttpGet(Name = "GetStudent")]
-
-        public int Get()
+        private readonly AppDbContext _context;
+        public StudentController(AppDbContext context) {
+            _context = context;
+        }
+        
+        [HttpGet("get_all")]
+        public IActionResult GetAll() 
         {
-            return 5;
+            var students = _context.Students.ToList();
+            return Ok(students);
         }
     }
 }
