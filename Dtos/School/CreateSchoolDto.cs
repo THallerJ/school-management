@@ -1,15 +1,11 @@
-﻿namespace school_management.Models
+﻿namespace school_management.Dtos.School
 {
-    public class School
+    public class CreateSchoolDto
     {
-        public int Id { get; set; }
-
         public required string Name { get; set; }
 
         public required string Address { get; set; }
 
         public required string PhoneNumber { get; set; }
-
-        public List<Course> Courses { get; set; } = new List<Course>();
     }
 }
