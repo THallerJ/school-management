@@ -46,7 +46,7 @@ namespace school_management.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Teacher",
+                name: "Teachers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -57,9 +57,9 @@ namespace school_management.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Teacher", x => x.Id);
+                    table.PrimaryKey("PK_Teachers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teacher_Schools_SchoolId",
+                        name: "FK_Teachers_Schools_SchoolId",
                         column: x => x.SchoolId,
                         principalTable: "Schools",
                         principalColumn: "Id");
@@ -84,9 +84,9 @@ namespace school_management.Migrations
                         principalTable: "Schools",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Courses_Teacher_TeacherId",
+                        name: "FK_Courses_Teachers_TeacherId",
                         column: x => x.TeacherId,
-                        principalTable: "Teacher",
+                        principalTable: "Teachers",
                         principalColumn: "Id");
                 });
 
@@ -135,8 +135,8 @@ namespace school_management.Migrations
                 column: "SchoolId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teacher_SchoolId",
-                table: "Teacher",
+                name: "IX_Teachers_SchoolId",
+                table: "Teachers",
                 column: "SchoolId");
         }
 
@@ -153,7 +153,7 @@ namespace school_management.Migrations
                 name: "Students");
 
             migrationBuilder.DropTable(
-                name: "Teacher");
+                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "Schools");

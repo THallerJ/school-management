@@ -12,7 +12,7 @@ using school_management.Data;
 namespace school_management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241102221350_init")]
+    [Migration("20241105003430_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -141,7 +141,7 @@ namespace school_management.Migrations
 
                     b.HasIndex("SchoolId");
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("CourseStudent", b =>

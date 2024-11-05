@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace school_management.Dtos.Student
+﻿namespace school_management.Dtos.Student
 {
     public class CreateStudentDto
     {

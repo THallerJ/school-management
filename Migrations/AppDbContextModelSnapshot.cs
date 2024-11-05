@@ -138,7 +138,7 @@ namespace school_management.Migrations
 
                     b.HasIndex("SchoolId");
 
-                    b.ToTable("Teacher");
+                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("CourseStudent", b =>
