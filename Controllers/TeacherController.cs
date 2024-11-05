@@ -12,14 +12,13 @@ namespace school_management.Controllers
     {
         private readonly AppDbContext _context = context;
 
-        [HttpGet("get_all")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             List<Teacher> teachers = [.. _context.Teachers];
             return Ok(teachers);
 
         }
-
 
         [HttpPost("create_teacher")]
         public IActionResult Create([FromBody] CreateTeacherDto teacher)
@@ -31,6 +30,25 @@ namespace school_management.Controllers
             _context.Teachers.Add(teacherModel);
             _context.SaveChanges();
             return Ok(teacherModel);
+        }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteTeacher([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var teacherModel = _context.Teachers.FirstOrDefault(teacher => teacher.Id == id);
+
+            if (teacherModel == null)
+            {
+                return NotFound();
+            }
+
+            _context.Teachers.Remove(teacherModel);
+            _context.SaveChanges();
+
+            return NoContent();
         }
     }
 }

@@ -12,7 +12,7 @@ namespace school_management.Controllers
     {
         private readonly AppDbContext _context = context;
 
-        [HttpGet("get_all")]
+        [HttpGet]
         public IActionResult GetAll()
         {
             List<Course> courses = [.. _context.Courses];
@@ -30,6 +30,25 @@ namespace school_management.Controllers
             _context.Courses.Add(courseModel);
             _context.SaveChanges();
             return Ok(courseModel);
+        }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteCourse([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var courseModel = _context.Courses.FirstOrDefault(course => course.Id == id);
+
+            if (courseModel == null)
+            {
+                return NotFound();
+            }
+
+            _context.Courses.Remove(courseModel);
+            _context.SaveChanges();
+
+            return NoContent();
         }
     }
 }
