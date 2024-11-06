@@ -7,7 +7,7 @@ namespace school_management.Repository
 {
     public class CourseRepository(AppDbContext context) : ICourseRepository
     {
-        AppDbContext _context = context;
+        private readonly AppDbContext _context = context;
         public async Task<Course> Create(Course courseModel)
         {
             await _context.Courses.AddAsync(courseModel);

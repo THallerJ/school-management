@@ -7,7 +7,7 @@ namespace school_management.Repository
 {
     public class TeacherRepository(AppDbContext context) : ITeacherRepository
     {
-        AppDbContext _context = context;
+        private readonly AppDbContext _context = context;
 
         public async Task<Teacher> Create(Teacher teacherModel)
         {

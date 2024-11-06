@@ -1,52 +1,47 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using school_management.Data;
 using school_management.Dtos.Student;
+using school_management.Interface;
 using school_management.Mappers;
-using school_management.Models;
 
 namespace school_management.Controllers
 {
     [ApiController]
     [Route("api/student")]
-    public class StudentController(AppDbContext context) : ControllerBase
+    public class StudentController(IStudentRepository studentRepo) : ControllerBase
     {
-        private readonly AppDbContext _context = context;
+        private readonly IStudentRepository _studentRepo = studentRepo;
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            List<Student> students = [.. _context.Students];
+            var students = await _studentRepo.Get();
             return Ok(students);
         }
 
 
         [HttpPost("create_student")]
-        public IActionResult Create([FromBody] CreateStudentDto student)
+        public async Task<IActionResult> Create([FromBody] CreateStudentDto student)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var studentModel = student.ToStudentFromCreateDto();
-            _context.Students.Add(studentModel);
-            _context.SaveChanges();
+            await _studentRepo.Create(studentModel);
             return Ok(studentModel);
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteStudent([FromRoute] int id)
+        public async Task<IActionResult> DeleteStudent([FromRoute] int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var studentModel = _context.Students.FirstOrDefault(student => student.Id == id);
+            var studentModel = await _studentRepo.Delete(id);
 
             if (studentModel == null)
             {
                 return NotFound();
             }
-
-            _context.Students.Remove(studentModel);
-            _context.SaveChanges();
 
             return NoContent();
         }
