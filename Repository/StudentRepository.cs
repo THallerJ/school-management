@@ -1,23 +1,46 @@
-﻿using school_management.Interface;
+﻿using Microsoft.EntityFrameworkCore;
+using school_management.Data;
+using school_management.Interface;
 using school_management.Models;
 
 namespace school_management.Repository
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository(AppDbContext context) : IStudentRepository
     {
-        public Task<Course> Create(Course courseModel)
+        private readonly AppDbContext _context = context;
+
+        public async Task<Student> Create(Student studentModel)
         {
-            throw new NotImplementedException();
+            await _context.Students.AddAsync(studentModel);
+            await _context.SaveChangesAsync();
+            return studentModel;
         }
 
-        public Task<Course?> Delete(int id)
+        public async Task<Student?> Delete(int id)
         {
-            throw new NotImplementedException();
+            var studentModel = await _context.Students.FirstOrDefaultAsync(student => student.Id == id);
+
+            if (studentModel == null)
+            {
+                return null;
+            }
+
+            _context.Students.Remove(studentModel);
+            await _context.SaveChangesAsync();
+            return studentModel;
         }
 
-        public Task<List<Course>> Get()
+        public async Task<List<Student>> Get()
+        {
+            List<Student> students = await _context.Students.ToListAsync();
+            return students;
+        }
+
+        public Task<Student?> Update(int id)
         {
             throw new NotImplementedException();
         }
     }
 }
+
+

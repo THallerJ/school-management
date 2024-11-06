@@ -7,5 +7,7 @@ namespace school_management.Interface
         Task<List<Course>> Get();
         Task<Course> Create(Course courseModel);
         Task<Course?> Delete(int id);
+        Task<Course?> Update(int id);
+
     }
 }

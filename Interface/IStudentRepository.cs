@@ -4,8 +4,10 @@ namespace school_management.Interface
 {
     public interface IStudentRepository
     {
-        Task<List<Course>> Get();
-        Task<Course> Create(Course courseModel);
-        Task<Course?> Delete(int id);
+        Task<List<Student>> Get();
+        Task<Student> Create(Student courseModel);
+        Task<Student?> Delete(int id);
+        Task<Student?> Update(int id);
+
     }
 }
