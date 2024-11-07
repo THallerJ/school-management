@@ -15,9 +15,9 @@ namespace school_management.Controllers
         public async Task<IActionResult> GetAll()
         {
             var students = await _studentRepo.Get();
-            return Ok(students);
+            var studentsDto = students.Select(student => student.ToStudentDto());
+            return Ok(studentsDto);
         }
-
 
         [HttpPost("create_student")]
         public async Task<IActionResult> Create([FromBody] CreateStudentDto student)
@@ -27,7 +27,7 @@ namespace school_management.Controllers
 
             var studentModel = student.ToStudentFromCreateDto();
             await _studentRepo.Create(studentModel);
-            return Ok(studentModel);
+            return Ok(studentModel.ToStudentDto());
         }
 
         [HttpDelete("{id:int}")]

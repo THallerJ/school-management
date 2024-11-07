@@ -15,18 +15,19 @@ namespace school_management.Controllers
         public async Task<IActionResult> GetAll()
         {
             var courses =  await _courseRepo.Get();
-            return Ok(courses);
+            var coursesDto = courses.Select(course => course.ToCourseDto());
+            return Ok(coursesDto);
         }
 
         [HttpPost("create_course")]
-        public async  Task<IActionResult> Create([FromBody] CreateCourseDto courseDto)
+        public async Task<IActionResult> Create([FromBody] CreateCourseDto courseDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var courseModel = courseDto.ToCourseFromCreateDto();
             await _courseRepo.Create(courseModel);
-            return Ok(courseModel);
+            return Ok(courseModel.ToCourseDto());
         }
 
         [HttpDelete("{id:int}")]

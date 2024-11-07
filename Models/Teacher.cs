@@ -4,9 +4,9 @@
     {
         public int Id { get; set; }
 
-        public required string FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
 
-        public required string LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         public int? SchoolId { get; set; }
 

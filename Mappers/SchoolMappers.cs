@@ -5,6 +5,17 @@ namespace school_management.Mappers
 {
     public static class SchoolMappers
     {
+        public static SchoolDto ToSchoolDto(this School school)
+        {
+            return new SchoolDto
+            {
+                Id = school.Id,
+                Name = school.Name,
+                Address = school.Address,
+                PhoneNumber = school.PhoneNumber,
+            };
+        }
+
 
         public static School ToSchoolFromCreateDto(this CreateSchoolDto schoolDto)
         {

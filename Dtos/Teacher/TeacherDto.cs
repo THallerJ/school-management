@@ -1,6 +1,6 @@
-﻿namespace school_management.Models
+﻿namespace school_management.Dtos.Teacher
 {
-    public class Student
+    public class TeacherDto
     {
         public int Id { get; set; }
 
@@ -9,9 +9,5 @@
         public string LastName { get; set; } = string.Empty;
 
         public int? SchoolId { get; set; }
-
-        public School? School { get; set; }
-
-        public List<Course> Courses { get; set; } = new List<Course>();
     }
 }
