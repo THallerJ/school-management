@@ -1,4 +1,6 @@
-﻿namespace school_management.Dtos.School
+﻿using school_management.Dtos.Course;
+
+namespace school_management.Dtos.School
 {
     public class SchoolDto
     {
@@ -9,5 +11,8 @@
         public string Address { get; set; } = string.Empty;
 
         public string PhoneNumber { get; set; } = string.Empty;
+
+        public List<CourseDto> Courses { get; set; } = new List<CourseDto>();
+
     }
 }

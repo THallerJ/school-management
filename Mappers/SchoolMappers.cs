@@ -13,6 +13,7 @@ namespace school_management.Mappers
                 Name = school.Name,
                 Address = school.Address,
                 PhoneNumber = school.PhoneNumber,
+                Courses = school.Courses.Select(course => course.ToCourseDto()).ToList()
             };
         }
 

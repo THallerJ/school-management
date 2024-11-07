@@ -32,7 +32,7 @@ namespace school_management.Repository
 
         public async Task<List<School>> Get()
         {
-            List<School> schools = await _context.Schools.ToListAsync();
+            var schools = await _context.Schools.Include(school => school.Courses).ToListAsync();
             return schools;
         }
 

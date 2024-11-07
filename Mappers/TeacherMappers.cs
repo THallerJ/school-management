@@ -13,6 +13,8 @@ namespace school_management.Mappers
                 FirstName = teacher.FirstName,
                 LastName = teacher.LastName,
                 SchoolId = teacher.SchoolId,
+                Courses = teacher.Courses.Select(course => course.ToCourseDto()).ToList()
+
             };
         }
 

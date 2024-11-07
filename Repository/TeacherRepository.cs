@@ -32,8 +32,8 @@ namespace school_management.Repository
 
         public async Task<List<Teacher>> Get()
         {
-            List<Teacher> teacher = await _context.Teachers.ToListAsync();
-            return teacher;
+            var teachers = await _context.Teachers.Include(teacher => teacher.Courses).ToListAsync();
+            return teachers;
         }
 
         public async Task<Teacher?> Update(int id)

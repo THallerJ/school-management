@@ -1,4 +1,6 @@
-﻿namespace school_management.Dtos.Student
+﻿using school_management.Dtos.Course;
+
+namespace school_management.Dtos.Student
 {
     public class StudentDto
     {
