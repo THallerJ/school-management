@@ -8,5 +8,7 @@ namespace school_management.Interface
         Task<Teacher> Create(Teacher teacherModel);
         Task<Teacher?> Delete(int id);
         Task<Teacher?> Update(int id);
+        Task<Teacher?> GetById(int id);
+
     }
 }

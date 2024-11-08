@@ -19,6 +19,22 @@ namespace school_management.Controllers
             return Ok(coursesDto);
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var courseModel = await _courseRepo.GetById(id);
+
+            if (courseModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(courseModel.ToCourseDto());
+        }
+
         [HttpPost("create_course")]
         public async Task<IActionResult> Create([FromBody] CreateCourseDto courseDto)
         {
@@ -27,7 +43,7 @@ namespace school_management.Controllers
 
             var courseModel = courseDto.ToCourseFromCreateDto();
             await _courseRepo.Create(courseModel);
-            return Ok(courseModel.ToCourseDto());
+            return CreatedAtAction(nameof(GetById), new {id = courseModel.Id}, courseModel.ToCourseDto());
         }
 
         [HttpDelete("{id:int}")]

@@ -13,6 +13,7 @@ namespace school_management.Repository
         {
             await _context.Teachers.AddAsync(teacherModel);
             await _context.SaveChangesAsync();
+
             return teacherModel;
         }
 
@@ -39,6 +40,11 @@ namespace school_management.Repository
         public async Task<Teacher?> Update(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Teacher?> GetById(int id)
+        {
+            return await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Id == id);
         }
     }
 }

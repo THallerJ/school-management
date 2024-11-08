@@ -8,6 +8,6 @@ namespace school_management.Interface
         Task<Course> Create(Course courseModel);
         Task<Course?> Delete(int id);
         Task<Course?> Update(int id);
-
+        Task<Course?> GetById(int id);
     }
 }

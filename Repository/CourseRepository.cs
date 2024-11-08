@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis.Elfie.Model;
+using Microsoft.EntityFrameworkCore;
 using school_management.Data;
 using school_management.Interface;
 using school_management.Models;
@@ -38,6 +39,10 @@ namespace school_management.Repository
         public Task<Course?> Update(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Course?> GetById(int id) {
+            return await _context.Courses.FirstOrDefaultAsync(course => course.Id == id);
         }
     }
 }

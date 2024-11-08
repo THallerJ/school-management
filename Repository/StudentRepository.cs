@@ -40,6 +40,11 @@ namespace school_management.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Student?> GetById(int id)
+        {
+            return await _context.Students.FirstOrDefaultAsync(student => student.Id == id);
+        }
     }
 }
 

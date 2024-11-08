@@ -8,6 +8,7 @@ namespace school_management.Interface
         Task<Student> Create(Student studentModel);
         Task<Student?> Delete(int id);
         Task<Student?> Update(int id);
+        Task<Student?> GetById(int id);
 
     }
 }

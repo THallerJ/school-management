@@ -19,6 +19,22 @@ namespace school_management.Controllers
             return Ok(teachersDto);
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var teacherModel = await _teacherRepo.GetById(id);
+
+            if (teacherModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(teacherModel.ToTeacherDto());
+        }
+
         [HttpPost("create_teacher")]
         public async Task<IActionResult> Create([FromBody] CreateTeacherDto teacher)
         {
@@ -27,7 +43,7 @@ namespace school_management.Controllers
 
             var teacherModel = teacher.ToTeacherFromCreateDto();
             await _teacherRepo.Create(teacherModel);
-            return Ok(teacherModel.ToTeacherDto());
+            return CreatedAtAction(nameof(GetById), new { id = teacherModel.Id }, teacherModel.ToTeacherDto());
         }
 
         [HttpDelete("{id:int}")]
