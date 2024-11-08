@@ -36,7 +36,7 @@ namespace school_management.Controllers
         }
 
         [HttpPost("create_teacher")]
-        public async Task<IActionResult> Create([FromBody] CreateTeacherDto teacher)
+        public async Task<IActionResult> Post([FromBody] CreateTeacherDto teacher)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -47,7 +47,7 @@ namespace school_management.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> DeleteTeacher([FromRoute] int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
