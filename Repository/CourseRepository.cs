@@ -1,6 +1,6 @@
-﻿using Microsoft.CodeAnalysis.Elfie.Model;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using school_management.Data;
+using school_management.Dtos.Course;
 using school_management.Interface;
 using school_management.Models;
 
@@ -36,9 +36,22 @@ namespace school_management.Repository
             return courses;
         }
 
-        public Task<Course?> Update(int id)
+        public async Task<Course?> Put(int id, PutCourseDto courseDto)
         {
-            throw new NotImplementedException();
+            var courseToUpdate = await _context.Courses.FirstOrDefaultAsync(coures => coures.Id == id);
+
+            if (courseToUpdate == null)
+            {
+                return null;
+            }
+
+            courseToUpdate.TeacherId = courseDto.TeacherId;
+            courseToUpdate.SchoolId = courseDto.SchoolId;
+            courseToUpdate.Name = courseDto.Name;
+            
+            await _context.SaveChangesAsync();
+
+            return courseToUpdate;
         }
 
         public async Task<Course?> GetById(int id) {

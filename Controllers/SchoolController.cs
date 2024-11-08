@@ -62,5 +62,22 @@ namespace school_management.Controllers
 
             return NoContent();
         }
+
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<IActionResult> Put(int id, [FromBody] PutSchoolDto schoolDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var schoolModel = await _schoolRepo.Put(id, schoolDto);
+
+            if (schoolModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(schoolModel.ToSchoolDto());
+        }
     }
 }

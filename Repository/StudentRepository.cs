@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using school_management.Data;
+using school_management.Dtos.Student;
 using school_management.Interface;
 using school_management.Models;
 
@@ -36,9 +37,22 @@ namespace school_management.Repository
             return students;
         }
 
-        public Task<Student?> Update(int id)
+        public async Task<Student?> Put(int id, PutStudentDto studentDto)
         {
-            throw new NotImplementedException();
+            var studentToUpdate = await _context.Students.FirstOrDefaultAsync(student => student.Id == id);
+
+            if (studentToUpdate == null)
+            {
+                return null;
+            }
+
+            studentToUpdate.FirstName = studentDto.FirstName;
+            studentToUpdate.LastName = studentDto.LastName;
+            studentToUpdate.SchoolId = studentDto.SchoolId;
+            
+            await _context.SaveChangesAsync();
+
+            return studentToUpdate;
         }
 
         public async Task<Student?> GetById(int id)

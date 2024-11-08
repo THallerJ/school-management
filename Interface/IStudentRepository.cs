@@ -1,4 +1,5 @@
-﻿using school_management.Models;
+﻿using school_management.Dtos.Student;
+using school_management.Models;
 
 namespace school_management.Interface
 {
@@ -7,7 +8,7 @@ namespace school_management.Interface
         Task<List<Student>> Get();
         Task<Student> Create(Student studentModel);
         Task<Student?> Delete(int id);
-        Task<Student?> Update(int id);
+        Task<Student?> Put(int id, PutStudentDto studentDto);
         Task<Student?> GetById(int id);
 
     }
