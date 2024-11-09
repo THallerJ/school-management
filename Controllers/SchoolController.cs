@@ -12,9 +12,9 @@ namespace school_management.Controllers
         private readonly ISchoolRepository _schoolRepo = schoolRepo;
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] SchoolFilter filter)
         {
-            var schools = await _schoolRepo.Get();
+            var schools = await _schoolRepo.Get(filter);
             var schoolsDto = schools.Select(school => school.ToSchoolDto());
             return Ok(schoolsDto);
         }

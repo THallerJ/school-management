@@ -29,10 +29,20 @@ namespace school_management.Repository
             return teacherModel;
         }
 
-        public async Task<List<Teacher>> Get()
+        public async Task<List<Teacher>> Get(TeacherFilter filter)
         {
-            var teachers = await _context.Teachers.Include(teacher => teacher.Courses).ToListAsync();
-            return teachers;
+            var teachers = _context.Teachers.AsQueryable();
+            
+            if (!string.IsNullOrWhiteSpace(filter.FirstName))
+                teachers = teachers.Where(teacher => teacher.FirstName.Contains(filter.FirstName));
+
+            if (!string.IsNullOrWhiteSpace(filter.LastName))
+                teachers = teachers.Where(teacher => teacher.LastName.Equals(filter.LastName));
+
+            if (filter.SchoolId != null)
+                teachers = teachers.Where(teacher => teacher.SchoolId.Equals(filter.SchoolId));
+
+            return await teachers.ToListAsync();
         }
 
         public async Task<Teacher?> Put(int id, PutTeacherDto teacherDto)

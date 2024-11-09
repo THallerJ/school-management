@@ -32,13 +32,13 @@ namespace school_management.Repository
             var courses = _context.Courses.AsQueryable();
             
             if (!string.IsNullOrWhiteSpace(filter.Name))
-                courses = courses.Where(s => s.Name.Contains(filter.Name));
+                courses = courses.Where(course => course.Name.Contains(filter.Name));
 
             if (filter.TeacherId != null)
-                courses = courses.Where(s => s.TeacherId.Equals(filter.TeacherId));
+                courses = courses.Where(course => course.TeacherId.Equals(filter.TeacherId));
 
             if (filter.SchoolId != null)
-                courses = courses.Where(s => s.SchoolId.Equals(filter.SchoolId));
+                courses = courses.Where(course => course.SchoolId.Equals(filter.SchoolId));
 
             return await courses.ToListAsync();
         }

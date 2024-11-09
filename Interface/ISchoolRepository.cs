@@ -5,7 +5,7 @@ namespace school_management.Interface
 {
     public interface ISchoolRepository
     {
-        Task<List<School>> Get();
+        Task<List<School>> Get(SchoolFilter filter);
         Task<School> Create(School schoolModel);
         Task<School?> Delete(int id);
         Task<School?> Put(int id, PutSchoolDto schoolDto);

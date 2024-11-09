@@ -28,10 +28,20 @@ namespace school_management.Repository
             return studentModel;
         }
 
-        public async Task<List<Student>> Get()
+        public async Task<List<Student>> Get(StudentFilter filter)
         {
-            List<Student> students = await _context.Students.ToListAsync();
-            return students;
+            var students = _context.Students.AsQueryable();
+            
+            if (!string.IsNullOrWhiteSpace(filter.FirstName))
+                students = students.Where(student => student.FirstName.Contains(filter.FirstName));
+
+            if (!string.IsNullOrWhiteSpace(filter.LastName))
+                students = students.Where(student => student.LastName.Equals(filter.LastName));
+
+            if (filter.SchoolId != null)
+                students = students.Where(student => student.SchoolId.Equals(filter.SchoolId));
+
+            return await students.ToListAsync();
         }
 
         public async Task<Student?> Put(int id, PutStudentDto studentDto)
