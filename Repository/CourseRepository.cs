@@ -3,6 +3,7 @@ using school_management.Data;
 using school_management.Dtos.Course;
 using school_management.Interface;
 using school_management.Models;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace school_management.Repository
 {
@@ -30,10 +31,20 @@ namespace school_management.Repository
             return courseModel;
         }
 
-        public async Task<List<Course>> Get()
+        public async Task<List<Course>> Get(CourseFilter filter)
         {
-            List<Course> courses = await _context.Courses.ToListAsync();
-            return courses;
+            var courses = _context.Courses.AsQueryable();
+            
+            if (!string.IsNullOrWhiteSpace(filter.Name))
+                courses = courses.Where(s => s.Name.Contains(filter.Name));
+
+            if (filter.TeacherId != null)
+                courses = courses.Where(s => s.TeacherId.Equals(filter.TeacherId));
+
+            if (filter.SchoolId != null)
+                courses = courses.Where(s => s.SchoolId.Equals(filter.SchoolId));
+
+            return await courses.ToListAsync();
         }
 
         public async Task<Course?> Put(int id, PutCourseDto courseDto)

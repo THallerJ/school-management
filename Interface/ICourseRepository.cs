@@ -5,7 +5,7 @@ namespace school_management.Interface
 {
     public interface ICourseRepository
     {
-        Task<List<Course>> Get();
+        Task<List<Course>> Get(CourseFilter filter);
         Task<Course> Create(Course courseModel);
         Task<Course?> Delete(int id);
         Task<Course?> Put(int id, PutCourseDto courseDto);

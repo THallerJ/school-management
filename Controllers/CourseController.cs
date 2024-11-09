@@ -12,9 +12,9 @@ namespace school_management.Controllers
         private readonly ICourseRepository _courseRepo = courseRepo;
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] CourseFilter filter)
         {
-            var courses =  await _courseRepo.Get();
+            var courses =  await _courseRepo.Get(filter);
             var coursesDto = courses.Select(course => course.ToCourseDto());
             return Ok(coursesDto);
         }
