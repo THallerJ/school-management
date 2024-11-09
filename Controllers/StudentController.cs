@@ -35,7 +35,7 @@ namespace school_management.Controllers
             return Ok(studentModel.ToStudentDto());
         }
 
-        [HttpPost("create_student")]
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateStudentDto student)
         {
             if (!ModelState.IsValid)

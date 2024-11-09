@@ -35,7 +35,7 @@ namespace school_management.Controllers
             return Ok(teacherModel.ToTeacherDto());
         }
 
-        [HttpPost("create_teacher")]
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateTeacherDto teacher)
         {
             if (!ModelState.IsValid)
