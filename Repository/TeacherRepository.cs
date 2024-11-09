@@ -22,11 +22,8 @@ namespace school_management.Repository
         {
             var teacherModel = await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Id == id);
 
-            if (teacherModel == null)
-            {
-                return null;
-            }
-
+            if (teacherModel == null) return null;
+            
             _context.Teachers.Remove(teacherModel);
             await _context.SaveChangesAsync();
             return teacherModel;
@@ -42,11 +39,8 @@ namespace school_management.Repository
         {
             var teacherToUpdate = await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Id == id);
 
-            if (teacherToUpdate == null)
-            {
-                return null;
-            }
-
+            if (teacherToUpdate == null) return null;
+            
             teacherToUpdate.FirstName = teacherDto.FirstName;
             teacherToUpdate.LastName = teacherDto.LastName;
             teacherToUpdate.SchoolId = teacherDto.SchoolId;

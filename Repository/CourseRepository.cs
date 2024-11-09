@@ -3,7 +3,6 @@ using school_management.Data;
 using school_management.Dtos.Course;
 using school_management.Interface;
 using school_management.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace school_management.Repository
 {
@@ -21,11 +20,8 @@ namespace school_management.Repository
         {
             var courseModel = await _context.Courses.FirstOrDefaultAsync(course => course.Id == id);
 
-            if (courseModel == null)
-            {
-                return null;
-            }
-
+            if (courseModel == null) return null;
+            
             _context.Courses.Remove(courseModel);
             await _context.SaveChangesAsync();
             return courseModel;
@@ -51,11 +47,8 @@ namespace school_management.Repository
         {
             var courseToUpdate = await _context.Courses.FirstOrDefaultAsync(coures => coures.Id == id);
 
-            if (courseToUpdate == null)
-            {
-                return null;
-            }
-
+            if (courseToUpdate == null) return null;
+            
             courseToUpdate.TeacherId = courseDto.TeacherId;
             courseToUpdate.SchoolId = courseDto.SchoolId;
             courseToUpdate.Name = courseDto.Name;

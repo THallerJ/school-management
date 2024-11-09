@@ -22,24 +22,19 @@ namespace school_management.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var courseModel = await _courseRepo.GetById(id);
 
-            if (courseModel == null)
-            {
-                return NotFound();
-            }
-
+            if (courseModel == null) return NotFound();
+            
             return Ok(courseModel.ToCourseDto());
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateCourseDto courseDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var courseModel = courseDto.ToCourseFromCreateDto();
             await _courseRepo.Create(courseModel);
@@ -49,16 +44,12 @@ namespace school_management.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var courseModel = await _courseRepo.Delete(id);
 
-            if (courseModel == null)
-            {
-                return NotFound();
-            }
-
+            if (courseModel == null) return NotFound();
+            
             return NoContent();
         }
 
@@ -66,16 +57,12 @@ namespace school_management.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> Put(int id, [FromBody] PutCourseDto courseDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var courseModel = await _courseRepo.Put(id, courseDto);
 
-            if (courseModel == null)
-            {
-                return NotFound();
-            }
-
+            if (courseModel == null) return NotFound();
+            
             return Ok(courseModel.ToCourseDto());
         }
     }

@@ -22,16 +22,12 @@ namespace school_management.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var schoolModel = await _schoolRepo.GetById(id);
 
-            if (schoolModel == null)
-            {
-                return NotFound();
-            }
-
+            if (schoolModel == null) return NotFound();
+            
             return Ok(schoolModel.ToSchoolDto());
         }
 
@@ -39,8 +35,7 @@ namespace school_management.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateSchoolDto schoolDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var schoolModel = schoolDto.ToSchoolFromCreateDto();
             await _schoolRepo.Create(schoolModel);
@@ -50,16 +45,12 @@ namespace school_management.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var schoolModel = await _schoolRepo.Delete(id);
 
-            if (schoolModel == null)
-            {
-                return NotFound();
-            }
-
+            if (schoolModel == null) return NotFound();
+            
             return NoContent();
         }
 
@@ -67,16 +58,12 @@ namespace school_management.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> Put(int id, [FromBody] PutSchoolDto schoolDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var schoolModel = await _schoolRepo.Put(id, schoolDto);
 
-            if (schoolModel == null)
-            {
-                return NotFound();
-            }
-
+            if (schoolModel == null) return NotFound();
+            
             return Ok(schoolModel.ToSchoolDto());
         }
     }

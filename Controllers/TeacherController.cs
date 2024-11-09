@@ -22,24 +22,19 @@ namespace school_management.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var teacherModel = await _teacherRepo.GetById(id);
 
-            if (teacherModel == null)
-            {
-                return NotFound();
-            }
-
+            if (teacherModel == null) return NotFound();
+            
             return Ok(teacherModel.ToTeacherDto());
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateTeacherDto teacher)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var teacherModel = teacher.ToTeacherFromCreateDto();
             await _teacherRepo.Create(teacherModel);
@@ -49,16 +44,12 @@ namespace school_management.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var teacherModel = await _teacherRepo.Delete(id);
 
-            if (teacherModel == null)
-            {
-                return NotFound();
-            }
-
+            if (teacherModel == null) return NotFound();
+            
             return NoContent();
         }
 
@@ -66,16 +57,12 @@ namespace school_management.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> Put(int id, [FromBody] PutTeacherDto teacherDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var teacherModel = await _teacherRepo.Put(id, teacherDto);
 
-            if (teacherModel == null)
-            {                                                                                                                                                                                                                                                                     
-                return NotFound();
-            }
-
+            if (teacherModel == null) return NotFound();
+            
             return Ok(teacherModel.ToTeacherDto());
         }
     }

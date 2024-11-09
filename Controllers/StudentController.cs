@@ -22,24 +22,19 @@ namespace school_management.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var studentModel = await _studentRepo.GetById(id);
 
-            if (studentModel == null)
-            {
-                return NotFound();
-            }
-
+            if (studentModel == null) return NotFound();
+            
             return Ok(studentModel.ToStudentDto());
         }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateStudentDto student)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var studentModel = student.ToStudentFromCreateDto();
             await _studentRepo.Create(studentModel);
@@ -49,16 +44,12 @@ namespace school_management.Controllers
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var studentModel = await _studentRepo.Delete(id);
 
-            if (studentModel == null)
-            {
-                return NotFound();
-            }
-
+            if (studentModel == null) return NotFound();
+            
             return NoContent();
         }
 
@@ -66,16 +57,12 @@ namespace school_management.Controllers
         [Route("{id:int}")]
         public async Task<IActionResult> Put(int id, [FromBody] PutStudentDto studentDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var studentModel = await _studentRepo.Put(id, studentDto);
 
-            if (studentModel == null)
-            {
-                return NotFound();
-            }
-
+            if (studentModel == null) return NotFound();
+            
             return Ok(studentModel.ToStudentDto());
         }
     }
