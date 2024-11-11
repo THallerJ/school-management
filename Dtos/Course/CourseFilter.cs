@@ -1,6 +1,8 @@
-﻿namespace school_management.Dtos.Course
+﻿using school_management.Dtos.Common;
+
+namespace school_management.Dtos.Course
 {
-    public class CourseFilter
+    public class CourseFilter : Filter
     {
         public string? Name { get; set; }
 

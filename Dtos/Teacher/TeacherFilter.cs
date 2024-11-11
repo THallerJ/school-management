@@ -1,6 +1,8 @@
-﻿namespace school_management.Dtos.Teacher
+﻿using school_management.Dtos.Common;
+
+namespace school_management.Dtos.Teacher
 {
-    public class TeacherFilter
+    public class TeacherFilter : Filter
     {
         public string? FirstName { get; set; }
 

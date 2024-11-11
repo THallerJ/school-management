@@ -41,7 +41,7 @@ namespace school_management.Repository
             if (filter.SchoolId != null)
                 students = students.Where(student => student.SchoolId.Equals(filter.SchoolId));
 
-            return await students.ToListAsync();
+            return await students.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
         }
 
         public async Task<Student?> Put(int id, PutStudentDto studentDto)

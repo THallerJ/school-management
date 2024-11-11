@@ -10,6 +10,5 @@ namespace school_management.Interface
         Task<Student?> Delete(int id);
         Task<Student?> Put(int id, PutStudentDto studentDto);
         Task<Student?> GetById(int id);
-
     }
 }

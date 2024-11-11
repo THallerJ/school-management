@@ -1,6 +1,8 @@
-﻿namespace school_management.Dtos.Student
+﻿using school_management.Dtos.Common;
+
+namespace school_management.Dtos.Student
 {
-    public class StudentFilter
+    public class StudentFilter : Filter
     {
         public string? FirstName { get; set; }
 

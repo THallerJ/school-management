@@ -41,7 +41,7 @@ namespace school_management.Repository
             if (!string.IsNullOrWhiteSpace(filter.PhoneNumber))
                 schools = schools.Where(school => school.PhoneNumber.Equals(filter.PhoneNumber));
 
-            return await schools.ToListAsync();
+            return await schools.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
         }
 
         public async Task<School?> Put(int id, PutSchoolDto schoolDto)

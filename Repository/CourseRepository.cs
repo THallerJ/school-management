@@ -29,6 +29,7 @@ namespace school_management.Repository
 
         public async Task<List<Course>> Get(CourseFilter filter)
         {
+
             var courses = _context.Courses.AsQueryable();
             
             if (!string.IsNullOrWhiteSpace(filter.Name))
@@ -40,7 +41,7 @@ namespace school_management.Repository
             if (filter.SchoolId != null)
                 courses = courses.Where(course => course.SchoolId.Equals(filter.SchoolId));
 
-            return await courses.ToListAsync();
+            return await courses.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
         }
 
         public async Task<Course?> Put(int id, PutCourseDto courseDto)
