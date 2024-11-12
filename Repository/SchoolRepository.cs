@@ -30,7 +30,7 @@ namespace school_management.Repository
 
         public async Task<List<School>> Get(SchoolFilter filter)
         {
-            var schools = _context.Schools.AsQueryable();
+            var schools = _context.Schools.Include(school => school.Courses).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filter.Name))
                 schools = schools.Where(school => school.Name.Contains(filter.Name));
@@ -46,7 +46,8 @@ namespace school_management.Repository
 
         public async Task<School?> Put(int id, PutSchoolDto schoolDto)
         {
-            var schoolToUpdate = await _context.Schools.FirstOrDefaultAsync(school => school.Id == id);
+            var schoolToUpdate = await _context.Schools
+                .FirstOrDefaultAsync(school => school.Id == id);
 
             if (schoolToUpdate == null) return null;
             
@@ -61,7 +62,8 @@ namespace school_management.Repository
 
         public async Task<School?> GetById(int id)
         {
-            return await _context.Schools.FirstOrDefaultAsync(school => school.Id == id);
+            return await _context.Schools.Include(school => school.Courses)
+                .FirstOrDefaultAsync(school => school.Id == id);
         }
     }
 }

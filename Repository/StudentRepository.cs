@@ -30,7 +30,8 @@ namespace school_management.Repository
 
         public async Task<List<Student>> Get(StudentFilter filter)
         {
-            var students = _context.Students.AsQueryable();
+            var students = _context.Students.Include(student => student.School)
+                .Include(student => student.Courses).AsQueryable();
             
             if (!string.IsNullOrWhiteSpace(filter.FirstName))
                 students = students.Where(student => student.FirstName.Contains(filter.FirstName));
@@ -61,7 +62,8 @@ namespace school_management.Repository
 
         public async Task<Student?> GetById(int id)
         {
-            return await _context.Students.FirstOrDefaultAsync(student => student.Id == id);
+            return await _context.Students.Include(student => student.School)
+                .Include(student => student.Courses).FirstOrDefaultAsync(student => student.Id == id);
         }
     }
 }

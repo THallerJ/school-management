@@ -31,7 +31,8 @@ namespace school_management.Repository
 
         public async Task<List<Teacher>> Get(TeacherFilter filter)
         {
-            var teachers = _context.Teachers.AsQueryable();
+            var teachers = _context.Teachers.Include(teacher =>  teacher.School)
+                .Include(teacher => teacher.Courses).AsQueryable();
             
             if (!string.IsNullOrWhiteSpace(filter.FirstName))
                 teachers = teachers.Where(teacher => teacher.FirstName.Contains(filter.FirstName));
@@ -42,12 +43,14 @@ namespace school_management.Repository
             if (filter.SchoolId != null)
                 teachers = teachers.Where(teacher => teacher.SchoolId.Equals(filter.SchoolId));
 
-            return await teachers.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
+            return await teachers.Skip((filter.PageNumber - 1) * filter.PageSize)
+                .Take(filter.PageSize).ToListAsync();
         }
 
         public async Task<Teacher?> Put(int id, PutTeacherDto teacherDto)
         {
-            var teacherToUpdate = await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Id == id);
+            var teacherToUpdate = await _context.Teachers.Include(teacher => teacher.School)
+                .FirstOrDefaultAsync(teacher => teacher.Id == id);
 
             if (teacherToUpdate == null) return null;
             
@@ -62,7 +65,8 @@ namespace school_management.Repository
 
         public async Task<Teacher?> GetById(int id)
         {
-            return await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Id == id);
+            return await _context.Teachers.Include(teacher => teacher.School)
+                .Include(teacher => teacher.Courses).FirstOrDefaultAsync(teacher => teacher.Id == id);
         }
     }
 }
