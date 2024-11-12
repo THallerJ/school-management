@@ -1,4 +1,5 @@
 ﻿using school_management.Dtos.Course;
+using school_management.Dtos.School;
 
 namespace school_management.Dtos.Teacher
 {
@@ -10,7 +11,8 @@ namespace school_management.Dtos.Teacher
 
         public string LastName { get; set; } = string.Empty;
 
-        public int? SchoolId { get; set; }
+        public SchoolDto? School { get; set; }
+
 
         public List<CourseDto> Courses { get; set; } = new List<CourseDto>();
 
