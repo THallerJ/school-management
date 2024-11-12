@@ -17,9 +17,9 @@ namespace school_management.Mappers
             };
         }
 
-        public static SchoolDto ToNestedSchooLDto(this School school)
+        public static NestedSchoolDto ToNestedSchooLDto(this School school)
         {
-            return new SchoolDto
+            return new NestedSchoolDto
             {
                 Id = school.Id,
                 Name = school.Name,

@@ -11,8 +11,7 @@ namespace school_management.Dtos.Teacher
 
         public string LastName { get; set; } = string.Empty;
 
-        public SchoolDto? School { get; set; }
-
+        public NestedSchoolDto? School { get; set; }
 
         public List<CourseDto> Courses { get; set; } = new List<CourseDto>();
 
