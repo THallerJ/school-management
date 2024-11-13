@@ -1,4 +1,7 @@
-﻿namespace school_management.Dtos.Course
+﻿using school_management.Dtos.School;
+using school_management.Dtos.Teacher;
+
+namespace school_management.Dtos.Course
 {
     public class CourseDto
     {
@@ -6,8 +9,8 @@
 
         public string Name { get; set; } = string.Empty;
 
-        public int? SchoolId { get; set; }
+        public NestedSchoolDto? School { get; set; }
 
-        public int? TeacherId { get; set; }
+        public TeacherDto? Teacher { get; set; }
     }
 }

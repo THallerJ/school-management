@@ -8,7 +8,7 @@
 
         public string LastName { get; set; } = string.Empty;
 
-        public int? SchoolId { get; set; }
+        public int SchoolId { get; set; }
 
         public School? School { get; set; }
 

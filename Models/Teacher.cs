@@ -10,7 +10,7 @@
 
         public int SchoolId { get; set; }
 
-        public School School { get; set; }
+        public School? School { get; set; }
 
         public List<Course> Courses { get; set; } = new List<Course>();
     }

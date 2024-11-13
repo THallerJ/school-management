@@ -11,8 +11,8 @@ namespace school_management.Mappers
             {
                 Id = course.Id,
                 Name = course.Name,
-                SchoolId = course.SchoolId,
-                TeacherId = course.TeacherId, 
+                School = course.School?.ToNestedSchooLDto(),
+                Teacher = course.Teacher?.ToTeacherDto(),
             };
         }
 

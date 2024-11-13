@@ -1,4 +1,5 @@
 ﻿using school_management.Dtos.Course;
+using school_management.Dtos.School;
 
 namespace school_management.Dtos.Student
 {
@@ -10,6 +11,6 @@ namespace school_management.Dtos.Student
 
         public string LastName { get; set; } = string.Empty;
 
-        public int? SchoolId { get; set; }
+        public NestedSchoolDto? School {get; set;}
     }
 }
