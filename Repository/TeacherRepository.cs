@@ -31,7 +31,7 @@ namespace school_management.Repository
 
         public async Task<List<Teacher>> Get(TeacherFilter filter)
         {
-            var teachers = _context.Teachers.Include(teacher =>  teacher.School)
+            var teachers = _context.Teachers.Include(teacher => teacher.School)
                 .Include(teacher => teacher.Courses).AsQueryable();
             
             if (!string.IsNullOrWhiteSpace(filter.FirstName))

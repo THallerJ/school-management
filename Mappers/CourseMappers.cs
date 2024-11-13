@@ -12,7 +12,7 @@ namespace school_management.Mappers
                 Id = course.Id,
                 Name = course.Name,
                 School = course.School?.ToNestedSchooLDto(),
-                Teacher = course.Teacher?.ToTeacherDto(),
+                Teacher = course.Teacher?.ToNestedTeacher(),
             };
         }
 

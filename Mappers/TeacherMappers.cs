@@ -12,10 +12,21 @@ namespace school_management.Mappers
                 Id = teacher.Id,
                 FirstName = teacher.FirstName,
                 LastName = teacher.LastName,
-                Courses = teacher.Courses.Select(course => course.ToNestedCourseDto()).ToList(),
+                Courses = teacher.Courses.Select(course => course.ToCourseDto()).ToList(),
                 School = teacher.School?.ToNestedSchooLDto(),
             };
         }
+
+         public static NestedTeacherDto ToNestedTeacher(this Teacher teacher)
+        {
+            return new NestedTeacherDto
+            {
+                Id = teacher.Id,
+                FirstName = teacher.FirstName,
+                LastName = teacher.LastName,
+            };
+        }
+
 
         public static Teacher ToTeacherFromCreateDto(this CreateTeacherDto stockDto)
         {

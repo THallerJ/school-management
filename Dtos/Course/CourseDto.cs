@@ -11,6 +11,6 @@ namespace school_management.Dtos.Course
 
         public NestedSchoolDto? School { get; set; }
 
-        public TeacherDto? Teacher { get; set; }
+        public NestedTeacherDto? Teacher { get; set; }
     }
 }

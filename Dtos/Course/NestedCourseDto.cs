@@ -1,4 +1,5 @@
 using school_management.Dtos.School;
+using school_management.Dtos.Teacher;
 
 namespace school_management.Dtos.Course
 {
@@ -11,5 +12,7 @@ namespace school_management.Dtos.Course
         public NestedSchoolDto? School { get; set; }
 
         public int? TeacherId { get; set; }
+
+        public TeacherDto? Teacher { get; set; }
     }
 }
