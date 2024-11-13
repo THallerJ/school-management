@@ -12,6 +12,6 @@ namespace school_management.Dtos.School
 
         public string PhoneNumber { get; set; } = string.Empty;
 
-        public List<CourseDto> Courses { get; set; } = new List<CourseDto>();
+        public List<NestedCourseDto> Courses { get; set; } = new List<NestedCourseDto>();
     }
 }
