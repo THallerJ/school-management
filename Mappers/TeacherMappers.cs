@@ -12,7 +12,7 @@ namespace school_management.Mappers
                 Id = teacher.Id,
                 FirstName = teacher.FirstName,
                 LastName = teacher.LastName,
-                Courses = teacher.Courses.Select(course => course.ToCourseDto()).ToList(),
+                Courses = teacher.Courses.Select(course => course.ToCourseNoTeacherSchoolDto()).ToList(),
                 School = teacher.School?.ToNestedSchooLDto(),
             };
         }
@@ -26,7 +26,6 @@ namespace school_management.Mappers
                 LastName = teacher.LastName,
             };
         }
-
 
         public static Teacher ToTeacherFromCreateDto(this CreateTeacherDto stockDto)
         {
