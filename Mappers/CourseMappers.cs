@@ -16,6 +16,17 @@ namespace school_management.Mappers
             };
         }
 
+        public static NestedCourseDto ToNestedCourseDto(this Course course)
+        {
+            return new NestedCourseDto
+            {
+                Id = course.Id,
+                Name = course.Name,
+                School = course.School?.ToNestedSchooLDto(),
+                TeacherId = course.TeacherId,
+            };
+        }
+
         public static Course ToCourseFromCreateDto(this CreateCourseDto courseDto)
         {
             return new Course
