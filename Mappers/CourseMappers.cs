@@ -24,6 +24,7 @@ namespace school_management.Mappers
                 Id = course.Id,
                 Name = course.Name,
                 Teacher = course.Teacher?.ToNestedTeacher(),
+                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList()
             };
         }
 
