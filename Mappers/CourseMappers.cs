@@ -43,6 +43,7 @@ namespace school_management.Mappers
             {
                 Id = course.Id,
                 Name = course.Name,
+                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList()
             };
         }
         
