@@ -19,7 +19,8 @@ namespace school_management.Repository
 
         public async Task<Student?> Delete(int id)
         {
-            var studentModel = await _context.Students.FirstOrDefaultAsync(student => student.Id == id);
+            var studentModel = await _context.Students
+                .FirstOrDefaultAsync(student => student.Id == id);
 
             if (studentModel == null) return null;
             

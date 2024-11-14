@@ -63,7 +63,8 @@ namespace school_management.Repository
 
         public async Task<School?> GetById(int id)
         {
-            return await _context.Schools.Include(school => school.Courses).ThenInclude(course => course.Teacher)
+            return await _context.Schools.Include(school => school.Courses)
+                .ThenInclude(course => course.Teacher)
                 .FirstOrDefaultAsync(school => school.Id == id);
         }
     }
