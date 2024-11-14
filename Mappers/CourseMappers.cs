@@ -13,13 +13,23 @@ namespace school_management.Mappers
                 Name = course.Name,
                 School = course.School?.ToNestedSchooLDto(),
                 Teacher = course.Teacher?.ToNestedTeacher(),
-                Registrations = course.Registrations.Select(reg => reg.ToRegistrationDto()).ToList()
+                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList()
             };
         }
 
         public static CourseNoSchoolDto ToCourseNoSchoolDto(this Course course)
         {
             return new CourseNoSchoolDto
+            {
+                Id = course.Id,
+                Name = course.Name,
+                Teacher = course.Teacher?.ToNestedTeacher(),
+            };
+        }
+
+        public static NestedCourseDto ToNestedCourseDto(this Course course)
+        {
+            return new NestedCourseDto
             {
                 Id = course.Id,
                 Name = course.Name,

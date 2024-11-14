@@ -5,12 +5,19 @@ namespace school_management.Mappers
 {
     public static class RegistrationMapper
     {
-        public static RegistrationDto ToRegistrationDto(this Registration registration)
+        public static RegistrationCourseDto ToRegistrationCourseDto(this Registration registration)
         {
-            return new RegistrationDto
+            return new RegistrationCourseDto
             {
-                CourseId = registration.CourseId,
-                StudentId = registration.StudentId,
+                Course = registration.Course?.ToNestedCourseDto(),
+            };
+        }
+
+        public static RegistrationStudentDto ToRegistrationStudentDto(this Registration registration)
+        {
+            return new RegistrationStudentDto
+            {
+                Student = registration.Student?.ToNestedStudentDto(),
             };
         }
     }

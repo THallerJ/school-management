@@ -13,8 +13,18 @@ namespace school_management.Mappers
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 School = student.School?.ToNestedSchooLDto(),
-                Registrations = student.Registrations.Select(reg => reg.ToRegistrationDto()).ToList()
+                Registrations = student.Registrations.Select(reg => reg.ToRegistrationCourseDto()).ToList()
 
+            };
+        }
+
+        public static NestedStudentDto ToNestedStudentDto(this Student student)
+        {
+            return new NestedStudentDto
+            {
+                Id = student.Id,
+                FirstName = student.FirstName,
+                LastName = student.LastName,
             };
         }
 
