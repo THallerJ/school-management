@@ -1,4 +1,3 @@
-using school_management.Dtos.School;
 using school_management.Dtos.Teacher;
 
 namespace school_management.Dtos.Course

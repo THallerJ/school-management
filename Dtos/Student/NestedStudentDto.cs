@@ -1,6 +1,3 @@
-using school_management.Dtos.Course;
-using school_management.Dtos.School;
-
 namespace school_management.Dtos.Student
 {
     public class NestedStudentDto
