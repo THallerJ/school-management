@@ -31,7 +31,7 @@ namespace school_management.Repository
         {
 
             var courses = _context.Courses.Include(course => course.School)
-                .Include(course => course.Teacher).Include(course => course.Students).AsQueryable();
+                .Include(course => course.Teacher).Include(course => course.Registrations).AsQueryable();
             
             if (!string.IsNullOrWhiteSpace(filter.Name))
                 courses = courses.Where(course => course.Name.Contains(filter.Name));
@@ -63,7 +63,7 @@ namespace school_management.Repository
 
         public async Task<Course?> GetById(int id) {
             return await _context.Courses.Include(course => course.School)
-                .Include(course => course.Teacher).Include(course => course.Students)
+                .Include(course => course.Teacher).Include(course => course.Registrations)
                 .FirstOrDefaultAsync(course => course.Id == id);
         }
     }

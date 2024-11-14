@@ -12,6 +12,6 @@
 
         public School? School { get; set; }
 
-        public List<Course> Courses { get; set; } = new List<Course>();
+        public List<Registration> Registrations { get; set; } = new List<Registration>();
     }
 }

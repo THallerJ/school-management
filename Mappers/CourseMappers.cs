@@ -13,6 +13,7 @@ namespace school_management.Mappers
                 Name = course.Name,
                 School = course.School?.ToNestedSchooLDto(),
                 Teacher = course.Teacher?.ToNestedTeacher(),
+                Registrations = course.Registrations.Select(reg => reg.ToRegistrationDto()).ToList()
             };
         }
 

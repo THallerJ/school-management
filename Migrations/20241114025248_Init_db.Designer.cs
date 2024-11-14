@@ -12,7 +12,7 @@ using school_management.Data;
 namespace school_management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241113033203_Init_db")]
+    [Migration("20241114025248_Init_db")]
     partial class Init_db
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace school_management.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("CourseStudent", b =>
-                {
-                    b.Property<int>("CoursesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CoursesId", "StudentsId");
-
-                    b.HasIndex("StudentsId");
-
-                    b.ToTable("CourseStudent");
-                });
 
             modelBuilder.Entity("school_management.Models.Course", b =>
                 {
@@ -65,6 +50,21 @@ namespace school_management.Migrations
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("school_management.Models.Registration", b =>
+                {
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CourseId", "StudentId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Registration");
                 });
 
             modelBuilder.Entity("school_management.Models.School", b =>
@@ -144,21 +144,6 @@ namespace school_management.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("CourseStudent", b =>
-                {
-                    b.HasOne("school_management.Models.Course", null)
-                        .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("school_management.Models.Student", null)
-                        .WithMany()
-                        .HasForeignKey("StudentsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("school_management.Models.Course", b =>
                 {
                     b.HasOne("school_management.Models.School", "School")
@@ -174,6 +159,25 @@ namespace school_management.Migrations
                     b.Navigation("School");
 
                     b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("school_management.Models.Registration", b =>
+                {
+                    b.HasOne("school_management.Models.Course", "Course")
+                        .WithMany("Registrations")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("school_management.Models.Student", "Student")
+                        .WithMany("Registrations")
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("school_management.Models.Student", b =>
@@ -196,9 +200,19 @@ namespace school_management.Migrations
                     b.Navigation("School");
                 });
 
+            modelBuilder.Entity("school_management.Models.Course", b =>
+                {
+                    b.Navigation("Registrations");
+                });
+
             modelBuilder.Entity("school_management.Models.School", b =>
                 {
                     b.Navigation("Courses");
+                });
+
+            modelBuilder.Entity("school_management.Models.Student", b =>
+                {
+                    b.Navigation("Registrations");
                 });
 
             modelBuilder.Entity("school_management.Models.Teacher", b =>

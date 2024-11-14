@@ -14,6 +14,6 @@
 
         public Teacher? Teacher { get; set; }
 
-        public List<Student> Students { get; set; } = new List<Student>();
+        public List<Registration> Registrations { get; set; } = new List<Registration>();
     }
 }
