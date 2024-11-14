@@ -13,6 +13,8 @@ namespace school_management.Mappers
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 School = student.School?.ToNestedSchooLDto(),
+                Registrations = student.Registrations.Select(reg => reg.ToRegistrationDto()).ToList()
+
             };
         }
 

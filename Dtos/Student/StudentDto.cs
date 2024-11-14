@@ -12,5 +12,7 @@ namespace school_management.Dtos.Student
         public string LastName { get; set; } = string.Empty;
 
         public NestedSchoolDto? School {get; set;}
+
+        public List<RegistrationDto> Registrations { get; set; } = new List<RegistrationDto>();
     }
 }
