@@ -38,7 +38,7 @@ namespace school_management.Controllers
 
             var studentModel = student.ToStudentFromCreateDto();
             await _studentRepo.Create(studentModel);
-            return CreatedAtAction(nameof(GetById), new { id = studentModel.Id }, studentModel.ToStudentDto());
+            return CreatedAtAction(nameof(GetById), new { id = studentModel.Id }, studentModel.ToCreateStudentRespDto());
         }
 
         [HttpDelete("{id:int}")]

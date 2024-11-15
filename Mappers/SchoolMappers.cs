@@ -28,6 +28,17 @@ namespace school_management.Mappers
             };
         }
 
+        public static CreateSchoolRespDto ToCreateSchoolRespDto(this School school)
+        {
+            return new CreateSchoolRespDto
+            {
+                Id = school.Id,
+                Name = school.Name,
+                Address = school.Address,
+                PhoneNumber = school.PhoneNumber,
+            };
+        }
+
         public static School ToSchoolFromCreateDto(this CreateSchoolDto schoolDto)
         {
             return new School

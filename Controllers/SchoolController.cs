@@ -39,7 +39,8 @@ namespace school_management.Controllers
 
             var schoolModel = schoolDto.ToSchoolFromCreateDto();
             await _schoolRepo.Create(schoolModel);
-            return CreatedAtAction(nameof(GetById), new { id = schoolModel.Id }, schoolModel.ToSchoolDto());
+
+            return CreatedAtAction(nameof(GetById), new { id = schoolModel.Id }, schoolModel.ToCreateSchoolRespDto());
         }
 
         [HttpDelete("{id:int}")]
