@@ -17,6 +17,17 @@ namespace school_management.Mappers
             };
         }
 
+        public static CreateCourseRespDto ToCreateCourseRespDto(this Course course)
+        {
+            return new CreateCourseRespDto
+            {
+                Id = course.Id,
+                Name = course.Name,
+                TeacherId = course.TeacherId,
+                SchoolId = course.SchoolId
+            };
+        }
+
         public static CourseNoSchoolDto ToCourseNoSchoolDto(this Course course)
         {
             return new CourseNoSchoolDto
