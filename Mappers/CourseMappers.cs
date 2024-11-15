@@ -47,7 +47,7 @@ namespace school_management.Mappers
                 Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList()
             };
         }
-        
+
         public static Course ToCourseFromCreateDto(this CreateCourseDto courseDto)
         {
             return new Course

@@ -14,7 +14,7 @@ namespace school_management.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] CourseFilter filter)
         {
-            var courses =  await _courseRepo.Get(filter);
+            var courses = await _courseRepo.Get(filter);
             var coursesDto = courses.Select(course => course.ToCourseDto());
             return Ok(coursesDto);
         }
@@ -27,7 +27,7 @@ namespace school_management.Controllers
             var courseModel = await _courseRepo.GetById(id);
 
             if (courseModel == null) return NotFound();
-            
+
             return Ok(courseModel.ToCourseDto());
         }
 
@@ -38,7 +38,7 @@ namespace school_management.Controllers
 
             var courseModel = courseDto.ToCourseFromCreateDto();
             await _courseRepo.Create(courseModel);
-            return CreatedAtAction(nameof(GetById), new {id = courseModel.Id}, courseModel.ToCourseDto());
+            return CreatedAtAction(nameof(GetById), new { id = courseModel.Id }, courseModel.ToCourseDto());
         }
 
         [HttpDelete("{id:int}")]
@@ -49,7 +49,7 @@ namespace school_management.Controllers
             var courseModel = await _courseRepo.Delete(id);
 
             if (courseModel == null) return NotFound();
-            
+
             return NoContent();
         }
 
@@ -62,7 +62,7 @@ namespace school_management.Controllers
             var courseModel = await _courseRepo.Put(id, courseDto);
 
             if (courseModel == null) return NotFound();
-            
+
             return Ok(courseModel.ToCourseDto());
         }
     }

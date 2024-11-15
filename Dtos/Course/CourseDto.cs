@@ -13,6 +13,6 @@ namespace school_management.Dtos.Course
 
         public NestedTeacherDto? Teacher { get; set; }
 
-       public List<RegistrationStudentDto> Registrations { get; set; } = new List<RegistrationStudentDto>();
+        public List<RegistrationStudentDto> Registrations { get; set; } = new List<RegistrationStudentDto>();
     }
 }

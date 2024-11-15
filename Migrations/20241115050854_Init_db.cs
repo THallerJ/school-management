@@ -93,7 +93,7 @@ namespace school_management.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Registration",
+                name: "Registrations",
                 columns: table => new
                 {
                     CourseId = table.Column<int>(type: "int", nullable: false),
@@ -101,15 +101,15 @@ namespace school_management.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Registration", x => new { x.CourseId, x.StudentId });
+                    table.PrimaryKey("PK_Registrations", x => new { x.CourseId, x.StudentId });
                     table.ForeignKey(
-                        name: "FK_Registration_Courses_CourseId",
+                        name: "FK_Registrations_Courses_CourseId",
                         column: x => x.CourseId,
                         principalTable: "Courses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Registration_Students_StudentId",
+                        name: "FK_Registrations_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "Id",
@@ -127,8 +127,8 @@ namespace school_management.Migrations
                 column: "TeacherId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Registration_StudentId",
-                table: "Registration",
+                name: "IX_Registrations_StudentId",
+                table: "Registrations",
                 column: "StudentId");
 
             migrationBuilder.CreateIndex(
@@ -146,7 +146,7 @@ namespace school_management.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Registration");
+                name: "Registrations");
 
             migrationBuilder.DropTable(
                 name: "Courses");

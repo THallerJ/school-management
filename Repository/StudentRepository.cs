@@ -23,7 +23,7 @@ namespace school_management.Repository
                 .FirstOrDefaultAsync(student => student.Id == id);
 
             if (studentModel == null) return null;
-            
+
             _context.Students.Remove(studentModel);
             await _context.SaveChangesAsync();
             return studentModel;
@@ -34,7 +34,7 @@ namespace school_management.Repository
             var students = _context.Students.Include(student => student.School)
                 .Include(student => student.Registrations).ThenInclude(reg => reg.Course)
                 .ThenInclude(course => course!.Teacher).AsQueryable();
-            
+
             if (!string.IsNullOrWhiteSpace(filter.FirstName))
                 students = students.Where(student => student.FirstName.Contains(filter.FirstName));
 
@@ -52,11 +52,11 @@ namespace school_management.Repository
             var studentToUpdate = await _context.Students.FirstOrDefaultAsync(student => student.Id == id);
 
             if (studentToUpdate == null) return null;
-            
+
             studentToUpdate.FirstName = studentDto.FirstName;
             studentToUpdate.LastName = studentDto.LastName;
             studentToUpdate.SchoolId = studentDto.SchoolId;
-            
+
             await _context.SaveChangesAsync();
 
             return studentToUpdate;

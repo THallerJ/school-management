@@ -12,7 +12,7 @@ using school_management.Data;
 namespace school_management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241114025248_Init_db")]
+    [Migration("20241115050854_Init_db")]
     partial class Init_db
     {
         /// <inheritdoc />
@@ -64,7 +64,7 @@ namespace school_management.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Registration");
+                    b.ToTable("Registrations");
                 });
 
             modelBuilder.Entity("school_management.Models.School", b =>

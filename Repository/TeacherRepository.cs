@@ -23,7 +23,7 @@ namespace school_management.Repository
             var teacherModel = await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Id == id);
 
             if (teacherModel == null) return null;
-            
+
             _context.Teachers.Remove(teacherModel);
             await _context.SaveChangesAsync();
             return teacherModel;
@@ -34,7 +34,7 @@ namespace school_management.Repository
             var teachers = _context.Teachers.Include(teacher => teacher.School)
                 .Include(teacher => teacher.Courses).ThenInclude(course => course.Registrations)
                 .ThenInclude(reg => reg.Student).AsQueryable();
-            
+
             if (!string.IsNullOrWhiteSpace(filter.FirstName))
                 teachers = teachers.Where(teacher => teacher.FirstName.Contains(filter.FirstName));
 
@@ -54,7 +54,7 @@ namespace school_management.Repository
                 .FirstOrDefaultAsync(teacher => teacher.Id == id);
 
             if (teacherToUpdate == null) return null;
-            
+
             teacherToUpdate.FirstName = teacherDto.FirstName;
             teacherToUpdate.LastName = teacherDto.LastName;
             teacherToUpdate.SchoolId = teacherDto.SchoolId;

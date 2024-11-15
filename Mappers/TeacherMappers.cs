@@ -17,7 +17,7 @@ namespace school_management.Mappers
             };
         }
 
-         public static NestedTeacherDto ToNestedTeacher(this Teacher teacher)
+        public static NestedTeacherDto ToNestedTeacher(this Teacher teacher)
         {
             return new NestedTeacherDto
             {

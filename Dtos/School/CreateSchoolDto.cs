@@ -11,7 +11,7 @@ namespace school_management.Dtos.School
 
         [MinLength(7)]
         [MaxLength(7)]
-        [RegularExpression("^\\d+$", ErrorMessage ="The phone number must be 7 digits, and include no other characters")]
+        [RegularExpression("^\\d+$", ErrorMessage = "The phone number must be 7 digits, and include no other characters")]
         public string PhoneNumber { get; set; } = string.Empty;
     }
 }

@@ -20,5 +20,15 @@ namespace school_management.Mappers
                 Student = registration.Student?.ToNestedStudentDto(),
             };
         }
+
+        public static Registration ToRegistrationFromDto(this RegistrationDto registrationDto)
+        {
+            return new Registration
+            {
+                StudentId = registrationDto.StudentId,
+                CourseId = registrationDto.CourseId
+            };
+        }
+
     }
 }

@@ -22,7 +22,7 @@ namespace school_management.Repository
             var schoolModel = await _context.Schools.FirstOrDefaultAsync(school => school.Id == id);
 
             if (schoolModel == null) return null;
-            
+
             _context.Schools.Remove(schoolModel);
             await _context.SaveChangesAsync();
             return schoolModel;
@@ -53,7 +53,7 @@ namespace school_management.Repository
                 .FirstOrDefaultAsync(school => school.Id == id);
 
             if (schoolToUpdate == null) return null;
-            
+
             schoolToUpdate.PhoneNumber = schoolDto.PhoneNumber;
             schoolToUpdate.Address = schoolDto.Address;
             schoolToUpdate.Name = schoolDto.Name;

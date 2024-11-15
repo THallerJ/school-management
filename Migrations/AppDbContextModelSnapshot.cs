@@ -61,7 +61,7 @@ namespace school_management.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Registration");
+                    b.ToTable("Registrations");
                 });
 
             modelBuilder.Entity("school_management.Models.School", b =>

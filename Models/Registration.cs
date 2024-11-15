@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace school_management.Models
 {
+    [Table("Registrations")]
     public class Registration
     {
         public int CourseId { get; set; }

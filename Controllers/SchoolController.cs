@@ -27,7 +27,7 @@ namespace school_management.Controllers
             var schoolModel = await _schoolRepo.GetById(id);
 
             if (schoolModel == null) return NotFound();
-            
+
             return Ok(schoolModel.ToSchoolDto());
         }
 
@@ -50,7 +50,7 @@ namespace school_management.Controllers
             var schoolModel = await _schoolRepo.Delete(id);
 
             if (schoolModel == null) return NotFound();
-            
+
             return NoContent();
         }
 
@@ -63,7 +63,7 @@ namespace school_management.Controllers
             var schoolModel = await _schoolRepo.Put(id, schoolDto);
 
             if (schoolModel == null) return NotFound();
-            
+
             return Ok(schoolModel.ToSchoolDto());
         }
     }
