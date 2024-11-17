@@ -11,6 +11,6 @@ namespace school_management.Dtos.Student
         public string LastName { get; set; } = string.Empty;
 
         [Range(1, int.MaxValue)]
-        public int SchoolId { get; set; }
+        public int? SchoolId { get; set; }
     }
 }
