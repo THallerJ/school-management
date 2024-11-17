@@ -13,7 +13,8 @@ namespace school_management.Mappers
                 Name = course.Name,
                 School = course.School?.ToNestedSchooLDto(),
                 Teacher = course.Teacher?.ToNestedTeacher(),
-                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList()
+                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList(),
+                Credits = course.Credits
             };
         }
 
@@ -24,7 +25,8 @@ namespace school_management.Mappers
                 Id = course.Id,
                 Name = course.Name,
                 TeacherId = course.TeacherId,
-                SchoolId = course.SchoolId
+                SchoolId = course.SchoolId,
+                Credits = course.Credits
             };
         }
 
@@ -35,7 +37,8 @@ namespace school_management.Mappers
                 Id = course.Id,
                 Name = course.Name,
                 Teacher = course.Teacher?.ToNestedTeacher(),
-                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList()
+                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList(),
+                Credits = course.Credits
             };
         }
 
@@ -46,6 +49,7 @@ namespace school_management.Mappers
                 Id = course.Id,
                 Name = course.Name,
                 Teacher = course.Teacher?.ToNestedTeacher(),
+                Credits = course.Credits
             };
         }
 
@@ -55,7 +59,8 @@ namespace school_management.Mappers
             {
                 Id = course.Id,
                 Name = course.Name,
-                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList()
+                Registrations = course.Registrations.Select(reg => reg.ToRegistrationStudentDto()).ToList(),
+                Credits = course.Credits
             };
         }
 
@@ -65,7 +70,8 @@ namespace school_management.Mappers
             {
                 Name = courseDto.Name,
                 SchoolId = courseDto.SchoolId,
-                TeacherId = courseDto.TeacherId
+                TeacherId = courseDto.TeacherId,
+                Credits = courseDto.Credits
             };
         }
     }

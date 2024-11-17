@@ -6,6 +6,8 @@ namespace school_management.Dtos.Course
 
         public string Name { get; set; } = string.Empty;
 
+        public int Credits { get; set; }
+
         public int SchoolId { get; set; }
 
         public int? TeacherId { get; set; }

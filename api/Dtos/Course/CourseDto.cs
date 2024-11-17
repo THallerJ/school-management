@@ -9,6 +9,8 @@ namespace school_management.Dtos.Course
 
         public string Name { get; set; } = string.Empty;
 
+        public int Credits { get; set; }
+
         public NestedSchoolDto? School { get; set; }
 
         public NestedTeacherDto? Teacher { get; set; }

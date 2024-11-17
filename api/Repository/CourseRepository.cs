@@ -43,6 +43,9 @@ namespace school_management.Repository
             if (filter.SchoolId != null)
                 courses = courses.Where(course => course.SchoolId.Equals(filter.SchoolId));
 
+            if (filter.Credits != null) 
+                courses = courses.Where(course => course.Credits.Equals(filter.Credits));
+
             return await courses.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
         }
 

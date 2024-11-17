@@ -6,6 +6,8 @@
 
         public string Name { get; set; } = string.Empty;
 
+        public int Credits { get; set; }
+
         public int SchoolId { get; set; }
 
         public School? School { get; set; }

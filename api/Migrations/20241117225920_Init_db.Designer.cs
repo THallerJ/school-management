@@ -12,7 +12,7 @@ using school_management.Data;
 namespace school_management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241115221141_Init_db")]
+    [Migration("20241117225920_Init_db")]
     partial class Init_db
     {
         /// <inheritdoc />
@@ -32,6 +32,9 @@ namespace school_management.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Credits")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

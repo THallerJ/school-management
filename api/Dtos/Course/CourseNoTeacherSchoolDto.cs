@@ -6,6 +6,8 @@ namespace school_management.Dtos.Course
 
         public string Name { get; set; } = string.Empty;
 
+        public int Credits { get; set; }
+
         public List<RegistrationStudentDto> Registrations { get; set; } = new List<RegistrationStudentDto>();
     }
 }
