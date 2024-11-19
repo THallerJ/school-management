@@ -3,16 +3,16 @@
 		<div class="header-body">
 			<h1>School Management</h1>
 			<nav class="header-nav">
-				<a>Schools</a>
-				<a>Teachers</a>
-				<a>Courses</a>
-				<a>Students</a>
+				<a [routerLink]="/schools">Schools</a>
+				<a [routerLink]="/teachers">Teachers</a>
+				<a [routerLink]="/courses">Courses</a>
+				<a [routerLink]="/students">Students</a>
 			</nav>
 		</div>
 	</header>
 	<div class="app-body-wrapper">
 		<div class="app-body">
-			<p>body</p>
+			<router-outlet />
 			<footer class="app-footer">Footer</footer>
 		</div>
 	</div>
