@@ -1,0 +1,45 @@
+::ng-deep * {
+	margin: 0;
+	padding: 0;
+}
+
+.app-container {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	--desktop-app-width: 60%;
+}
+
+.app-header {
+	min-height: 4rem;
+	position: sticky;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	background-color: rgb(57, 72, 57);
+}
+
+.header-body {
+	width: var(--desktop-app-width);
+}
+
+.app-body-wrapper {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	min-height: 100%;
+}
+
+.app-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: orange;
+	min-height: 100%;
+	width: var(--desktop-app-width);
+}
+
+.app-footer {
+	background-color: purple;
+}
