@@ -8,6 +8,8 @@
 	display: flex;
 	flex-direction: column;
 	--desktop-app-width: 60%;
+	background-color: var(--primary-color);
+	overflow: auto;
 }
 
 .app-header {
@@ -16,7 +18,7 @@
 	display: flex;
 	justify-content: center;
 	top: 0;
-	background-color: rgb(57, 72, 57);
+	background-color: var(--accent-color);
 }
 
 app-header,
@@ -53,11 +55,6 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: orange;
 	min-height: 100%;
 	width: var(--desktop-app-width);
-}
-
-.app-footer {
-	background-color: purple;
 }
