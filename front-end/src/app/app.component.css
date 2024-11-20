@@ -22,11 +22,21 @@
 	background-color: var(--accent-color);
 }
 
-.header-body h1 {
-	font-size: 1.5rem;
+a {
+	color: #193837;
+	text-decoration: none;
+}
+
+.header-body h1 a {
+	font-size: 1.3rem;
 	display: inline;
 	text-wrap: nowrap;
-	color: #193837;
+}
+
+.header-body h1 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .header-nav {
@@ -43,7 +53,7 @@
 	align-items: center;
 }
 
-.header-body a {
+.header-nav a {
 	text-decoration: none;
 	color: #193837;
 	text-transform: uppercase;
