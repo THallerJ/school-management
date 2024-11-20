@@ -6,4 +6,6 @@ body {
 :root {
 	--primary-color: #f4f4f9;
 	--accent-color: #b8dbd9;
+	--dark-text: #193837;
+	--dark-text-alt: #365554;
 }

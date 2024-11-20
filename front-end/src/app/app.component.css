@@ -55,13 +55,13 @@ a {
 
 .header-nav a {
 	text-decoration: none;
-	color: #193837;
+	color: var(--dark-text);
 	text-transform: uppercase;
 	font-size: 0.9rem;
 }
 
 .header-nav a:hover {
-	color: #365554;
+	color: var(--dark-text-alt);
 }
 
 .app-body-wrapper {
