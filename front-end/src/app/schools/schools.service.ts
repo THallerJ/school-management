@@ -10,8 +10,6 @@ export class SchoolsService {
 	private apiUrl = `${environment.apiUrl}/school`;
 	http = inject(HttpClient);
 
-	constructor() {}
-
 	getSchools(): Observable<any> {
 		const params = {};
 		return this.http.get(this.apiUrl, { params });
