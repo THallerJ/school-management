@@ -30,10 +30,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors(x => x  
-    .AllowAnyMethod()    
-    .AllowAnyHeader()    
-    .SetIsOriginAllowed(origin => true)    
+    app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true)
     .AllowCredentials());
 }
 

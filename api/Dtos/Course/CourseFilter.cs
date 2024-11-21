@@ -1,5 +1,4 @@
-﻿using NuGet.Protocol.Plugins;
-using school_management.Dtos.Common;
+﻿using school_management.Dtos.Common;
 
 namespace school_management.Dtos.Course
 {
