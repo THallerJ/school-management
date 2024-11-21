@@ -1,1 +1,8 @@
-<p class="thing">students works!</p>
+<div>
+	<ul>
+		@for(student of students; track student.id) {
+		<h3>{{ student.firstName }}</h3>
+		<span>{{ student.lastName }}</span>
+		}
+	</ul>
+</div>

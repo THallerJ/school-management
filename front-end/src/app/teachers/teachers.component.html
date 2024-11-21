@@ -1,1 +1,8 @@
-<p>teachers works!</p>
+<div>
+	<ul>
+		@for(teacher of teachers; track teacher.id) {
+		<h3>{{ teacher.firstName }}</h3>
+		<span>{{ teacher.lastName }}</span>
+		}
+	</ul>
+</div>

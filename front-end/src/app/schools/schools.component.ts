@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component } from "@angular/core";
 import { SchoolsService } from "./schools.service";
 
 @Component({
@@ -11,10 +11,10 @@ import { SchoolsService } from "./schools.service";
 export class SchoolsComponent {
 	schools: any[] = [];
 
-	private schoolService = inject(SchoolsService);
+	constructor(private schoolsService: SchoolsService) {}
 
 	getSchools() {
-		this.schoolService.getSchools().subscribe((data) => {
+		this.schoolsService.getSchools().subscribe((data) => {
 			this.schools = data;
 		});
 	}
