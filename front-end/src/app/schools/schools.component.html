@@ -1,1 +1,9 @@
-<div><p>schools works!</p></div>
+<div>
+	<ul>
+		@for(school of schools; track school.id) {
+		<h3>{{ school.name }}</h3>
+		<span>{{ school.address }}</span>
+		<span>{{ school.phoneNumber }}</span>
+		}
+	</ul>
+</div>
