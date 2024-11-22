@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { ApiService } from "./../shared/api-service.service";
-import { error } from "console";
+import { SchoolDtoRespSchema, SchoolDtoResp } from "../shared/types";
 
 @Component({
 	selector: "app-schools",
@@ -12,14 +12,15 @@ import { error } from "console";
 export class SchoolsComponent {
 	private readonly PATH = "school";
 
-	schools: any[] = [];
+	schools: SchoolDtoResp = [];
 
 	constructor(private apiService: ApiService) {}
 
 	getSchools() {
 		this.apiService.get(this.PATH).subscribe({
 			next: (data) => {
-				this.schools = data as any;
+				const result = SchoolDtoRespSchema.safeParse(data);
+				if (result.success) this.schools = result.data;
 			},
 			error: (error) => {
 				if (error.status === 0) {

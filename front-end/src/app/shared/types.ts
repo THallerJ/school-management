@@ -1,187 +1,41 @@
-export type SchoolDto = {
-	Id: number;
-	Name: string;
-	Address: string;
-	PhoneNumber: string;
-}
+import zod from "zod";
 
-// StudentDto.ts
-export type StudentDto = {
-	Id: number;
-	FirstName: string;
-	LastName: string;
-	Email: string;
-	SchoolId: number;
-}
+export const NestedStudentDtoSchema = zod.object({
+	id: zod.number(),
+	firstName: zod.string(),
+	lastName: zod.string(),
+});
 
-// TeacherDto.ts
-export type TeacherDto = {
-	Id: number;
-	FirstName: string;
-	LastName: string;
-	Email: string;
-	SchoolId: number;
-	Subject: string;
-}
+export type NestedStudentDto = zod.infer<typeof NestedStudentDtoSchema>;
 
-// CourseDto.ts
-export type CourseDto {
-	Id: number;
-	Name: string;
-	Description: string;
-	TeacherId: number;
-	SchoolId: number;
-}
+export const RegistrationStudentDtoSchema = zod.object({
+	Student: NestedStudentDtoSchema,
+});
 
-// EnrollmentDto.ts
-export type EnrollmentDto = {
-	Id: number;
-	StudentId: number;
-	CourseId: number;
-	Grade: string;
-}
+export const NestedTeacherDtoSchema = zod.object({
+	id: zod.number(),
+	firstName: zod.string(),
+	lastName: zod.string(),
+});
 
-// SchoolNestedDto.ts
-export type SchoolNestedDto = {
-    Id: number;
-    Name: string;
-    Address: {
-      Street: string;
-      City: string;
-      State: string;
-      Zip: string;
-    };
-    PhoneNumber: string;
-  }
-  
-  // StudentNestedDto.ts
-  export interface StudentNestedDto {
-    Id: number;
-    FirstName: string;
-    LastName: string;
-    Email: string;
-    School: {
-      Id: number;
-      Name: string;
-      Address: {
-        Street: string;
-        City: string;
-        State: string;
-        Zip: string;
-      };
-      PhoneNumber: string;
-    };
-  }
-  
-  // TeacherNestedDto.ts
-  export interface TeacherNestedDto {
-    Id: number;
-    FirstName: string;
-    LastName: string;
-    Email: string;
-    School: {
-      Id: number;
-      Name: string;
-      Address: {
-        Street: string;
-        City: string;
-        State: string;
-        Zip: string;
-      };
-      PhoneNumber: string;
-    };
-    Subject: string;
-  }
-  
-  // CourseNestedDto.ts
-  export interface CourseNestedDto {
-    Id: number;
-    Name: string;
-    Description: string;
-    Teacher: {
-      Id: number;
-      FirstName: string;
-      LastName: string;
-      Email: string;
-      School: {
-        Id: number;
-        Name: string;
-        Address: {
-          Street: string;
-          City: string;
-          State: string;
-          Zip: string;
-        };
-        PhoneNumber: string;
-      };
-      Subject: string;
-    };
-    School: {
-      Id: number;
-      Name: string;
-      Address: {
-        Street: string;
-        City: string;
-        State: string;
-        Zip: string;
-      };
-      PhoneNumber: string;
-    };
-  }
-  
-  // EnrollmentNestedDto.ts
-  export interface EnrollmentNestedDto {
-    Id: number;
-    Student: {
-      Id: number;
-      FirstName: string;
-      LastName: string;
-      Email: string;
-      School: {
-        Id: number;
-        Name: string;
-        Address: {
-          Street: string;
-          City: string;
-          State: string;
-          Zip: string;
-        };
-        PhoneNumber: string;
-      };
-    };
-    Course: {
-      Id: number;
-      Name: string;
-      Description: string;
-      Teacher: {
-        Id: number;
-        FirstName: string;
-        LastName: string;
-        Email: string;
-        School: {
-          Id: number;
-          Name: string;
-          Address: {
-            Street: string;
-            City: string;
-            State: string;
-            Zip: string;
-          };
-          PhoneNumber: string;
-        };
-        Subject: string;
-      };
-      School: {
-        Id: number;
-        Name: string;
-        Address: {
-          Street: string;
-          City: string;
-          State: string;
-          Zip: string;
-        };
-        PhoneNumber: string;
-      };
-    };
-    Grade: string;
-  }
+export const CourseNoSchoolDto = zod.object({
+	id: zod.number(),
+	name: zod.string(),
+	teacher: NestedTeacherDtoSchema,
+	registrations: zod.array(RegistrationStudentDtoSchema),
+	credits: zod.number(),
+});
+
+export const SchoolDtoSchema = zod.object({
+	id: zod.number(),
+	name: zod.string(),
+	courses: zod.array(CourseNoSchoolDto),
+	address: zod.string(),
+	phoneNumber: zod.string(),
+});
+
+export type SchoolDto = zod.infer<typeof SchoolDtoSchema>;
+
+export const SchoolDtoRespSchema = zod.array(SchoolDtoSchema);
+
+export type SchoolDtoResp = zod.infer<typeof SchoolDtoRespSchema>;
