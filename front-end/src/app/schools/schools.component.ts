@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ApiService } from "./../shared/api-service.service";
 import { SchoolDtoRespSchema, SchoolDtoResp } from "../shared/types";
 
@@ -9,7 +9,7 @@ import { SchoolDtoRespSchema, SchoolDtoResp } from "../shared/types";
 	templateUrl: "./schools.component.html",
 	styleUrl: "./schools.component.css",
 })
-export class SchoolsComponent {
+export class SchoolsComponent implements OnInit {
 	private readonly PATH = "school";
 
 	schools: SchoolDtoResp = [];
