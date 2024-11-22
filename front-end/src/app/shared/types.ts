@@ -1,6 +1,6 @@
 import zod from "zod";
 
-// SCHOOL==============================================================================
+// School==============================================================================
 
 export const NestedStudentDtoSchema = zod.object({
 	id: zod.number(),
@@ -38,7 +38,7 @@ export const SchoolDtoRespSchema = zod.array(SchoolDtoSchema);
 
 export type SchoolDtoResp = zod.infer<typeof SchoolDtoRespSchema>;
 
-// TEACHER==============================================================================
+// Teacher==============================================================================
 
 export const CourseNoTeacherSchoolDto = zod.object({
 	id: zod.number(),
@@ -82,3 +82,28 @@ export const CourseDto = zod.object({
 export const CourseDtoRespSchema = zod.array(CourseDto);
 
 export type CourseDtoResp = zod.infer<typeof CourseDtoRespSchema>;
+
+// Student==============================================================================
+
+export const NestedCourseDtoSchema = zod.object({
+	id: zod.number(),
+	name: zod.string(),
+	teacher: NestedTeacherDtoSchema,
+	credits: zod.number(),
+});
+
+export const RegistractionCourseDtoSchema = zod.object({
+	Course: NestedCourseDtoSchema,
+});
+
+export const StudentDtoSchema = zod.object({
+	id: zod.number(),
+	firstName: zod.string(),
+	lastName: zod.string(),
+	registrations: zod.array(RegistractionCourseDtoSchema),
+	school: NestedSchoolDtoSchema,
+});
+
+export const StudentDtoRespSchema = zod.array(StudentDtoSchema);
+
+export type StudentDtoResp = zod.infer<typeof StudentDtoRespSchema>;
