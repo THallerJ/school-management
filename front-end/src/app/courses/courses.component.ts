@@ -1,5 +1,6 @@
 import { ApiService } from "./../shared/api-service.service";
 import { Component, OnInit } from "@angular/core";
+import { CourseDtoRespSchema, CourseDtoResp } from "../shared/types";
 
 @Component({
 	selector: "app-courses",
@@ -8,7 +9,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class CoursesComponent implements OnInit {
 	private readonly PATH = "course";
-	courses: any[] = [];
+	courses: CourseDtoResp = [];
 
 	constructor(private apiService: ApiService) {}
 
@@ -19,7 +20,8 @@ export class CoursesComponent implements OnInit {
 	getCourses(): void {
 		this.apiService.get(this.PATH).subscribe({
 			next: (data) => {
-				this.courses = data as any;
+				const result = CourseDtoRespSchema.safeParse(data);
+				if (result.success) this.courses = result.data;
 			},
 			error: (error) => {
 				if (error.status === 0) {
