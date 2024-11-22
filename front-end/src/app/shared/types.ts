@@ -1,12 +1,12 @@
 import zod from "zod";
 
+// SCHOOL==============================================================================
+
 export const NestedStudentDtoSchema = zod.object({
 	id: zod.number(),
 	firstName: zod.string(),
 	lastName: zod.string(),
 });
-
-export type NestedStudentDto = zod.infer<typeof NestedStudentDtoSchema>;
 
 export const RegistrationStudentDtoSchema = zod.object({
 	Student: NestedStudentDtoSchema,
@@ -34,8 +34,36 @@ export const SchoolDtoSchema = zod.object({
 	phoneNumber: zod.string(),
 });
 
-export type SchoolDto = zod.infer<typeof SchoolDtoSchema>;
-
 export const SchoolDtoRespSchema = zod.array(SchoolDtoSchema);
 
 export type SchoolDtoResp = zod.infer<typeof SchoolDtoRespSchema>;
+
+// TEACHER==============================================================================
+
+export const CourseNoTeacherSchoolDto = zod.object({
+	id: zod.number(),
+	name: zod.string(),
+	registrations: zod.array(RegistrationStudentDtoSchema),
+	credits: zod.number(),
+});
+
+export const NestedSchoolDtoSchema = zod.object({
+	id: zod.number(),
+	name: zod.string(),
+	address: zod.string(),
+	phoneNumber: zod.string(),
+});
+
+export const TeacherDtoSchema = zod.object({
+	id: zod.number(),
+	firstName: zod.string(),
+	lastName: zod.string(),
+	school: NestedSchoolDtoSchema,
+	courses: zod.array(CourseNoTeacherSchoolDto),
+});
+
+export type TeacherDto = zod.infer<typeof TeacherDtoSchema>;
+
+export const TeacherDtoRespSchema = zod.array(TeacherDtoSchema);
+
+export type TeacherDtoResp = zod.infer<typeof TeacherDtoRespSchema>;
