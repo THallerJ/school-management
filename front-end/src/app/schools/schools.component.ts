@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { SchoolsService } from "./schools.service";
+import { ApiService } from "./../shared/api-service.service";
+import { error } from "console";
 
 @Component({
 	selector: "app-schools",
@@ -9,17 +10,34 @@ import { SchoolsService } from "./schools.service";
 	styleUrl: "./schools.component.css",
 })
 export class SchoolsComponent {
+	private readonly PATH = "school";
+
 	schools: any[] = [];
 
-	constructor(private schoolsService: SchoolsService) {}
+	constructor(private apiService: ApiService) {}
 
 	getSchools() {
-		this.schoolsService.getSchools().subscribe((data) => {
-			this.schools = data;
+		this.apiService.get(this.PATH).subscribe({
+			next: (data) => {
+				this.schools = data as any;
+			},
+			error: (error) => {
+				if (error.status === 0) {
+					return;
+				}
+			},
 		});
 	}
+
+	//this.ApiService.put<School>(this.PATH, {obj})
 
 	ngOnInit() {
 		this.getSchools();
 	}
 }
+
+type School = {
+	name?: string;
+	address?: string;
+	phoneNumber?: string;
+};

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { StudentsService } from "./students.service";
+import { ApiService } from "../shared/api-service.service";
 
 @Component({
 	selector: "app-students",
@@ -7,17 +7,26 @@ import { StudentsService } from "./students.service";
 	styleUrls: ["./students.component.css"],
 })
 export class StudentsComponent implements OnInit {
+	private readonly PATH = "student";
+
 	students: any[] = [];
 
-	constructor(private studentService: StudentsService) {}
+	constructor(private apiService: ApiService) {}
 
 	ngOnInit(): void {
 		this.getStudents();
 	}
 
 	getStudents(): void {
-		this.studentService
-			.getStudents()
-			.subscribe((students) => (this.students = students));
+		this.apiService.get(this.PATH).subscribe({
+			next: (data) => {
+				this.students = data as any;
+			},
+			error: (error) => {
+				if (error.status === 0) {
+					return;
+				}
+			},
+		});
 	}
 }

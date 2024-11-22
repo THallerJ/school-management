@@ -1,5 +1,5 @@
+import { ApiService } from "./../shared/api-service.service";
 import { Component, OnInit } from "@angular/core";
-import { CoursesService } from "./courses.service";
 
 @Component({
 	selector: "app-courses",
@@ -7,17 +7,25 @@ import { CoursesService } from "./courses.service";
 	styleUrls: ["./courses.component.css"],
 })
 export class CoursesComponent implements OnInit {
+	private readonly PATH = "course";
 	courses: any[] = [];
 
-	constructor(private courseService: CoursesService) {}
+	constructor(private apiService: ApiService) {}
 
 	ngOnInit(): void {
 		this.getCourses();
 	}
 
 	getCourses(): void {
-		this.courseService
-			.getCourses()
-			.subscribe((courses) => (this.courses = courses));
+		this.apiService.get(this.PATH).subscribe({
+			next: (data) => {
+				this.courses = data as any;
+			},
+			error: (error) => {
+				if (error.status === 0) {
+					return;
+				}
+			},
+		});
 	}
 }
