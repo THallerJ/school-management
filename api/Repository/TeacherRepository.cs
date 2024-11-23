@@ -45,7 +45,7 @@ namespace school_management.Repository
                 teachers = teachers.Where(teacher => teacher.SchoolId.Equals(filter.SchoolId));
 
             return await teachers.Skip((filter.PageNumber - 1) * filter.PageSize)
-                .Take(filter.PageSize).ToListAsync();
+                .Take(filter.PageSize).OrderBy(id => id).ToListAsync();
         }
 
         public async Task<Teacher?> Put(int id, PutTeacherDto teacherDto)

@@ -46,7 +46,8 @@ namespace school_management.Repository
             if (filter.Credits != null)
                 courses = courses.Where(course => course.Credits.Equals(filter.Credits));
 
-            return await courses.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize).ToListAsync();
+            return await courses.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize)
+                .OrderBy(id => id).ToListAsync();
         }
 
         public async Task<Course?> Put(int id, PutCourseDto courseDto)
