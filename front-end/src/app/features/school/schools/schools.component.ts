@@ -1,7 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../core/services/api-service.service";
-import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../core/types";
+import {
+	SchoolDtoRespSchema,
+	SchoolDtoResp,
+	SchoolDto,
+} from "../../../core/types";
 import { PhoneNumberPipe } from "../../../core/pipes/phone-number.pipe";
+import { Router } from "@angular/router";
+
 @Component({
 	selector: "app-schools",
 	standalone: true,
@@ -14,7 +20,7 @@ export class SchoolsComponent implements OnInit {
 
 	schools: SchoolDtoResp = [];
 
-	constructor(private apiService: ApiService) {}
+	constructor(private apiService: ApiService, private router: Router) {}
 
 	getSchools() {
 		this.apiService.get(this.PATH).subscribe({
@@ -30,7 +36,9 @@ export class SchoolsComponent implements OnInit {
 		});
 	}
 
-	//this.ApiService.put<School>(this.PATH, {obj})
+	viewSchool(id: number) {
+		this.router.navigate([`/schools/${id}`]);
+	}
 
 	ngOnInit() {
 		this.getSchools();

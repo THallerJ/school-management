@@ -34,6 +34,8 @@ export const SchoolDtoSchema = zod.object({
 	phoneNumber: zod.string(),
 });
 
+export type SchoolDto = zod.infer<typeof SchoolDtoSchema>;
+
 export const SchoolDtoRespSchema = zod.array(SchoolDtoSchema);
 
 export type SchoolDtoResp = zod.infer<typeof SchoolDtoRespSchema>;
