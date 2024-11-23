@@ -1,6 +1,6 @@
-import { ApiService } from "./../shared/api-service.service";
+import { ApiService } from "../../core/api-service.service";
 import { Component, OnInit } from "@angular/core";
-import { TeacherDtoRespSchema, TeacherDtoResp } from "../shared/types";
+import { TeacherDtoRespSchema, TeacherDtoResp } from "../../core/types";
 
 @Component({
 	selector: "app-teachers",

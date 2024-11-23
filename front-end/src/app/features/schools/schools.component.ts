@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService } from "./../shared/api-service.service";
-import { SchoolDtoRespSchema, SchoolDtoResp } from "../shared/types";
+import { ApiService } from "../../core/api-service.service";
+import { SchoolDtoRespSchema, SchoolDtoResp } from "../../core/types";
 import { SlicePipe } from "@angular/common";
 
 @Component({
