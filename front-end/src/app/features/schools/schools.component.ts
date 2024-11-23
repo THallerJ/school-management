@@ -1,14 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../../core/api-service.service";
+import { ApiService } from "../../core/services/api-service.service";
 import { SchoolDtoRespSchema, SchoolDtoResp } from "../../core/types";
-import { SlicePipe } from "@angular/common";
-
+import { PhoneNumberPipe } from "../../core/pipes/phone-number.pipe";
 @Component({
 	selector: "app-schools",
 	standalone: true,
-	imports: [SlicePipe],
 	templateUrl: "./schools.component.html",
 	styleUrl: "./schools.component.css",
+	imports: [PhoneNumberPipe],
 })
 export class SchoolsComponent implements OnInit {
 	private readonly PATH = "school";
