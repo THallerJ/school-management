@@ -5,10 +5,12 @@
 		<span>Phone Number</span>
 	</div>
 	@for(school of schools; track school.id) {
-	<div class="school-info" (click)="viewSchool(school.id)">
-		<span>{{ school.name }}</span>
-		<span>{{ school.address }}</span>
-		<span>{{ school.phoneNumber | phoneNumber }}</span>
+	<div class="school-item" (click)="viewSchool(school.id)">
+		<div class="school-info">
+			<span>{{ school.name }}</span>
+			<span>{{ school.address }}</span>
+			<span>{{ school.phoneNumber | phoneNumber }}</span>
+		</div>
 	</div>
 	}
 </div>

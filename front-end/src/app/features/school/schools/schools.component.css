@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
+	padding: 1rem 0 1rem 0;
 	border-bottom: 1px solid #ccc;
 	font-weight: 700;
 }
@@ -11,15 +11,23 @@
 	width: 33%;
 }
 
-.school-info {
+.school-item {
 	display: flex;
-	justify-content: space-between;
 	align-items: start;
 	padding: 10px;
 	border-bottom: 1px solid #ccc;
 }
 
+.school-info {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: stat;
+	cursor: pointer;
+	padding: 1rem 0 1rem 0;
+}
+
 .school-info > span {
 	width: 33%;
-	text-align: left;
+	text-align: start;
 }
