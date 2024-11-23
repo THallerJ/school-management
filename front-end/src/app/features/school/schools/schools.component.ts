@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../../core/services/api-service.service";
-import { SchoolDtoRespSchema, SchoolDtoResp } from "../../core/types";
-import { PhoneNumberPipe } from "../../core/pipes/phone-number.pipe";
+import { ApiService } from "../../../core/services/api-service.service";
+import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../core/types";
+import { PhoneNumberPipe } from "../../../core/pipes/phone-number.pipe";
 @Component({
 	selector: "app-schools",
 	standalone: true,
