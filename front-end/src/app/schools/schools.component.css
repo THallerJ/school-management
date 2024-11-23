@@ -1,0 +1,25 @@
+.column-heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+	font-weight: 700;
+}
+
+.column-heading > span {
+	width: 33%;
+}
+
+.school-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
+
+.school-info > span {
+	width: 33%;
+	text-align: left;
+}

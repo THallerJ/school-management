@@ -1,9 +1,14 @@
 <div>
-	<ul>
-		@for(school of schools; track school.id) {
-		<h3>{{ school.name }}</h3>
+	<div class="column-heading">
+		<span>Name</span>
+		<span>Address</span>
+		<span>Phone Number</span>
+	</div>
+	@for(school of schools; track school.id) {
+	<div class="school-info">
+		<span>{{ school.name }}</span>
 		<span>{{ school.address }}</span>
 		<span>{{ school.phoneNumber }}</span>
-		}
-	</ul>
+	</div>
+	}
 </div>

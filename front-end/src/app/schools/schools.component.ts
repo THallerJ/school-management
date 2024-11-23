@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "./../shared/api-service.service";
 import { SchoolDtoRespSchema, SchoolDtoResp } from "../shared/types";
+import { SlicePipe } from "@angular/common";
 
 @Component({
 	selector: "app-schools",
 	standalone: true,
-	imports: [],
+	imports: [SlicePipe],
 	templateUrl: "./schools.component.html",
 	styleUrl: "./schools.component.css",
 })
