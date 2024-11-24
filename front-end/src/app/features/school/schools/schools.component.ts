@@ -1,10 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../core/services/api-service.service";
-import {
-	SchoolDtoRespSchema,
-	SchoolDtoResp,
-	SchoolDto,
-} from "../../../core/types";
+import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../core/types";
 import { PhoneNumberPipe } from "../../../core/pipes/phone-number.pipe";
 import { Router } from "@angular/router";
 
@@ -44,9 +40,3 @@ export class SchoolsComponent implements OnInit {
 		this.getSchools();
 	}
 }
-
-type School = {
-	name?: string;
-	address?: string;
-	phoneNumber?: string;
-};
