@@ -13,7 +13,7 @@ import { JsonPipe } from "@angular/common";
 })
 export class ViewSchoolComponent implements OnInit {
 	private readonly PATH = "school";
-	school?: SchoolDto;
+	school: SchoolDto | null = null;
 	id?: number;
 
 	constructor(private route: ActivatedRoute, private apiService: ApiService) {}
