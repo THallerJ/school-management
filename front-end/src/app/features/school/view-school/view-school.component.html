@@ -1,3 +1,4 @@
-<div ngIf="school !== null | async as school">
-	{{ school?.courses | json }}
+<div *ngIf="loading">Loading...</div>
+<div *ngIf="!loading">
+	<div *ngIf="school !== undefined">{{ school | json }}</div>
 </div>
