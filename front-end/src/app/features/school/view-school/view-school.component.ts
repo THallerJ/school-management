@@ -28,9 +28,10 @@ export class ViewSchoolComponent implements OnInit {
 				this.loading = false;
 			},
 			error: (error) => {
-				this.loading = false;
 				if (error.status === 0) {
 					return;
+				} else {
+					this.loading = false;
 				}
 			},
 		});
