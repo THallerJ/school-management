@@ -60,7 +60,7 @@ namespace school_management.Controllers
         public async Task<IActionResult> Put([FromRoute] int id, [FromBody] PutSchoolDto schoolDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
-
+            
             var schoolModel = await _schoolRepo.Put(id, schoolDto);
 
             if (schoolModel == null) return NotFound();

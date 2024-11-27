@@ -50,11 +50,12 @@ namespace school_management.Repository
 
         public async Task<School?> Put(int id, PutSchoolDto schoolDto)
         {
+
             var schoolToUpdate = await _context.Schools
                 .FirstOrDefaultAsync(school => school.Id == id);
 
             if (schoolToUpdate == null) return null;
-
+        
             schoolToUpdate.PhoneNumber = schoolDto.PhoneNumber;
             schoolToUpdate.Address = schoolDto.Address;
             schoolToUpdate.Name = schoolDto.Name;

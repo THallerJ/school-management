@@ -1,11 +1,14 @@
 import { ApiService } from "./../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { SchoolDto, SchoolDtoSchema } from "../../../core/types";
+import {
+	ModelFormGroup,
+	SchoolDto,
+	SchoolDtoSchema,
+} from "../../../core/types";
 import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
-import { ModelFormGroup } from "../../../core/types";
 
 @Component({
 	selector: "app-view-school",
@@ -19,7 +22,7 @@ export class ViewSchoolComponent implements OnInit {
 	school?: SchoolDto;
 	id?: number;
 	loading = true;
-	schoolForm: ModelFormGroup<School> = new FormGroup({
+	schoolForm = new FormGroup({
 		name: new FormControl(),
 		address: new FormControl(),
 		phoneNumber: new FormControl(),
@@ -54,11 +57,13 @@ export class ViewSchoolComponent implements OnInit {
 	}
 
 	updateSchool() {
-		console.log(this.schoolForm.value);
+		const x = {
+			name: this.schoolForm.value.name,
+			address: this.schoolForm.value.address,
+			phoneNumber: this.schoolForm.value.phoneNumber,
+		};
 		if (this.id && this.school)
-			this.apiService
-				.put<School>(this.PATH, this.id, this.school)
-				.subscribe((data) => console.log(data));
+			this.apiService.put<School>(this.PATH, this.id, x).subscribe();
 	}
 
 	ngOnInit() {
@@ -68,7 +73,7 @@ export class ViewSchoolComponent implements OnInit {
 }
 
 type School = {
-	name: string;
-	address: string;
-	phoneNumber: string;
+	name?: string;
+	address?: string;
+	phoneNumber?: string;
 };
