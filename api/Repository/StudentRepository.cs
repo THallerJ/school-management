@@ -44,8 +44,8 @@ namespace school_management.Repository
             if (filter.SchoolId != null)
                 students = students.Where(student => student.SchoolId.Equals(filter.SchoolId));
 
-            return await students.Skip((filter.PageNumber - 1) * filter.PageSize).Take(filter.PageSize)
-                .OrderBy(id => id).ToListAsync();
+            return await students.OrderBy(id => id).Skip((filter.PageNumber - 1) * filter.PageSize)
+                .Take(filter.PageSize).ToListAsync();
         }
 
         public async Task<Student?> UpdateStudent(int id, PutStudentDto studentDto)
