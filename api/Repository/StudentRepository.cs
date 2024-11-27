@@ -10,14 +10,14 @@ namespace school_management.Repository
     {
         private readonly AppDbContext _context = context;
 
-        public async Task<Student> Create(Student studentModel)
+        public async Task<Student> CreateStudent(Student studentModel)
         {
             await _context.Students.AddAsync(studentModel);
             await _context.SaveChangesAsync();
             return studentModel;
         }
 
-        public async Task<Student?> Delete(int id)
+        public async Task<Student?> DeleteStudent(int id)
         {
             var studentModel = await _context.Students
                 .FirstOrDefaultAsync(student => student.Id == id);
@@ -29,7 +29,7 @@ namespace school_management.Repository
             return studentModel;
         }
 
-        public async Task<List<Student>> Get(StudentFilter filter)
+        public async Task<List<Student>> GetStudents(StudentFilter filter)
         {
             var students = _context.Students.Include(student => student.School)
                 .Include(student => student.Registrations).ThenInclude(reg => reg.Course)
@@ -48,7 +48,7 @@ namespace school_management.Repository
                 .OrderBy(id => id).ToListAsync();
         }
 
-        public async Task<Student?> Put(int id, PutStudentDto studentDto)
+        public async Task<Student?> UpdateStudent(int id, PutStudentDto studentDto)
         {
             var studentToUpdate = await _context.Students.FirstOrDefaultAsync(student => student.Id == id);
 
@@ -63,7 +63,7 @@ namespace school_management.Repository
             return studentToUpdate;
         }
 
-        public async Task<Student?> GetById(int id)
+        public async Task<Student?> GetStudentById(int id)
         {
             return await _context.Students.Include(student => student.School)
                 .Include(student => student.Registrations).ThenInclude(reg => reg.Course)

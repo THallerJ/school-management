@@ -10,7 +10,7 @@ namespace school_management.Repository
     {
         private readonly AppDbContext _context = context;
 
-        public async Task<Teacher> Create(Teacher teacherModel)
+        public async Task<Teacher> CreateTeacher(Teacher teacherModel)
         {
             await _context.Teachers.AddAsync(teacherModel);
             await _context.SaveChangesAsync();
@@ -18,7 +18,7 @@ namespace school_management.Repository
             return teacherModel;
         }
 
-        public async Task<Teacher?> Delete(int id)
+        public async Task<Teacher?> DeleteTeacher(int id)
         {
             var teacherModel = await _context.Teachers.FirstOrDefaultAsync(teacher => teacher.Id == id);
 
@@ -29,7 +29,7 @@ namespace school_management.Repository
             return teacherModel;
         }
 
-        public async Task<List<Teacher>> Get(TeacherFilter filter)
+        public async Task<List<Teacher>> GetTeachers(TeacherFilter filter)
         {
             var teachers = _context.Teachers.Include(teacher => teacher.School)
                 .Include(teacher => teacher.Courses).ThenInclude(course => course.Registrations)
@@ -48,7 +48,7 @@ namespace school_management.Repository
                 .Take(filter.PageSize).OrderBy(id => id).ToListAsync();
         }
 
-        public async Task<Teacher?> Put(int id, PutTeacherDto teacherDto)
+        public async Task<Teacher?> UpdateTeacher(int id, PutTeacherDto teacherDto)
         {
             var teacherToUpdate = await _context.Teachers
                 .FirstOrDefaultAsync(teacher => teacher.Id == id);
@@ -64,7 +64,7 @@ namespace school_management.Repository
             return teacherToUpdate;
         }
 
-        public async Task<Teacher?> GetById(int id)
+        public async Task<Teacher?> GetTeacherById(int id)
         {
             return await _context.Teachers.Include(teacher => teacher.School)
                 .Include(teacher => teacher.Courses).ThenInclude(course => course.Registrations)

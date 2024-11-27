@@ -12,19 +12,19 @@ namespace school_management.Controllers
         private readonly ITeacherRepository _teacherRepo = teacherRepo;
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] TeacherFilter filter)
+        public async Task<IActionResult> GetTeachers([FromQuery] TeacherFilter filter)
         {
-            var teachers = await _teacherRepo.Get(filter);
+            var teachers = await _teacherRepo.GetTeachers(filter);
             var teachersDto = teachers.Select(teacher => teacher.ToTeacherDto());
             return Ok(teachersDto);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetTeacherById([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var teacherModel = await _teacherRepo.GetById(id);
+            var teacherModel = await _teacherRepo.GetTeacherById(id);
 
             if (teacherModel == null) return NotFound();
 
@@ -32,21 +32,21 @@ namespace school_management.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateTeacherDto teacher)
+        public async Task<IActionResult> CreateTeacher([FromBody] CreateTeacherDto teacher)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var teacherModel = teacher.ToTeacherFromCreateDto();
-            await _teacherRepo.Create(teacherModel);
-            return CreatedAtAction(nameof(GetById), new { id = teacherModel.Id }, teacherModel.ToCreateTeacherRespDto());
+            await _teacherRepo.CreateTeacher(teacherModel);
+            return CreatedAtAction(nameof(GetTeacherById), new { id = teacherModel.Id }, teacherModel.ToCreateTeacherRespDto());
         }
 
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> DeleteTeacher([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var teacherModel = await _teacherRepo.Delete(id);
+            var teacherModel = await _teacherRepo.DeleteTeacher(id);
 
             if (teacherModel == null) return NotFound();
 
@@ -55,11 +55,11 @@ namespace school_management.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] PutTeacherDto teacherDto)
+        public async Task<IActionResult> UpdateTeacher([FromRoute] int id, [FromBody] PutTeacherDto teacherDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var teacherModel = await _teacherRepo.Put(id, teacherDto);
+            var teacherModel = await _teacherRepo.UpdateTeacher(id, teacherDto);
 
             if (teacherModel == null) return NotFound();
 

@@ -12,19 +12,19 @@ namespace school_management.Controllers
         private readonly ICourseRepository _courseRepo = courseRepo;
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] CourseFilter filter)
+        public async Task<IActionResult> GetCourses([FromQuery] CourseFilter filter)
         {
-            var courses = await _courseRepo.Get(filter);
+            var courses = await _courseRepo.GetCourses(filter);
             var coursesDto = courses.Select(course => course.ToCourseDto());
             return Ok(coursesDto);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetCourseById([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var courseModel = await _courseRepo.GetById(id);
+            var courseModel = await _courseRepo.GetCourseById(id);
 
             if (courseModel == null) return NotFound();
 
@@ -32,21 +32,21 @@ namespace school_management.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateCourseDto courseDto)
+        public async Task<IActionResult> CreateCourse([FromBody] CreateCourseDto courseDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var courseModel = courseDto.ToCourseFromCreateDto();
-            await _courseRepo.Create(courseModel);
-            return CreatedAtAction(nameof(GetById), new { id = courseModel.Id }, courseModel.ToCreateCourseRespDto());
+            await _courseRepo.CreateCourse(courseModel);
+            return CreatedAtAction(nameof(GetCourseById), new { id = courseModel.Id }, courseModel.ToCreateCourseRespDto());
         }
 
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> DeleteCourse([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var courseModel = await _courseRepo.Delete(id);
+            var courseModel = await _courseRepo.DeleteCourse(id);
 
             if (courseModel == null) return NotFound();
 
@@ -55,11 +55,11 @@ namespace school_management.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] PutCourseDto courseDto)
+        public async Task<IActionResult> UpdateCourse([FromRoute] int id, [FromBody] PutCourseDto courseDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var courseModel = await _courseRepo.Put(id, courseDto);
+            var courseModel = await _courseRepo.UpdateCourse(id, courseDto);
 
             if (courseModel == null) return NotFound();
 

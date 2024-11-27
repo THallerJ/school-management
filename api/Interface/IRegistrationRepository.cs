@@ -4,7 +4,7 @@ namespace school_management.Interface
 {
     public interface IRegistrationRepository
     {
-        Task<Registration> Create(Registration registration);
-        Task<Registration?> Delete(Registration registration);
+        Task<Registration> CreateRegistration(Registration registration);
+        Task<Registration?> DeleteRegistration(Registration registration);
     }
 }

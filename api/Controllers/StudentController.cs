@@ -12,19 +12,19 @@ namespace school_management.Controllers
         private readonly IStudentRepository _studentRepo = studentRepo;
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] StudentFilter filter)
+        public async Task<IActionResult> GetStudents([FromQuery] StudentFilter filter)
         {
-            var students = await _studentRepo.Get(filter);
+            var students = await _studentRepo.GetStudents(filter);
             var studentsDto = students.Select(student => student.ToStudentDto());
             return Ok(studentsDto);
         }
 
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<IActionResult> GetStudentById([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var studentModel = await _studentRepo.GetById(id);
+            var studentModel = await _studentRepo.GetStudentById(id);
 
             if (studentModel == null) return NotFound();
 
@@ -32,21 +32,21 @@ namespace school_management.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] CreateStudentDto student)
+        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentDto student)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var studentModel = student.ToStudentFromCreateDto();
-            await _studentRepo.Create(studentModel);
-            return CreatedAtAction(nameof(GetById), new { id = studentModel.Id }, studentModel.ToCreateStudentRespDto());
+            await _studentRepo.CreateStudent(studentModel);
+            return CreatedAtAction(nameof(GetStudentById), new { id = studentModel.Id }, studentModel.ToCreateStudentRespDto());
         }
 
         [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        public async Task<IActionResult> DeleteStudent([FromRoute] int id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var studentModel = await _studentRepo.Delete(id);
+            var studentModel = await _studentRepo.DeleteStudent(id);
 
             if (studentModel == null) return NotFound();
 
@@ -55,11 +55,11 @@ namespace school_management.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] PutStudentDto studentDto)
+        public async Task<IActionResult> UpdateStudent([FromRoute] int id, [FromBody] PutStudentDto studentDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var studentModel = await _studentRepo.Put(id, studentDto);
+            var studentModel = await _studentRepo.UpdateStudent(id, studentDto);
 
             if (studentModel == null) return NotFound();
 

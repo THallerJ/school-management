@@ -8,14 +8,14 @@ namespace school_management.Repository
     public class RegistrationiRepository(AppDbContext context) : IRegistrationRepository
     {
         private readonly AppDbContext _context = context;
-        public async Task<Registration> Create(Registration registration)
+        public async Task<Registration> CreateRegistration(Registration registration)
         {
             await _context.Registrations.AddAsync(registration);
             await _context.SaveChangesAsync();
             return registration;
         }
 
-        public async Task<Registration?> Delete(Registration registration)
+        public async Task<Registration?> DeleteRegistration(Registration registration)
         {
             var registrationModel = await _context.Registrations
                 .FirstOrDefaultAsync(reg => reg.CourseId == registration.CourseId && reg.StudentId == registration.StudentId);

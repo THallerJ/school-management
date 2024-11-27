@@ -13,20 +13,20 @@ namespace school_management.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] RegistrationDto registrationDto)
+        public async Task<IActionResult> CreateRegistration([FromBody] RegistrationDto registrationDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            await _registrationRepo.Create(registrationDto.ToRegistrationFromDto());
+            await _registrationRepo.CreateRegistration(registrationDto.ToRegistrationFromDto());
             return Created();
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] RegistrationDto registrationDto)
+        public async Task<IActionResult> DeleteRegistration([FromBody] RegistrationDto registrationDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var courseModel = await _registrationRepo.Delete(registrationDto.ToRegistrationFromDto());
+            var courseModel = await _registrationRepo.DeleteRegistration(registrationDto.ToRegistrationFromDto());
 
             if (courseModel == null) return NotFound();
 
