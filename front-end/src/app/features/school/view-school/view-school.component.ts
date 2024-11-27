@@ -6,11 +6,12 @@ import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
+import { ModalComponent } from "../../../core/components/modal/modal.component";
 
 @Component({
 	selector: "app-view-school",
 	standalone: true,
-	imports: [JsonPipe, NgIf, ReactiveFormsModule],
+	imports: [JsonPipe, NgIf, ReactiveFormsModule, ModalComponent],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
 })
@@ -19,6 +20,7 @@ export class ViewSchoolComponent implements OnInit {
 	school?: SchoolDto;
 	id?: number;
 	loading = true;
+	showModal = false;
 
 	schoolForm = new FormGroup<FormGroupType<School>>({
 		name: new FormControl(),
@@ -59,10 +61,11 @@ export class ViewSchoolComponent implements OnInit {
 	}
 
 	deleteSchool() {
-		if (this.id) {
+		/*if (this.id) {
 			this.apiService.delete(this.PATH, this.id).subscribe();
 			this.router.navigate(["/schools"]);
-		}
+		} */
+		this.showModal = true;
 	}
 
 	updateSchool() {
