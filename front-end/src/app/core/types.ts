@@ -1,5 +1,5 @@
 import zod from "zod";
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 
 // School==============================================================================
 
@@ -111,6 +111,8 @@ export const StudentDtoRespSchema = zod.array(StudentDtoSchema);
 
 export type StudentDtoResp = zod.infer<typeof StudentDtoRespSchema>;
 
-export type ModelFormGroup<T> = FormGroup<{
+// Misc ===============================================================================
+
+export type FormGroupType<T> = {
 	[K in keyof T]: FormControl<T[K]>;
-}>;
+};

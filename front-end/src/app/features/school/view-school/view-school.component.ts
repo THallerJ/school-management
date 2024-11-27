@@ -1,11 +1,7 @@
 import { ApiService } from "./../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import {
-	ModelFormGroup,
-	SchoolDto,
-	SchoolDtoSchema,
-} from "../../../core/types";
+import { FormGroupType, SchoolDto, SchoolDtoSchema } from "../../../core/types";
 import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
@@ -22,7 +18,8 @@ export class ViewSchoolComponent implements OnInit {
 	school?: SchoolDto;
 	id?: number;
 	loading = true;
-	schoolForm = new FormGroup({
+
+	schoolForm = new FormGroup<FormGroupType<School>>({
 		name: new FormControl(),
 		address: new FormControl(),
 		phoneNumber: new FormControl(),
