@@ -57,7 +57,7 @@ namespace school_management.Controllers
 
         [HttpPut]
         [Route("{id:int}")]
-        public async Task<IActionResult> Put(int id, [FromBody] PutSchoolDto schoolDto)
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] PutSchoolDto schoolDto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 

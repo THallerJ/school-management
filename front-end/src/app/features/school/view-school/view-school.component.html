@@ -1,5 +1,13 @@
 <div *ngIf="loading">Loading...</div>
 <div *ngIf="!loading && school !== undefined">
-	<div *ngIf="school !== undefined">{{ school | json }}</div>
+	<form [formGroup]="schoolForm" (ngSubmit)="updateSchool()">
+		<input type="text" value="{{ school.name }}" formControlName="name" />
+		<input type="text" value="{{ school.address }}" formControlName="address" />
+		<input
+			type="text"
+			value="{{ school.phoneNumber }}"
+			formControlName="phoneNumber" />
+		<button type="submit">Update</button>
+	</form>
 </div>
 <div *ngIf="!loading && school === undefined">error</div>

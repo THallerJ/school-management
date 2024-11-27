@@ -23,12 +23,12 @@ export class ApiService {
 		return this.http.post(`${this.apiUrl}/${path}`, data);
 	}
 
-	put<T>(id: number, data: T): Observable<unknown> {
-		return this.http.put(`${this.apiUrl}/${id}`, data);
+	put<T>(path: string, id: number, data: T): Observable<unknown> {
+		return this.http.put(`${this.apiUrl}/${path}/${id}`, data);
 	}
 
-	delete(id: number): Observable<unknown> {
-		return this.http.delete(`${this.apiUrl}/${id}`);
+	delete(path: string, id: number): Observable<unknown> {
+		return this.http.delete(`${this.apiUrl}/${path}/${id}`);
 	}
 }
 
