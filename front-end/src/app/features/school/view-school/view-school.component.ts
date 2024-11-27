@@ -6,12 +6,12 @@ import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ModalComponent } from "../../../core/components/modal/modal.component";
+import { ConfirmationModalComponent } from "../../../core/components/confirmation-modal/confirmation-modal.component";
 
 @Component({
 	selector: "app-view-school",
 	standalone: true,
-	imports: [JsonPipe, NgIf, ReactiveFormsModule, ModalComponent],
+	imports: [JsonPipe, NgIf, ReactiveFormsModule, ConfirmationModalComponent],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
 })
@@ -60,13 +60,18 @@ export class ViewSchoolComponent implements OnInit {
 		});
 	}
 
-	deleteSchool() {
-		/*if (this.id) {
-			this.apiService.delete(this.PATH, this.id).subscribe();
-			this.router.navigate(["/schools"]);
-		} */
+	onShowModal() {
 		this.showModal = true;
 	}
+
+	onDelete = () => {
+		if (this.id) {
+			this.apiService.delete(this.PATH, this.id).subscribe();
+			this.router.navigate(["/schools"]);
+		}
+
+		this.router.navigate(["/schools"]);
+	};
 
 	updateSchool() {
 		const x = {
