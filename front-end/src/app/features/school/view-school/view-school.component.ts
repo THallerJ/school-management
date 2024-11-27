@@ -5,6 +5,7 @@ import { FormGroupType, SchoolDto, SchoolDtoSchema } from "../../../core/types";
 import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-view-school",
@@ -25,7 +26,11 @@ export class ViewSchoolComponent implements OnInit {
 		phoneNumber: new FormControl(),
 	});
 
-	constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+	constructor(
+		private route: ActivatedRoute,
+		private apiService: ApiService,
+		private router: Router
+	) {}
 
 	patchUpdateForm() {
 		this.schoolForm.patchValue({
@@ -51,6 +56,13 @@ export class ViewSchoolComponent implements OnInit {
 				}
 			},
 		});
+	}
+
+	deleteSchool() {
+		if (this.id) {
+			this.apiService.delete(this.PATH, this.id).subscribe();
+			this.router.navigate(["/schools"]);
+		}
 	}
 
 	updateSchool() {

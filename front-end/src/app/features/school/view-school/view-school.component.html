@@ -9,5 +9,6 @@
 			formControlName="phoneNumber" />
 		<button type="submit">Update</button>
 	</form>
+	<button (click)="deleteSchool()">Delete</button>
 </div>
 <div *ngIf="!loading && school === undefined">error</div>
