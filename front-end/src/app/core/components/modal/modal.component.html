@@ -1,4 +1,4 @@
-<div *ngIf="showModal">
-	<div class="modal-background" (click)="onClose()"></div>
+<div *ngIf="isOpen">
+	<div class="modal-background" (click)="close()"></div>
 	<div class="modal-wrapper"><ng-content /></div>
 </div>

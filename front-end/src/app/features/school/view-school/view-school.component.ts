@@ -1,3 +1,4 @@
+import { ModalService } from "./../../../core/services/modal-service.service";
 import { ApiService } from "./../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
@@ -6,12 +7,12 @@ import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ConfirmationModalComponent } from "../../../core/components/confirmation-modal/confirmation-modal.component";
+import { ModalComponent } from "../../../core/components/modal/modal.component";
 
 @Component({
 	selector: "app-view-school",
 	standalone: true,
-	imports: [JsonPipe, NgIf, ReactiveFormsModule, ConfirmationModalComponent],
+	imports: [JsonPipe, NgIf, ReactiveFormsModule, ModalComponent],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
 })
@@ -20,7 +21,6 @@ export class ViewSchoolComponent implements OnInit {
 	school?: SchoolDto;
 	id?: number;
 	loading = true;
-	showModal = false;
 
 	schoolForm = new FormGroup<FormGroupType<School>>({
 		name: new FormControl(),
@@ -31,7 +31,8 @@ export class ViewSchoolComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private apiService: ApiService,
-		private router: Router
+		private router: Router,
+		private modalService: ModalService
 	) {}
 
 	patchUpdateForm() {
@@ -60,8 +61,8 @@ export class ViewSchoolComponent implements OnInit {
 		});
 	}
 
-	onShowModal() {
-		this.showModal = true;
+	openModal() {
+		this.modalService.openModal();
 	}
 
 	onDelete = () => {

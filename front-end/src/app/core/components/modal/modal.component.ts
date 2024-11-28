@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { ModalService } from "./../../services/modal-service.service";
+import { Component, OnInit } from "@angular/core";
 import { NgIf } from "@angular/common";
 
 @Component({
@@ -8,12 +9,17 @@ import { NgIf } from "@angular/common";
 	templateUrl: "./modal.component.html",
 	styleUrl: "./modal.component.css",
 })
-export class ModalComponent {
-	@Input() showModal!: boolean;
-	@Output() showModalChange = new EventEmitter<boolean>();
+export class ModalComponent implements OnInit {
+	isOpen?: boolean;
+	constructor(private modalService: ModalService) {}
 
-	onClose() {
-		this.showModal = false;
-		this.showModalChange.emit(this.showModal);
+	close() {
+		this.modalService.closeModal();
+	}
+
+	ngOnInit() {
+		this.modalService.observeState().subscribe((isOpen) => {
+			this.isOpen = isOpen;
+		});
 	}
 }
