@@ -32,6 +32,10 @@ export class SchoolsComponent implements OnInit {
 		});
 	}
 
+	createSchool() {
+		this.router.navigate([`/create-school`]);
+	}
+
 	viewSchool(id: number) {
 		this.router.navigate([`/schools/${id}`]);
 	}

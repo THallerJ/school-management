@@ -7,6 +7,10 @@ import { ViewSchoolComponent } from "./features/school/view-school/view-school.c
 import { ViewStudentComponent } from "./features/student/view-student/view-student.component";
 import { ViewCourseComponent } from "./features/course/view-course/view-course.component";
 import { ViewTeacherComponent } from "./features/teacher/view-teacher/view-teacher.component";
+import { CreateSchoolComponent } from "./features/school/create-school/create-school.component";
+import { CreateStudentComponent } from "./features/student/create-student/create-student.component";
+import { CreateTeacherComponent } from "./features/teacher/create-teacher/create-teacher.component";
+import { CreateCourseComponent } from "./features/course/create-course/create-course.component";
 
 export const routes: Routes = [
 	{ path: "students", component: StudentsComponent },
@@ -17,4 +21,8 @@ export const routes: Routes = [
 	{ path: "students/:id", component: ViewStudentComponent },
 	{ path: "teachers/:id", component: ViewTeacherComponent },
 	{ path: "courses/:id", component: ViewCourseComponent },
+	{ path: "create-school", component: CreateSchoolComponent },
+	{ path: "create-student", component: CreateStudentComponent },
+	{ path: "create-teacher", component: CreateTeacherComponent },
+	{ path: "create-course", component: CreateCourseComponent },
 ];

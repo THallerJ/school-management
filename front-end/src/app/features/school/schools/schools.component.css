@@ -31,3 +31,9 @@
 	width: 33%;
 	text-align: start;
 }
+
+.schools-header {
+	display: flex;
+	justify-content: end;
+	padding: 1rem;
+}
