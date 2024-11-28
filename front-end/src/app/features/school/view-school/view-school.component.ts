@@ -7,12 +7,12 @@ import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ModalComponent } from "../../../core/components/modal/modal.component";
+import { ConfirmationModalComponent } from "../../../core/components/confirmation-modal/confirmation-modal.component";
 
 @Component({
 	selector: "app-view-school",
 	standalone: true,
-	imports: [JsonPipe, NgIf, ReactiveFormsModule, ModalComponent],
+	imports: [JsonPipe, NgIf, ReactiveFormsModule, ConfirmationModalComponent],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
 })

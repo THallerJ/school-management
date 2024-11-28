@@ -1,6 +1,6 @@
 <div *ngIf="loading">Loading...</div>
 <div *ngIf="!loading && school !== undefined">
-	<app-modal></app-modal>
+	<app-confirmation-modal [onOk]="onDelete" />
 	<form [formGroup]="schoolForm" (ngSubmit)="updateSchool()">
 		<input type="text" value="{{ school.name }}" formControlName="name" />
 		<input type="text" value="{{ school.address }}" formControlName="address" />
