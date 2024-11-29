@@ -1,1 +1,8 @@
-<p>create-school works!</p>
+<div>
+	<form [formGroup]="createSchoolForm" (ngSubmit)="createSchool()">
+		<input type="text" formControlName="name" />
+		<input type="text" formControlName="address" />
+		<input type="tel" formControlName="phoneNumber" />
+		<button type="submit">Create School</button>
+	</form>
+</div>

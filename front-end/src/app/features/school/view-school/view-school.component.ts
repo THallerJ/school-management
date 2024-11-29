@@ -22,7 +22,7 @@ export class ViewSchoolComponent implements OnInit {
 	id?: number;
 	loading = true;
 
-	schoolForm = new FormGroup<FormGroupType<School>>({
+	updateSchoolForm = new FormGroup<FormGroupType<School>>({
 		name: new FormControl(),
 		address: new FormControl(),
 		phoneNumber: new FormControl(),
@@ -36,7 +36,7 @@ export class ViewSchoolComponent implements OnInit {
 	) {}
 
 	patchUpdateForm() {
-		this.schoolForm.patchValue({
+		this.updateSchoolForm.patchValue({
 			name: this.school?.name,
 			address: this.school?.address,
 			phoneNumber: this.school?.phoneNumber,
@@ -75,13 +75,16 @@ export class ViewSchoolComponent implements OnInit {
 	};
 
 	updateSchool() {
-		const x = {
-			name: this.schoolForm.value.name,
-			address: this.schoolForm.value.address,
-			phoneNumber: this.schoolForm.value.phoneNumber,
+		const updatedSchool = {
+			name: this.updateSchoolForm.value.name,
+			address: this.updateSchoolForm.value.address,
+			phoneNumber: this.updateSchoolForm.value.phoneNumber,
 		};
+
 		if (this.id && this.school)
-			this.apiService.put<School>(this.PATH, this.id, x).subscribe();
+			this.apiService
+				.put<School>(this.PATH, this.id, updatedSchool)
+				.subscribe();
 	}
 
 	ngOnInit() {
