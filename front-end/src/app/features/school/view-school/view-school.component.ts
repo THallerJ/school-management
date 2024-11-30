@@ -90,6 +90,8 @@ export class ViewSchoolComponent implements OnInit {
 			this.apiService
 				.put<School>(this.PATH, this.id, updatedSchool)
 				.subscribe();
+
+			this.router.navigate(["/schools"]);
 		}
 	}
 
