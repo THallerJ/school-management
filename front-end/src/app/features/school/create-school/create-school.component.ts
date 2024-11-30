@@ -7,11 +7,12 @@ import {
 	Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
+import { FormValidatorComponent } from "../../../core/components/form-validator/form-validator.component";
 
 @Component({
 	selector: "app-create-school",
 	standalone: true,
-	imports: [ReactiveFormsModule],
+	imports: [ReactiveFormsModule, FormValidatorComponent],
 	templateUrl: "./create-school.component.html",
 	styleUrl: "./create-school.component.css",
 })
