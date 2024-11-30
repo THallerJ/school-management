@@ -30,7 +30,15 @@ export class CreateSchoolComponent implements OnInit {
 			{
 				name: ["", Validators.required],
 				address: ["", Validators.required],
-				phoneNumber: ["", Validators.required],
+				phoneNumber: [
+					"",
+					Validators.compose([
+						Validators.required,
+						Validators.minLength(10),
+						Validators.maxLength(10),
+						Validators.pattern(/^\d+$/),
+					]),
+				],
 			},
 			{ updateOn: "submit" }
 		);
@@ -46,12 +54,12 @@ export class CreateSchoolComponent implements OnInit {
 			phoneNumber: this.createSchoolForm.value.phoneNumber,
 		};
 
+		this.createSchoolForm.markAsTouched();
+
 		if (this.createSchoolForm.valid) {
 			this.apiService.post<School>("school", createdSchool).subscribe(() => {
 				this.router.navigate(["/schools"]);
 			});
-		} else {
-			this.createSchoolForm.markAsTouched();
 		}
 	}
 }
