@@ -4,11 +4,11 @@
 	display: flex;
 	justify-content: center;
 	top: 0;
-	background-color: var(--accent-color);
+	background-color: var(--dark-color);
 }
 
 a {
-	color: #193837;
+	color: var(--accent-color);
 	text-decoration: none;
 }
 
@@ -46,5 +46,5 @@ a {
 }
 
 .header-nav a:hover {
-	color: var(--dark-text-alt);
+	color: var(--accent-color);
 }

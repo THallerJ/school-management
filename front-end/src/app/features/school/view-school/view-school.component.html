@@ -10,13 +10,13 @@
 			type="text"
 			value="{{ school.phoneNumber }}"
 			formControlName="phoneNumber" />
-		<button type="submit">Update</button>
+		<button class="btn" type="submit">Update</button>
 		<app-form-validator [form]="updateSchoolForm">
 			<li>Name and address fields must have at least 3 characters</li>
 			<li>Phone number must be 10 digits</li>
 		</app-form-validator>
 	</form>
-	<button (click)="openModal()">Delete</button>
+	<button class="btn" (click)="openModal()">Delete</button>
 </div>
 } @else {
 <div>error</div>
