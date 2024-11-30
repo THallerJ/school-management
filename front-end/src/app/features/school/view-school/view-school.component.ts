@@ -2,16 +2,26 @@ import { ModalService } from "./../../../core/services/modal-service.service";
 import { ApiService } from "./../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { FormGroupType, SchoolDto, SchoolDtoSchema } from "../../../core/types";
+import { SchoolDto, SchoolDtoSchema } from "../../../core/types";
 import { NgIf } from "@angular/common";
-import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
+import {
+	ReactiveFormsModule,
+	FormGroup,
+	FormBuilder,
+	Validators,
+} from "@angular/forms";
 import { Router } from "@angular/router";
 import { ConfirmationModalComponent } from "../../../core/components/confirmation-modal/confirmation-modal.component";
-
+import { FormValidatorComponent } from "../../../core/components/form-validator/form-validator.component";
 @Component({
 	selector: "app-view-school",
 	standalone: true,
-	imports: [NgIf, ReactiveFormsModule, ConfirmationModalComponent],
+	imports: [
+		NgIf,
+		ReactiveFormsModule,
+		ConfirmationModalComponent,
+		FormValidatorComponent,
+	],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
 })
@@ -20,18 +30,14 @@ export class ViewSchoolComponent implements OnInit {
 	school?: SchoolDto;
 	id?: number;
 	loading = true;
-
-	updateSchoolForm = new FormGroup<FormGroupType<School>>({
-		name: new FormControl(),
-		address: new FormControl(),
-		phoneNumber: new FormControl(),
-	});
+	updateSchoolForm!: FormGroup;
 
 	constructor(
 		private route: ActivatedRoute,
 		private apiService: ApiService,
 		private router: Router,
-		private modalService: ModalService
+		private modalService: ModalService,
+		private formBuilder: FormBuilder
 	) {}
 
 	patchUpdateForm() {
@@ -80,15 +86,41 @@ export class ViewSchoolComponent implements OnInit {
 			phoneNumber: this.updateSchoolForm.value.phoneNumber,
 		};
 
-		if (this.id && this.school)
+		this.updateSchoolForm.markAsTouched();
+
+		if (this.updateSchoolForm.valid && this.id && this.school) {
 			this.apiService
 				.put<School>(this.PATH, this.id, updatedSchool)
 				.subscribe();
+		}
+	}
+
+	initId() {
+		this.id = this.route.snapshot.params["id"];
+		if (this.id) this.getSchool(this.id);
+	}
+
+	initCreateSchoolForm() {
+		this.updateSchoolForm = this.formBuilder.group(
+			{
+				name: ["", Validators.minLength(3)],
+				address: ["", Validators.minLength(3)],
+				phoneNumber: [
+					"",
+					Validators.compose([
+						Validators.minLength(10),
+						Validators.maxLength(10),
+						Validators.pattern(/^\d+$/),
+					]),
+				],
+			},
+			{ updateOn: "submit" }
+		);
 	}
 
 	ngOnInit() {
-		this.id = this.route.snapshot.params["id"];
-		if (this.id) this.getSchool(this.id);
+		this.initId();
+		this.initCreateSchoolForm();
 	}
 }
 
