@@ -14,13 +14,16 @@ import { Router } from "@angular/router";
 export class SchoolsComponent implements OnInit {
 	private readonly PATH = "school";
 	page = 1;
+	readonly PAGE_SIZE = 20;
 
 	schools: SchoolDtoResp = [];
 
 	constructor(private apiService: ApiService, private router: Router) {}
 
 	getSchools() {
-		const params = { params: { pageNumber: this.page } };
+		const params = {
+			params: { pageNumber: this.page, pageSize: this.PAGE_SIZE },
+		};
 
 		this.apiService.get(this.PATH, params).subscribe({
 			next: (data) => {

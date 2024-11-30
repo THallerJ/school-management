@@ -1,4 +1,4 @@
-<div>
+<div class="schools-wrapper">
 	<div class="schools-header">
 		<button class="btn" (click)="createSchool()">Create School</button>
 	</div>
@@ -15,6 +15,7 @@
 			<span>{{ school.phoneNumber | phoneNumber }}</span>
 		</div>
 	</div>
+	} @if(schools.length >= PAGE_SIZE) {
+	<button class="load-more-btn" (click)="getSchools()">Load more</button>
 	}
-	<button class="btn" (click)="getSchools()">Load more</button>
 </div>

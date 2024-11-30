@@ -26,3 +26,14 @@ body {
 	color: var(--accent-color);
 	background-color: var(--dark-color);
 }
+
+.load-more-btn {
+	background-color: var(--light-color);
+	color: var(--dark-color);
+	border: 1px solid var(--offwhite);
+	padding: 0.5rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	border-radius: 5px;
+	cursor: pointer;
+}
