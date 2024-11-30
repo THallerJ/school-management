@@ -26,4 +26,5 @@
 	justify-content: space-between;
 	min-height: 100%;
 	width: var(--desktop-app-width);
+	background-color: var(--body-color);
 }

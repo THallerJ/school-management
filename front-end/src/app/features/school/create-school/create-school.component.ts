@@ -8,10 +8,11 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { FormValidatorComponent } from "../../../core/components/form-validator/form-validator.component";
+import { InputLabelComponent } from "../../../core/components/input-label/input-label.component";
 @Component({
 	selector: "app-create-school",
 	standalone: true,
-	imports: [ReactiveFormsModule, FormValidatorComponent],
+	imports: [ReactiveFormsModule, FormValidatorComponent, InputLabelComponent],
 	templateUrl: "./create-school.component.html",
 	styleUrl: "./create-school.component.css",
 })

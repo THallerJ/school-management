@@ -1,8 +1,17 @@
 <div>
-	<form [formGroup]="createSchoolForm" (ngSubmit)="createSchool()">
-		<input type="text" formControlName="name" />
-		<input type="text" formControlName="address" />
-		<input type="tel" formControlName="phoneNumber" />
+	<form
+		class="create-school-form"
+		[formGroup]="createSchoolForm"
+		(ngSubmit)="createSchool()">
+		<app-input-label [group]="createSchoolForm" name="name" type="text"
+			>School Name</app-input-label
+		>
+		<app-input-label [group]="createSchoolForm" name="address" type="text"
+			>School Address</app-input-label
+		>
+		<app-input-label [group]="createSchoolForm" name="phoneNumber" type="tel">
+			School Phone Number
+		</app-input-label>
 		<button class="btn" type="submit">Create School</button>
 		<app-form-validator [form]="createSchoolForm">
 			<li>All fields are required</li>

@@ -1,0 +1,15 @@
+.input-label {
+	display: flex;
+	flex-direction: column;
+}
+
+.input-label > label {
+	text-transform: uppercase;
+	font-weight: 600;
+	margin-bottom: 0.25rem;
+	font-size: 0.75rem;
+}
+
+.input-label > input {
+	padding: 0.25rem 0.5rem;
+}
