@@ -3,7 +3,6 @@ import { ApiService } from "./../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { FormGroupType, SchoolDto, SchoolDtoSchema } from "../../../core/types";
-import { JsonPipe } from "@angular/common";
 import { NgIf } from "@angular/common";
 import { ReactiveFormsModule, FormControl, FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -12,7 +11,7 @@ import { ConfirmationModalComponent } from "../../../core/components/confirmatio
 @Component({
 	selector: "app-view-school",
 	standalone: true,
-	imports: [JsonPipe, NgIf, ReactiveFormsModule, ConfirmationModalComponent],
+	imports: [NgIf, ReactiveFormsModule, ConfirmationModalComponent],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
 })

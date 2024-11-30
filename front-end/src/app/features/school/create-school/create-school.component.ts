@@ -25,11 +25,14 @@ export class CreateSchoolComponent implements OnInit {
 	) {}
 
 	initCreateSchoolForm() {
-		this.createSchoolForm = this.formBuilder.group({
-			name: ["", Validators.required],
-			address: ["", Validators.required],
-			phoneNumber: ["", Validators.required],
-		});
+		this.createSchoolForm = this.formBuilder.group(
+			{
+				name: ["", Validators.required],
+				address: ["", Validators.required],
+				phoneNumber: ["", Validators.required],
+			},
+			{ updateOn: "submit" }
+		);
 	}
 	ngOnInit() {
 		this.initCreateSchoolForm();
@@ -42,9 +45,13 @@ export class CreateSchoolComponent implements OnInit {
 			phoneNumber: this.createSchoolForm.value.phoneNumber,
 		};
 
-		this.apiService.post<School>("school", createdSchool).subscribe(() => {
-			this.router.navigate(["/schools"]);
-		});
+		if (this.createSchoolForm.valid) {
+			this.apiService.post<School>("school", createdSchool).subscribe(() => {
+				this.router.navigate(["/schools"]);
+			});
+		} else {
+			this.createSchoolForm.markAsTouched();
+		}
 	}
 }
 

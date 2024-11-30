@@ -4,5 +4,13 @@
 		<input type="text" formControlName="address" />
 		<input type="tel" formControlName="phoneNumber" />
 		<button type="submit">Create School</button>
+		@if (createSchoolForm.invalid && createSchoolForm.touched) {
+		<div>
+			<ul>
+				<li>All fields are required</li>
+				<li>Phone number must be 10 digits</li>
+			</ul>
+		</div>
+		}
 	</form>
 </div>
