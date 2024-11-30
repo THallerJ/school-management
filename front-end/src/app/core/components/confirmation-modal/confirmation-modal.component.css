@@ -1,0 +1,16 @@
+.confirm-modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
+}
+
+.confirm-modal > span {
+	font-size: 1.25rem;
+}
+
+.confirm-modal-buttons {
+	padding: 1rem 0 0 0;
+	display: flex;
+	gap: 0.5rem;
+}
