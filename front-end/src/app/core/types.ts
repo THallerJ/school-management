@@ -10,7 +10,7 @@ export const NestedStudentDtoSchema = zod.object({
 });
 
 export const RegistrationStudentDtoSchema = zod.object({
-	Student: NestedStudentDtoSchema,
+	Student: NestedStudentDtoSchema.optional(),
 });
 
 export const NestedTeacherDtoSchema = zod.object({
