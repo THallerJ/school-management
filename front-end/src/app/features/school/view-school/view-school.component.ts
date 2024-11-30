@@ -3,7 +3,6 @@ import { ApiService } from "./../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { SchoolDto, SchoolDtoSchema } from "../../../core/types";
-import { NgIf } from "@angular/common";
 import {
 	ReactiveFormsModule,
 	FormGroup,
@@ -17,7 +16,6 @@ import { FormValidatorComponent } from "../../../core/components/form-validator/
 	selector: "app-view-school",
 	standalone: true,
 	imports: [
-		NgIf,
 		ReactiveFormsModule,
 		ConfirmationModalComponent,
 		FormValidatorComponent,
