@@ -1,0 +1,11 @@
+@if (loading) {
+<div>Loading...</div>
+} @else if(!loading && item !== undefined) {
+<div class="view-item-wrapper">
+	<button class="btn view-item-delete" (click)="openModal()">Delete</button>
+	<app-confirmation-modal [onOk]="onDelete" />
+	<ng-content />
+</div>
+} @else {
+<span>An error has occured.</span>
+}

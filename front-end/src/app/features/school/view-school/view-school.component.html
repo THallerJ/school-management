@@ -1,9 +1,7 @@
-@if (loading) {
-<div>Loading...</div>
-} @else if(!loading && school !== undefined) {
-<div class="view-school-wrapper">
-	<button class="btn view-school-delete" (click)="openModal()">Delete</button>
-	<app-confirmation-modal [onOk]="onDelete" />
+<app-view-item-wrapper
+	[loading]="loading"
+	[item]="school"
+	[onDelete]="onDelete">
 	<form
 		class="app-form"
 		[formGroup]="updateSchoolForm"
@@ -12,21 +10,21 @@
 			[group]="updateSchoolForm"
 			name="name"
 			type="text"
-			[value]="school.name">
+			[value]="school?.name">
 			School Name
 		</app-input-label>
 		<app-input-label
 			[group]="updateSchoolForm"
 			name="address"
 			type="text"
-			[value]="school.address">
+			[value]="school?.address">
 			School Address
 		</app-input-label>
 		<app-input-label
 			[group]="updateSchoolForm"
 			name="phoneNumber"
 			type="tele"
-			[value]="school.phoneNumber">
+			[value]="school?.phoneNumber">
 			School Phone Number
 		</app-input-label>
 		<button class="btn" type="submit">Update</button>
@@ -35,7 +33,4 @@
 			<li>Phone number must be 10 digits</li>
 		</app-form-validator>
 	</form>
-</div>
-} @else {
-<span>An error has occured</span>
-}
+</app-view-item-wrapper>

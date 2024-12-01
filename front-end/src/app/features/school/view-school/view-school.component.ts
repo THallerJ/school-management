@@ -10,17 +10,17 @@ import {
 	Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { ConfirmationModalComponent } from "../../../core/components/confirmation-modal/confirmation-modal.component";
 import { FormValidatorComponent } from "../../../core/components/form-validator/form-validator.component";
 import { InputLabelComponent } from "../../../core/components/input-label/input-label.component";
+import { ViewItemWrapperComponent } from "../../../core/components/view-item-wrapper/view-item-wrapper.component";
 @Component({
 	selector: "app-view-school",
 	standalone: true,
 	imports: [
 		ReactiveFormsModule,
-		ConfirmationModalComponent,
 		FormValidatorComponent,
 		InputLabelComponent,
+		ViewItemWrapperComponent,
 	],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",

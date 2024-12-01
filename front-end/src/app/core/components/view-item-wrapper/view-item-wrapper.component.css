@@ -1,0 +1,15 @@
+.view-item-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.view-item-delete {
+	align-self: end;
+	margin: 1rem;
+	background-color: var(--darkest-red);
+	color: var(--body-color);
+}
+
+.view-item-delete:hover {
+	color: var(--dark-text);
+}
