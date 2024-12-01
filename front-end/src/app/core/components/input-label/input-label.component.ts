@@ -11,4 +11,5 @@ export class InputLabelComponent {
 	@Input() name!: string;
 	@Input() type!: string;
 	@Input() group!: FormGroup;
+	@Input() value?: string;
 }

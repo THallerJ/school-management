@@ -1,5 +1,5 @@
-@if(form.invalid && form.touched){
-<div>
+@if(form.invalid && form.touched || true){
+<div class="invalid-form-message">
 	<ul>
 		<ng-content />
 	</ul>

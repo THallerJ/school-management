@@ -1,23 +1,41 @@
 @if (loading) {
 <div>Loading...</div>
 } @else if(!loading && school !== undefined) {
-<div>
+<div class="view-school-wrapper">
+	<button class="btn view-school-delete" (click)="openModal()">Delete</button>
 	<app-confirmation-modal [onOk]="onDelete" />
-	<form [formGroup]="updateSchoolForm" (ngSubmit)="updateSchool()">
-		<input type="text" value="{{ school.name }}" formControlName="name" />
-		<input type="text" value="{{ school.address }}" formControlName="address" />
-		<input
+	<form
+		class="app-form"
+		[formGroup]="updateSchoolForm"
+		(ngSubmit)="updateSchool()">
+		<app-input-label
+			[group]="updateSchoolForm"
+			name="name"
 			type="text"
-			value="{{ school.phoneNumber }}"
-			formControlName="phoneNumber" />
+			[value]="school.name">
+			School Name
+		</app-input-label>
+		<app-input-label
+			[group]="updateSchoolForm"
+			name="address"
+			type="text"
+			[value]="school.address">
+			School Address
+		</app-input-label>
+		<app-input-label
+			[group]="updateSchoolForm"
+			name="phoneNumber"
+			type="tele"
+			[value]="school.phoneNumber">
+			School Phone Number
+		</app-input-label>
 		<button class="btn" type="submit">Update</button>
 		<app-form-validator [form]="updateSchoolForm">
 			<li>Name and address fields must have at least 3 characters</li>
 			<li>Phone number must be 10 digits</li>
 		</app-form-validator>
 	</form>
-	<button class="btn" (click)="openModal()">Delete</button>
 </div>
 } @else {
-<div>error</div>
+<span>An error has occured</span>
 }

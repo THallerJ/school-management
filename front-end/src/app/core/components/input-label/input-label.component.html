@@ -2,5 +2,10 @@
 	<label for="name">
 		<ng-content />
 	</label>
-	<input [id]="name" [name]="name" [type]="type" [formControlName]="name" />
+	<input
+		[id]="name"
+		[name]="name"
+		[type]="type"
+		[value]="value"
+		[formControlName]="name" />
 </div>
