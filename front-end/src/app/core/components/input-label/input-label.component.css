@@ -8,8 +8,9 @@
 	font-weight: 600;
 	margin-bottom: 0.25rem;
 	font-size: 0.75rem;
+	color: var(--dark-color);
 }
 
 .input-label > input {
-	padding: 0.25rem 0.5rem;
+	padding: 0.5rem 0.5rem;
 }

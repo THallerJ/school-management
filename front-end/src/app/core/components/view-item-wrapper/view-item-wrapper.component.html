@@ -1,5 +1,5 @@
 @if (loading) {
-<div>Loading...</div>
+<app-spinner />
 } @else if(!loading && item !== undefined) {
 <div class="view-item-wrapper">
 	<button class="btn view-item-delete" (click)="openModal()">Delete</button>
