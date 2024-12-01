@@ -5,7 +5,6 @@
 
 .view-item-delete {
 	align-self: end;
-	margin: 1rem;
 	background-color: var(--darkest-red);
 	color: var(--body-color);
 }

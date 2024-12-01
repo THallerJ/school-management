@@ -28,5 +28,8 @@
 	width: var(--desktop-app-width);
 	background-color: var(--body-color);
 	overflow: auto;
-	padding: 0 2rem 0 2rem;
+}
+
+.app-router-outlet {
+	padding: 1rem 2rem 1rem 2rem;
 }
