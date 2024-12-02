@@ -30,8 +30,10 @@
 		</app-input-label>
 		<button class="btn" type="submit">Update</button>
 		<app-form-validator [form]="updateSchoolForm">
-			<li>Name and address fields must have at least 3 characters</li>
-			<li>Phone number must be 10 digits</li>
+			<ul>
+				<li>Name and address fields must have at least 3 characters</li>
+				<li>Phone number must be 10 digits</li>
+			</ul>
 		</app-form-validator>
 	</form>
 	<h2>Courses at school</h2>

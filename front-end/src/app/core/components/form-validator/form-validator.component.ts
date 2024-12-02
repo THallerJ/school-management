@@ -7,7 +7,6 @@ import { FormGroup } from "@angular/forms";
 	imports: [],
 	templateUrl: "./form-validator.component.html",
 	styleUrl: "./form-validator.component.css",
-	encapsulation: ViewEncapsulation.None,
 })
 export class FormValidatorComponent {
 	@Input() form!: FormGroup;
