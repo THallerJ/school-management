@@ -35,4 +35,18 @@
 		</app-form-validator>
 	</form>
 	<h2>Courses at school</h2>
+	<div class="course-column-heading">
+		<span>Name</span>
+		<span>Teacher</span>
+		<span>Credits</span>
+	</div>
+	@for(course of school?.courses; track course.id) {
+	<div class="course-item">
+		<div class="course-info">
+			<span>{{ course.name }}</span>
+			<span>{{ course.teacher.firstName }} {{ course.teacher.lastName }}</span>
+			<span>{{ course.credits }}</span>
+		</div>
+	</div>
+	}
 </app-view-item-wrapper>

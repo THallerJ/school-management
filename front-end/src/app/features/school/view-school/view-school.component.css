@@ -1,0 +1,30 @@
+.course-column-heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem 0 1rem 0;
+	border-bottom: 1px solid var(--offwhite);
+	font-weight: 700;
+}
+
+.course-column-heading > span {
+	width: 33%;
+}
+
+.course-item {
+	display: flex;
+	padding: 0.8rem 0 0.8rem 0;
+	border-bottom: 1px solid var(--offwhite);
+}
+
+.course-info {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 1rem 0 1rem 0;
+}
+
+.course-info > span {
+	width: 33%;
+	text-align: start;
+}
