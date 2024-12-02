@@ -37,11 +37,7 @@
 		</app-form-validator>
 	</form>
 	<h2>Courses at school</h2>
-	<div class="course-column-heading">
-		<span>Name</span>
-		<span>Teacher</span>
-		<span>Credits</span>
-	</div>
+	<app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
 	@for(course of school?.courses; track course.id) {
 	<div class="course-item">
 		<div class="course-info">

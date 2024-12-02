@@ -3,13 +3,14 @@ import { ApiService } from "../../../core/services/api-service.service";
 import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../core/types";
 import { PhoneNumberPipe } from "../../../core/pipes/phone-number.pipe";
 import { Router } from "@angular/router";
+import { ItemListHeaderComponent } from "../../../core/components/item-list-header/item-list-header.component";
 
 @Component({
 	selector: "app-schools",
 	standalone: true,
 	templateUrl: "./schools.component.html",
 	styleUrl: "./schools.component.css",
-	imports: [PhoneNumberPipe],
+	imports: [PhoneNumberPipe, ItemListHeaderComponent],
 })
 export class SchoolsComponent implements OnInit {
 	private readonly PATH = "school";

@@ -2,11 +2,7 @@
 	<div class="schools-header">
 		<button class="btn" (click)="createSchool()">Create School</button>
 	</div>
-	<div class="column-heading">
-		<span>Name</span>
-		<span>Address</span>
-		<span>Phone Number</span>
-	</div>
+	<app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
 	@for(school of schools; track school.id) {
 	<div class="school-item" (click)="viewSchool(school.id)">
 		<div class="school-info">
