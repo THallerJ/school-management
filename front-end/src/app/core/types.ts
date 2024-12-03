@@ -98,7 +98,7 @@ export const NestedCourseDtoSchema = zod.object({
 });
 
 export const RegistractionCourseDtoSchema = zod.object({
-	Course: NestedCourseDtoSchema,
+	Course: NestedCourseDtoSchema.optional(),
 });
 
 export const StudentDtoSchema = zod.object({
