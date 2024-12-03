@@ -6,7 +6,14 @@
 	@for(school of schools; track school.id) {
 	<app-list-item
 		(clickEvent)="viewSchool(school.id)"
-		[items]="[school.name, school.address, school.phoneNumber | phoneNumber]" />
+		[item]="{
+			id: school.id,
+			properties: [
+				school.name,
+				school.address,
+				school.phoneNumber | phoneNumber
+			]
+		}" />
 	} @if(schools.length >= PAGE_SIZE) {
 	<button class="load-more-btn" (click)="getSchools()">Load more</button>
 	}

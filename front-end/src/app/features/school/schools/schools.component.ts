@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ApiService } from "../../../core/services/api-service.service";
-import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../core/types";
+import {
+	SchoolDtoRespSchema,
+	SchoolDtoResp,
+	SchoolDto,
+} from "../../../core/types";
 import { PhoneNumberPipe } from "../../../core/pipes/phone-number.pipe";
 import { Router } from "@angular/router";
 import { ItemListHeaderComponent } from "../../../core/components/item-list-header/item-list-header.component";
@@ -10,7 +14,7 @@ import { ListItemComponent } from "../../../core/components/list-item/list-item.
 	standalone: true,
 	templateUrl: "./schools.component.html",
 	styleUrl: "./schools.component.css",
-	imports: [PhoneNumberPipe, ItemListHeaderComponent, ListItemComponent],
+	imports: [ItemListHeaderComponent, ListItemComponent, PhoneNumberPipe],
 })
 export class SchoolsComponent implements OnInit {
 	private readonly PATH = "school";
@@ -18,7 +22,10 @@ export class SchoolsComponent implements OnInit {
 	readonly PAGE_SIZE = 20;
 	schools: SchoolDtoResp = [];
 
-	constructor(private apiService: ApiService, private router: Router) {}
+	constructor(
+		private apiService: ApiService,
+		private router: Router,
+	) {}
 
 	getSchools() {
 		const params = {

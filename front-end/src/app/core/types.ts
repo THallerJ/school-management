@@ -19,7 +19,7 @@ export const NestedTeacherDtoSchema = zod.object({
 	lastName: zod.string(),
 });
 
-export const CourseNoSchoolDto = zod.object({
+export const CourseNoSchoolDtoSchema = zod.object({
 	id: zod.number(),
 	name: zod.string(),
 	teacher: NestedTeacherDtoSchema,
@@ -27,10 +27,12 @@ export const CourseNoSchoolDto = zod.object({
 	credits: zod.number(),
 });
 
+export type CourseNoSchoolDto = zod.infer<typeof CourseNoSchoolDtoSchema>;
+
 export const SchoolDtoSchema = zod.object({
 	id: zod.number(),
 	name: zod.string(),
-	courses: zod.array(CourseNoSchoolDto),
+	courses: zod.array(CourseNoSchoolDtoSchema),
 	address: zod.string(),
 	phoneNumber: zod.string(),
 });

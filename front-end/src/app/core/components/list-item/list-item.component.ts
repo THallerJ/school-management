@@ -8,15 +8,20 @@ import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 	styleUrl: "./list-item.component.css",
 })
 export class ListItemComponent implements OnInit {
-	@Input() items!: string[];
+	@Input() item!: Item;
 	@Output() clickEvent = new EventEmitter();
 	width!: string;
 
 	ngOnInit() {
-		this.width = `${100 / this.items.length}%`;
+		this.width = `${100 / this.item.properties.length}%`;
 	}
 
 	onClick() {
 		this.clickEvent.emit();
 	}
 }
+
+type Item = {
+	id: number;
+	properties: string[];
+};

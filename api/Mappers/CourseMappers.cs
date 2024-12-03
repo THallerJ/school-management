@@ -30,9 +30,9 @@ namespace school_management.Mappers
             };
         }
 
-        public static CourseNoSchoolDto ToCourseNoSchoolDto(this Course course)
+        public static CourseNoSchoolDtoSchema ToCourseNoSchoolDtoSchema(this Course course)
         {
-            return new CourseNoSchoolDto
+            return new CourseNoSchoolDtoSchema
             {
                 Id = course.Id,
                 Name = course.Name,

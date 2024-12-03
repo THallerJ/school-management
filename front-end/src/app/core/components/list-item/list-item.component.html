@@ -3,8 +3,8 @@
 	(click)="onClick()"
 	[style.cursor]="clickEvent.observed ? 'pointer' : 'default'">
 	<div class="list-item-info">
-		@for(item of items; track item) {
-		<span [style.width]="width">{{ item }}</span>
+		@for(prop of item.properties; track item.id + prop) {
+		<span [style.width]="width">{{ prop }}</span>
 		}
 	</div>
 </div>

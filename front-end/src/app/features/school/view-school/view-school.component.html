@@ -40,10 +40,13 @@
 	<app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
 	@for(course of school?.courses; track course.id) {
 	<app-list-item
-		[items]="[
-			course.name,
-			course.teacher.firstName + ' ' + course.teacher.lastName,
-			course.credits.toString()
-		]" />
+		[item]="{
+			id: course.id,
+			properties: [
+				course.name,
+				course.teacher.firstName + ' ' + course.teacher.lastName,
+				course.credits.toString()
+			]
+		}" />
 	}
 </app-view-item-wrapper>

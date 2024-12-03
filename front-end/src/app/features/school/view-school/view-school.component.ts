@@ -2,7 +2,11 @@ import { ModalService } from "./../../../core/services/modal-service.service";
 import { ApiService } from "./../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { SchoolDto, SchoolDtoSchema } from "../../../core/types";
+import {
+	SchoolDto,
+	SchoolDtoSchema,
+	CourseNoSchoolDto,
+} from "../../../core/types";
 import {
 	ReactiveFormsModule,
 	FormGroup,

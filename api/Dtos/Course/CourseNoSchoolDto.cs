@@ -2,7 +2,7 @@ using school_management.Dtos.Teacher;
 
 namespace school_management.Dtos.Course
 {
-    public class CourseNoSchoolDto
+    public class CourseNoSchoolDtoSchema
     {
         public int Id { get; set; }
 
