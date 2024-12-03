@@ -1,12 +1,8 @@
-import { ModalService } from "./../../../core/services/modal-service.service";
-import { ApiService } from "./../../../core/services/api-service.service";
+import { ModalService } from "./../../../../core/services/modal-service.service";
+import { ApiService } from "./../../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import {
-	SchoolDto,
-	SchoolDtoSchema,
-	CourseNoSchoolDto,
-} from "../../../core/types";
+import { SchoolDto, SchoolDtoSchema } from "../../../../core/types";
 import {
 	ReactiveFormsModule,
 	FormGroup,
@@ -14,12 +10,12 @@ import {
 	Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FormValidatorComponent } from "../../../core/components/form-validator/form-validator.component";
-import { InputLabelComponent } from "../../../core/components/input-label/input-label.component";
-import { ViewItemWrapperComponent } from "../../../core/components/view-item-wrapper/view-item-wrapper.component";
-import { ItemListHeaderComponent } from "../../../core/components/item-list-header/item-list-header.component";
-import { ListItemComponent } from "../../../core/components/list-item/list-item.component";
-import { CourseNoSchoolPipe } from "./../pipes/course-no-school.pipe";
+import { FormValidatorComponent } from "../../../../core/components/form-validator/form-validator.component";
+import { InputLabelComponent } from "../../../../core/components/input-label/input-label.component";
+import { ViewItemWrapperComponent } from "../../../../core/components/view-item-wrapper/view-item-wrapper.component";
+import { ItemListHeaderComponent } from "../../../../core/components/item-list-header/item-list-header.component";
+import { ListItemComponent } from "../../../../core/components/list-item/list-item.component";
+import { CourseNoSchoolPipe } from "./../../pipes/course-no-school.pipe";
 
 @Component({
 	selector: "app-view-school",

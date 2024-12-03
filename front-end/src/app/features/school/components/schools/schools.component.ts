@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../../../core/services/api-service.service";
-import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../core/types";
-import { SchoolDtoPipe } from "../pipes/school-dto.pipe";
+import { ApiService } from "../../../../core/services/api-service.service";
+import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../../core/types";
+import { SchoolDtoPipe } from "../../pipes/school-dto.pipe";
 import { Router } from "@angular/router";
-import { ItemListHeaderComponent } from "../../../core/components/item-list-header/item-list-header.component";
-import { ListItemComponent } from "../../../core/components/list-item/list-item.component";
+import { ItemListHeaderComponent } from "../../../../core/components/item-list-header/item-list-header.component";
+import { ListItemComponent } from "../../../../core/components/list-item/list-item.component";
 @Component({
 	selector: "app-schools",
 	standalone: true,

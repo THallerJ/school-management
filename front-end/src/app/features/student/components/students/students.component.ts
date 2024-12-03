@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../../../core/services/api-service.service";
-import { StudentDtoRespSchema, StudentDtoResp } from "../../../core/types";
+import { ApiService } from "../../../../core/services/api-service.service";
+import { StudentDtoRespSchema, StudentDtoResp } from "../../../../core/types";
 
 @Component({
 	selector: "app-students",

@@ -1,6 +1,6 @@
-import { ApiService } from "../../../core/services/api-service.service";
+import { ApiService } from "../../../../core/services/api-service.service";
 import { Component, OnInit } from "@angular/core";
-import { CourseDtoRespSchema, CourseDtoResp } from "../../../core/types";
+import { CourseDtoRespSchema, CourseDtoResp } from "../../../../core/types";
 
 @Component({
 	selector: "app-courses",

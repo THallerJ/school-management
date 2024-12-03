@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ApiService } from "../../../core/services/api-service.service";
+import { ApiService } from "../../../../core/services/api-service.service";
 import {
 	FormGroup,
 	ReactiveFormsModule,
@@ -7,8 +7,8 @@ import {
 	Validators,
 } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FormValidatorComponent } from "../../../core/components/form-validator/form-validator.component";
-import { InputLabelComponent } from "../../../core/components/input-label/input-label.component";
+import { FormValidatorComponent } from "../../../../core/components/form-validator/form-validator.component";
+import { InputLabelComponent } from "../../../../core/components/input-label/input-label.component";
 @Component({
 	selector: "app-create-school",
 	standalone: true,
