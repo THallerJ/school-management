@@ -4,19 +4,18 @@ import { SchoolDtoRespSchema, SchoolDtoResp } from "../../../core/types";
 import { PhoneNumberPipe } from "../../../core/pipes/phone-number.pipe";
 import { Router } from "@angular/router";
 import { ItemListHeaderComponent } from "../../../core/components/item-list-header/item-list-header.component";
-
+import { ListItemComponent } from "../../../core/components/list-item/list-item.component";
 @Component({
 	selector: "app-schools",
 	standalone: true,
 	templateUrl: "./schools.component.html",
 	styleUrl: "./schools.component.css",
-	imports: [PhoneNumberPipe, ItemListHeaderComponent],
+	imports: [PhoneNumberPipe, ItemListHeaderComponent, ListItemComponent],
 })
 export class SchoolsComponent implements OnInit {
 	private readonly PATH = "school";
 	page = 1;
 	readonly PAGE_SIZE = 20;
-
 	schools: SchoolDtoResp = [];
 
 	constructor(private apiService: ApiService, private router: Router) {}

@@ -4,13 +4,9 @@
 	</div>
 	<app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
 	@for(school of schools; track school.id) {
-	<div class="school-item" (click)="viewSchool(school.id)">
-		<div class="school-info">
-			<span>{{ school.name }}</span>
-			<span>{{ school.address }}</span>
-			<span>{{ school.phoneNumber | phoneNumber }}</span>
-		</div>
-	</div>
+	<app-list-item
+		(clickEvent)="viewSchool(school.id)"
+		[items]="[school.name, school.address, school.phoneNumber | phoneNumber]" />
 	} @if(schools.length >= PAGE_SIZE) {
 	<button class="load-more-btn" (click)="getSchools()">Load more</button>
 	}

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
 	selector: "app-list-item",
@@ -9,9 +9,14 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class ListItemComponent implements OnInit {
 	@Input() items!: string[];
+	@Output() clickEvent = new EventEmitter();
 	width!: string;
 
 	ngOnInit() {
 		this.width = `${100 / this.items.length}%`;
+	}
+
+	onClick() {
+		this.clickEvent.emit();
 	}
 }
