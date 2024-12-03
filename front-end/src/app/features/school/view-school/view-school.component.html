@@ -39,12 +39,11 @@
 	<h2>Courses at school</h2>
 	<app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
 	@for(course of school?.courses; track course.id) {
-	<div class="course-item">
-		<div class="course-info">
-			<span>{{ course.name }}</span>
-			<span>{{ course.teacher.firstName }} {{ course.teacher.lastName }}</span>
-			<span>{{ course.credits }}</span>
-		</div>
-	</div>
+	<app-list-item
+		[items]="[
+			course.name,
+			course.teacher.firstName + ' ' + course.teacher.lastName,
+			course.credits.toString()
+		]" />
 	}
 </app-view-item-wrapper>

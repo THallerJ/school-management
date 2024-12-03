@@ -14,6 +14,7 @@ import { FormValidatorComponent } from "../../../core/components/form-validator/
 import { InputLabelComponent } from "../../../core/components/input-label/input-label.component";
 import { ViewItemWrapperComponent } from "../../../core/components/view-item-wrapper/view-item-wrapper.component";
 import { ItemListHeaderComponent } from "../../../core/components/item-list-header/item-list-header.component";
+import { ListItemComponent } from "../../../core/components/list-item/list-item.component";
 @Component({
 	selector: "app-view-school",
 	standalone: true,
@@ -23,6 +24,7 @@ import { ItemListHeaderComponent } from "../../../core/components/item-list-head
 		InputLabelComponent,
 		ViewItemWrapperComponent,
 		ItemListHeaderComponent,
+		ListItemComponent,
 	],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
