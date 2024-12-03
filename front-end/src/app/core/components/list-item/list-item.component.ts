@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
-
+import { Item } from "../../types";
 @Component({
 	selector: "app-list-item",
 	standalone: true,
@@ -20,8 +20,3 @@ export class ListItemComponent implements OnInit {
 		this.clickEvent.emit();
 	}
 }
-
-type Item = {
-	id: number;
-	properties: string[];
-};

@@ -118,3 +118,8 @@ export type StudentDtoResp = zod.infer<typeof StudentDtoRespSchema>;
 export type FormGroupType<T> = {
 	[K in keyof T]: FormControl<T[K]>;
 };
+
+export type Item = {
+	id: number;
+	properties: string[];
+};

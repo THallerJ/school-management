@@ -4,6 +4,7 @@ import { provideHttpClient, withFetch } from "@angular/common/http";
 
 import { routes } from "./app.routes";
 import { provideClientHydration } from "@angular/platform-browser";
+import { PhoneNumberPipe } from "./core/pipes/phone-number.pipe";
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -11,5 +12,6 @@ export const appConfig: ApplicationConfig = {
 		provideRouter(routes),
 		provideClientHydration(),
 		provideHttpClient(withFetch()),
+		PhoneNumberPipe,
 	],
 };

@@ -19,6 +19,8 @@ import { InputLabelComponent } from "../../../core/components/input-label/input-
 import { ViewItemWrapperComponent } from "../../../core/components/view-item-wrapper/view-item-wrapper.component";
 import { ItemListHeaderComponent } from "../../../core/components/item-list-header/item-list-header.component";
 import { ListItemComponent } from "../../../core/components/list-item/list-item.component";
+import { CourseNoSchoolPipe } from "./../pipes/course-no-school.pipe";
+
 @Component({
 	selector: "app-view-school",
 	standalone: true,
@@ -29,6 +31,7 @@ import { ListItemComponent } from "../../../core/components/list-item/list-item.
 		ViewItemWrapperComponent,
 		ItemListHeaderComponent,
 		ListItemComponent,
+		CourseNoSchoolPipe,
 	],
 	templateUrl: "./view-school.component.html",
 	styleUrl: "./view-school.component.css",
