@@ -16,6 +16,7 @@ import { ViewItemWrapperComponent } from '../../../../core/components/view-item-
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { CourseNoSchoolPipe } from './../../pipes/course-no-school.pipe';
+import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 
 @Component({
     selector: 'app-view-school',
@@ -28,6 +29,7 @@ import { CourseNoSchoolPipe } from './../../pipes/course-no-school.pipe';
         ItemListHeaderComponent,
         ListItemComponent,
         CourseNoSchoolPipe,
+        ConditionalMessageComponent,
     ],
     templateUrl: './view-school.component.html',
     styleUrl: './view-school.component.css',
