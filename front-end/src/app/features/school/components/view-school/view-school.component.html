@@ -1,7 +1,7 @@
 <app-view-item-wrapper
 	[loading]="loading"
 	[item]="school"
-	[onDelete]="onDelete">
+	(deleteEvent)="onDelete()">
 	<h2>Edit School</h2>
 	<form
 		class="app-form"

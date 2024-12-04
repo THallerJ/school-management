@@ -1,5 +1,5 @@
 import { ModalService } from "./../../services/modal-service.service";
-import { Component, Input } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { ModalComponent } from "../modal/modal.component";
 
 @Component({
@@ -10,7 +10,8 @@ import { ModalComponent } from "../modal/modal.component";
 	styleUrl: "./confirmation-modal.component.css",
 })
 export class ConfirmationModalComponent {
-	@Input() onOk!: () => void;
+	@Output() okEvent = new EventEmitter();
+
 	constructor(private modalService: ModalService) {}
 
 	onClose() {
@@ -19,6 +20,6 @@ export class ConfirmationModalComponent {
 
 	onClickOk() {
 		this.modalService.closeModal();
-		this.onOk();
+		this.okEvent.emit();
 	}
 }

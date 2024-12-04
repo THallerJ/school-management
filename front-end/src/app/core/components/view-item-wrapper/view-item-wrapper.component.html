@@ -1,11 +1,9 @@
-@if (loading) {
-<app-spinner />
-} @else if(!loading && item !== undefined) {
-<div class="view-item-wrapper">
-	<button class="btn view-item-delete" (click)="openModal()">Delete</button>
-	<app-confirmation-modal [onOk]="onDelete" />
+<app-api-content-wrapper
+	[loading]="loading"
+	[content]="item"
+	buttonText="Delete"
+	[useAltButtonColor]="true"
+	(clickEvent)="openModal()">
+	<app-confirmation-modal (okEvent)="onClickDelete()" />
 	<ng-content />
-</div>
-} @else {
-<span>An error has occured or the item does not exist.</span>
-}
+</app-api-content-wrapper>
