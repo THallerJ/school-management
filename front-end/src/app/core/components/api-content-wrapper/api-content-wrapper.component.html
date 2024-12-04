@@ -1,0 +1,15 @@
+@if (loading) {
+<app-spinner />
+} @else if(!loading && content !== undefined) {
+<div class="content-wrapper">
+	<button
+		class="btn align-btn"
+		[class.btn-alt]="useAltButtonColor"
+		(click)="onClick()">
+		{{ buttonText }}
+	</button>
+	<ng-content />
+</div>
+} @else {
+<span>An error has occured or the content does not exist.</span>
+}

@@ -5,18 +5,25 @@ import { SchoolDtoPipe } from "../../pipes/school-dto.pipe";
 import { Router } from "@angular/router";
 import { ItemListHeaderComponent } from "../../../../core/components/item-list-header/item-list-header.component";
 import { ListItemComponent } from "../../../../core/components/list-item/list-item.component";
+import { ApiContentWrapperComponent } from "../../../../core/components/api-content-wrapper/api-content-wrapper.component";
 @Component({
 	selector: "app-schools",
 	standalone: true,
 	templateUrl: "./schools.component.html",
 	styleUrl: "./schools.component.css",
-	imports: [ItemListHeaderComponent, ListItemComponent, SchoolDtoPipe],
+	imports: [
+		ItemListHeaderComponent,
+		ListItemComponent,
+		SchoolDtoPipe,
+		ApiContentWrapperComponent,
+	],
 })
 export class SchoolsComponent implements OnInit {
 	private readonly PATH = "school";
 	page = 1;
 	readonly PAGE_SIZE = 20;
 	schools: SchoolDtoResp = [];
+	loading = true;
 
 	constructor(private apiService: ApiService, private router: Router) {}
 
@@ -35,8 +42,12 @@ export class SchoolsComponent implements OnInit {
 
 					this.page = this.page + 1;
 				}
+
+				this.loading = false;
 			},
 			error: (error) => {
+				this.loading = false;
+
 				if (error.status === 0) {
 					return;
 				}

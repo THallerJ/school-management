@@ -1,0 +1,17 @@
+.content-wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.align-btn {
+	align-self: end;
+}
+
+.btn-alt {
+	background-color: var(--darkest-red);
+	color: var(--body-color);
+}
+
+.btn-alt:hover {
+	color: var(--dark-text);
+}
