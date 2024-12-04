@@ -1,32 +1,32 @@
-import { ModalService } from "./../../services/modal-service.service";
-import { Component, Input, Output, EventEmitter } from "@angular/core";
-import { ConfirmationModalComponent } from "../confirmation-modal/confirmation-modal.component";
-import { SpinnerComponent } from "../spinner/spinner.component";
-import { ApiContentWrapperComponent } from "../api-content-wrapper/api-content-wrapper.component";
+import { ModalService } from './../../services/modal-service.service';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
+import { SpinnerComponent } from '../spinner/spinner.component';
+import { ApiContentWrapperComponent } from '../api-content-wrapper/api-content-wrapper.component';
 
 @Component({
-	selector: "app-view-item-wrapper",
-	standalone: true,
-	imports: [
-		ConfirmationModalComponent,
-		SpinnerComponent,
-		ApiContentWrapperComponent,
-	],
-	templateUrl: "./view-item-wrapper.component.html",
-	styleUrl: "./view-item-wrapper.component.css",
+    selector: 'app-view-item-wrapper',
+    standalone: true,
+    imports: [
+        ConfirmationModalComponent,
+        SpinnerComponent,
+        ApiContentWrapperComponent,
+    ],
+    templateUrl: './view-item-wrapper.component.html',
+    styleUrl: './view-item-wrapper.component.css',
 })
 export class ViewItemWrapperComponent {
-	@Input() loading!: boolean;
-	@Input() item!: unknown;
-	@Output() deleteEvent = new EventEmitter();
+    @Input() loading!: boolean;
+    @Input() item!: unknown;
+    @Output() deleteEvent = new EventEmitter();
 
-	constructor(private modalService: ModalService) {}
+    constructor(private modalService: ModalService) {}
 
-	openModal() {
-		this.modalService.openModal();
-	}
+    openModal() {
+        this.modalService.openModal();
+    }
 
-	onClickDelete() {
-		this.deleteEvent.emit();
-	}
+    onClickDelete() {
+        this.deleteEvent.emit();
+    }
 }

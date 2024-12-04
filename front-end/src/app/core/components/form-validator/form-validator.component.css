@@ -1,7 +1,7 @@
 .invalid-form-message {
-	padding: 1rem;
-	outline: var(--dark-red) 2px solid;
-	background: var(--light-red);
-	border-radius: 10px;
-	list-style-position: inside;
+    padding: 1rem;
+    outline: var(--dark-red) 2px solid;
+    background: var(--light-red);
+    border-radius: 10px;
+    list-style-position: inside;
 }

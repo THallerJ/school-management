@@ -1,14 +1,14 @@
 .view-item-wrapper {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .view-item-delete {
-	align-self: end;
-	background-color: var(--darkest-red);
-	color: var(--body-color);
+    align-self: end;
+    background-color: var(--darkest-red);
+    color: var(--body-color);
 }
 
 .view-item-delete:hover {
-	color: var(--dark-text);
+    color: var(--dark-text);
 }

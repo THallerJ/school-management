@@ -1,25 +1,25 @@
-import { Injectable } from "@angular/core";
-import { Observable, Subject } from "rxjs";
+import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 @Injectable({
-	providedIn: "root",
+    providedIn: 'root',
 })
 export class ModalService {
-	private isOpen: boolean = false;
-	private isOpenSubject: Subject<boolean> = new Subject<boolean>();
+    private isOpen: boolean = false;
+    private isOpenSubject: Subject<boolean> = new Subject<boolean>();
 
-	observeState() {
-		return this.isOpenSubject.asObservable();
-	}
+    observeState() {
+        return this.isOpenSubject.asObservable();
+    }
 
-	getIsOpen(): Observable<boolean> {
-		return this.isOpenSubject.asObservable();
-	}
+    getIsOpen(): Observable<boolean> {
+        return this.isOpenSubject.asObservable();
+    }
 
-	openModal(): void {
-		this.isOpenSubject.next(true);
-	}
+    openModal(): void {
+        this.isOpenSubject.next(true);
+    }
 
-	closeModal(): void {
-		this.isOpenSubject.next(false);
-	}
+    closeModal(): void {
+        this.isOpenSubject.next(false);
+    }
 }

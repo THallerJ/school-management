@@ -1,35 +1,35 @@
 ::ng-deep * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .app-container {
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	--desktop-app-width: 60%;
-	background-color: var(--light-color);
-	overflow: auto;
-	font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    --desktop-app-width: 60%;
+    background-color: var(--light-color);
+    overflow: auto;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .app-body-wrapper {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	min-height: calc(100% - 4rem);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100% - 4rem);
 }
 
 .app-body {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	min-height: 100%;
-	width: var(--desktop-app-width);
-	background-color: var(--body-color);
-	overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    width: var(--desktop-app-width);
+    background-color: var(--body-color);
+    overflow: auto;
 }
 
 .app-router-outlet {
-	padding: 1rem 2rem 1rem 2rem;
+    padding: 1rem 2rem 1rem 2rem;
 }

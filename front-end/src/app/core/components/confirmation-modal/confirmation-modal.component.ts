@@ -1,25 +1,25 @@
-import { ModalService } from "./../../services/modal-service.service";
-import { Component, Output, EventEmitter } from "@angular/core";
-import { ModalComponent } from "../modal/modal.component";
+import { ModalService } from './../../services/modal-service.service';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
-	selector: "app-confirmation-modal",
-	standalone: true,
-	imports: [ModalComponent],
-	templateUrl: "./confirmation-modal.component.html",
-	styleUrl: "./confirmation-modal.component.css",
+    selector: 'app-confirmation-modal',
+    standalone: true,
+    imports: [ModalComponent],
+    templateUrl: './confirmation-modal.component.html',
+    styleUrl: './confirmation-modal.component.css',
 })
 export class ConfirmationModalComponent {
-	@Output() okEvent = new EventEmitter();
+    @Output() okEvent = new EventEmitter();
 
-	constructor(private modalService: ModalService) {}
+    constructor(private modalService: ModalService) {}
 
-	onClose() {
-		this.modalService.closeModal();
-	}
+    onClose() {
+        this.modalService.closeModal();
+    }
 
-	onClickOk() {
-		this.modalService.closeModal();
-		this.okEvent.emit();
-	}
+    onClickOk() {
+        this.modalService.closeModal();
+        this.okEvent.emit();
+    }
 }

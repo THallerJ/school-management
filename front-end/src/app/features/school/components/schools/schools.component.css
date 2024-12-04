@@ -1,9 +1,9 @@
 .schools-header {
-	display: flex;
-	justify-content: end;
+    display: flex;
+    justify-content: end;
 }
 
 .schools-wrapper {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }

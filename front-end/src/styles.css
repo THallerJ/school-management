@@ -1,55 +1,55 @@
 body {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 :root {
-	--light-color: #f4f4f9;
-	--dark-color: #1f2421;
-	--dark-text: #dce1de;
-	--accent-color: #9cc5a1;
-	--offwhite: #ccc;
-	--body-color: #fff;
-	--light-red: #ffcdd2;
-	--dark-red: #e57373;
-	--darkest-red: #ef5350;
+    --light-color: #f4f4f9;
+    --dark-color: #1f2421;
+    --dark-text: #dce1de;
+    --accent-color: #9cc5a1;
+    --offwhite: #ccc;
+    --body-color: #fff;
+    --light-red: #ffcdd2;
+    --dark-red: #e57373;
+    --darkest-red: #ef5350;
 }
 
 .btn {
-	padding: 0.5rem;
-	background-color: var(--dark-color);
-	color: var(--dark-text);
-	font-weight: 600;
-	border-radius: 5px;
-	cursor: pointer;
-	border: none;
-	text-transform: uppercase;
+    padding: 0.5rem;
+    background-color: var(--dark-color);
+    color: var(--dark-text);
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
 }
 
 .btn:hover {
-	color: var(--accent-color);
-	background-color: var(--dark-color);
+    color: var(--accent-color);
+    background-color: var(--dark-color);
 }
 
 .load-more-btn {
-	background-color: var(--body-color);
-	color: var(--dark-color);
-	border: 1px solid var(--offwhite);
-	padding: 0.5rem;
-	text-transform: uppercase;
-	font-weight: 600;
-	border-radius: 5px;
-	cursor: pointer;
+    background-color: var(--body-color);
+    color: var(--dark-color);
+    border: 1px solid var(--offwhite);
+    padding: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .app-form {
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	align-items: center;
-	padding: 1rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem 0 0 0;
 }
 
 h2 {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }

@@ -1,14 +1,17 @@
 <app-api-content-wrapper
-	content="schools"
-	buttonText="Create School"
-	(clickEvent)="createSchool()"
-	[loading]="loading">
-	<app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
-	@for(school of schools; track school.id) {
-	<app-list-item
-		(clickEvent)="viewSchool(school.id)"
-		[item]="school | schoolDto" />
-	} @if(schools.length >= PAGE_SIZE) {
-	<button class="load-more-btn" (click)="getSchools()">Load more</button>
-	}
+    content="schools"
+    buttonText="Create School"
+    (clickEvent)="createSchool()"
+    [loading]="loading"
+>
+    <app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
+    @for (school of schools; track school.id) {
+        <app-list-item
+            (clickEvent)="viewSchool(school.id)"
+            [item]="school | schoolDto"
+        />
+    }
+    @if (schools.length >= PAGE_SIZE) {
+        <button class="load-more-btn" (click)="getSchools()">Load more</button>
+    }
 </app-api-content-wrapper>

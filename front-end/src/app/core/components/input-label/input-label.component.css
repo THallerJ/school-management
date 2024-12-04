@@ -1,16 +1,16 @@
 .input-label {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .input-label > label {
-	text-transform: uppercase;
-	font-weight: 600;
-	margin-bottom: 0.25rem;
-	font-size: 0.75rem;
-	color: var(--dark-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--dark-color);
 }
 
 .input-label > input {
-	padding: 0.5rem 0.5rem;
+    padding: 0.5rem 0.5rem;
 }

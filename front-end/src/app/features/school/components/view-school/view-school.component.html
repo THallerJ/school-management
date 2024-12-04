@@ -1,43 +1,49 @@
 <app-view-item-wrapper
-	[loading]="loading"
-	[item]="school"
-	(deleteEvent)="onDelete()">
-	<h2>Edit School</h2>
-	<form
-		class="app-form"
-		[formGroup]="updateSchoolForm"
-		(ngSubmit)="updateSchool()">
-		<app-input-label
-			[group]="updateSchoolForm"
-			name="name"
-			type="text"
-			[value]="school?.name">
-			School Name
-		</app-input-label>
-		<app-input-label
-			[group]="updateSchoolForm"
-			name="address"
-			type="text"
-			[value]="school?.address">
-			School Address
-		</app-input-label>
-		<app-input-label
-			[group]="updateSchoolForm"
-			name="phoneNumber"
-			type="tele"
-			[value]="school?.phoneNumber">
-			School Phone Number
-		</app-input-label>
-		<button class="btn" type="submit">Update</button>
-		<app-form-validator [form]="updateSchoolForm">
-			<ul>
-				<li>Name and address fields must have at least 3 characters</li>
-				<li>Phone number must be 10 digits</li>
-			</ul>
-		</app-form-validator>
-	</form>
-	<h2>Courses at school</h2>
-	<app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
-	@for(course of school?.courses; track course.id) {
-	<app-list-item [item]="course | courseNoSchool" /> }
+    [loading]="loading"
+    [item]="school"
+    (deleteEvent)="onDelete()"
+>
+    <h2>Edit School</h2>
+    <form
+        class="app-form"
+        [formGroup]="updateSchoolForm"
+        (ngSubmit)="updateSchool()"
+    >
+        <app-input-label
+            [group]="updateSchoolForm"
+            name="name"
+            type="text"
+            [value]="school?.name"
+        >
+            School Name
+        </app-input-label>
+        <app-input-label
+            [group]="updateSchoolForm"
+            name="address"
+            type="text"
+            [value]="school?.address"
+        >
+            School Address
+        </app-input-label>
+        <app-input-label
+            [group]="updateSchoolForm"
+            name="phoneNumber"
+            type="tele"
+            [value]="school?.phoneNumber"
+        >
+            School Phone Number
+        </app-input-label>
+        <button class="btn" type="submit">Update</button>
+        <app-form-validator [form]="updateSchoolForm">
+            <ul>
+                <li>Name and address fields must have at least 3 characters</li>
+                <li>Phone number must be 10 digits</li>
+            </ul>
+        </app-form-validator>
+    </form>
+    <h2>Courses at school</h2>
+    <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
+    @for (course of school?.courses; track course.id) {
+        <app-list-item [item]="course | courseNoSchool" />
+    }
 </app-view-item-wrapper>

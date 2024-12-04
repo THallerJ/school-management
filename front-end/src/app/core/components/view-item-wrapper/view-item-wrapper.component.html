@@ -1,9 +1,10 @@
 <app-api-content-wrapper
-	[loading]="loading"
-	[content]="item"
-	buttonText="Delete"
-	[useAltButtonColor]="true"
-	(clickEvent)="openModal()">
-	<app-confirmation-modal (okEvent)="onClickDelete()" />
-	<ng-content />
+    [loading]="loading"
+    [content]="item"
+    buttonText="Delete"
+    [useAltButtonColor]="true"
+    (clickEvent)="openModal()"
+>
+    <app-confirmation-modal (okEvent)="onClickDelete()" />
+    <ng-content />
 </app-api-content-wrapper>
