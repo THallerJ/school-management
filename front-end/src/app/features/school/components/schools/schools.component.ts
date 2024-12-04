@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
+import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 @Component({
     selector: 'app-schools',
     standalone: true,
@@ -16,6 +17,7 @@ import { ApiContentWrapperComponent } from '../../../../core/components/api-cont
         ListItemComponent,
         SchoolDtoPipe,
         ApiContentWrapperComponent,
+        ConditionalMessageComponent,
     ],
 })
 export class SchoolsComponent implements OnInit {
