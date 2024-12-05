@@ -2,6 +2,6 @@
     padding: 1rem;
     outline: var(--dark-red) 2px solid;
     background: var(--light-red);
-    border-radius: 10px;
+    border-radius: 1rem;
     list-style-position: inside;
 }

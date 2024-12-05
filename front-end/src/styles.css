@@ -20,7 +20,7 @@ body {
     background-color: var(--dark-color);
     color: var(--dark-text);
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     cursor: pointer;
     border: none;
     text-transform: uppercase;
@@ -38,7 +38,7 @@ body {
     padding: 0.5rem;
     text-transform: uppercase;
     font-weight: 600;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     cursor: pointer;
 }
 
