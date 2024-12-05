@@ -24,7 +24,7 @@ export class SchoolsComponent implements OnInit {
     private readonly PATH = 'school';
     page = 1;
     readonly PAGE_SIZE = 20;
-    schools: SchoolDtoResp = [];
+    schools?: SchoolDtoResp;
     loading = true;
 
     constructor(
@@ -42,7 +42,7 @@ export class SchoolsComponent implements OnInit {
                 const result = SchoolDtoRespSchema.safeParse(data);
                 if (result.success) {
                     if (this.page === 1) this.schools = result.data;
-                    else if (result.data.length > 0)
+                    else if (result.data.length > 0 && this.schools)
                         this.schools = [...this.schools, ...result.data];
 
                     this.page = this.page + 1;

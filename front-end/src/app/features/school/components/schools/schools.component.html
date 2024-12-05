@@ -6,7 +6,7 @@
 >
     <app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
     <app-conditional-message
-        [condition]="!loading && schools.length === 0"
+        [condition]="!loading && schools?.length === 0"
         message="No schools found"
     >
         @for (school of schools; track school.id) {
@@ -16,7 +16,7 @@
             />
         }
     </app-conditional-message>
-    @if (schools.length >= PAGE_SIZE) {
+    @if (schools && schools.length >= PAGE_SIZE) {
         <button class="load-more-btn" (click)="getSchools()">Load more</button>
     }
 </app-api-content-wrapper>
