@@ -1,7 +1,5 @@
-@if (loading) {
-    <app-spinner />
-} @else if (!loading && content !== undefined) {
-    <div class="content-wrapper">
+<div class="content-wrapper">
+    @if (!hideButton || content !== undefined) {
         <button
             class="btn align-btn"
             [class.btn-alt]="useAltButtonColor"
@@ -9,8 +7,12 @@
         >
             {{ buttonText }}
         </button>
+    }
+    @if (loading) {
+        <app-spinner />
+    } @else if (!loading && content !== undefined) {
         <ng-content />
-    </div>
-} @else {
-    <span>An error has occured or the content does not exist.</span>
-}
+    } @else {
+        <span>An error has occured or the content does not exist.</span>
+    }
+</div>

@@ -4,6 +4,7 @@
     buttonText="Delete"
     [useAltButtonColor]="true"
     (clickEvent)="openModal()"
+    [hideButton]="true"
 >
     <app-confirmation-modal (okEvent)="onClickDelete()" />
     <ng-content />

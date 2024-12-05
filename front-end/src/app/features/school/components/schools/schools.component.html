@@ -6,7 +6,7 @@
 >
     <app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
     <app-conditional-message
-        [condition]="schools.length > 0"
+        [condition]="!loading && schools.length === 0"
         message="No schools found"
     >
         @for (school of schools; track school.id) {

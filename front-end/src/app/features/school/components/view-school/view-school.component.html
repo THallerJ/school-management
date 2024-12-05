@@ -44,7 +44,7 @@
     <h2>Courses at school</h2>
     <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
     <app-conditional-message
-        [condition]="school !== undefined && school.courses.length > 0"
+        [condition]="!loading && school?.courses?.length === 0"
         message="No courses at this school"
     >
         @for (course of school?.courses; track course.id) {

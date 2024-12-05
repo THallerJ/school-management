@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
     selector: 'app-conditional-message',
@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
     imports: [],
     templateUrl: './conditional-message.component.html',
     styleUrl: './conditional-message.component.css',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConditionalMessageComponent {
     @Input() condition!: boolean;
