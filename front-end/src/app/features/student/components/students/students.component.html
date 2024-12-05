@@ -1,6 +1,18 @@
-<div>
-    @for (student of students; track student.id) {
-        <span>{{ student.firstName }}</span>
-        <span>{{ student.lastName }}</span>
+<app-api-content-wrapper
+    content="students"
+    buttonText="Create Student"
+    [loading]="loading"
+>
+    <app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
+    <app-conditional-message
+        [condition]="!loading && students?.length === 0"
+        message="No schools found"
+    >
+        @for (student of students; track student.id) {
+            <span>{{ student.firstName }}</span>
+        }
+    </app-conditional-message>
+    @if (students && students.length >= PAGE_SIZE) {
+        <button class="load-more-btn">Load more</button>
     }
-</div>
+</app-api-content-wrapper>
