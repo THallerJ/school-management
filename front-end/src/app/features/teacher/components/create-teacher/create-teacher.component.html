@@ -1,19 +1,25 @@
 <div>
     <h2>Create School</h2>
-    <form class="app-form" [formGroup]="createTeacherForm">
+    <form
+        class="app-form"
+        [formGroup]="createTeacherForm"
+        (ngSubmit)="createTeacher()"
+    >
         <div class="app-form-content">
             <app-input-label
                 [group]="createTeacherForm"
                 name="firstName"
                 type="text"
-                >First Name</app-input-label
             >
+                First Name
+            </app-input-label>
             <app-input-label
                 [group]="createTeacherForm"
                 name="lastName"
                 type="text"
-                >Last Name</app-input-label
             >
+                Last Name
+            </app-input-label>
             <app-select-label
                 [group]="createTeacherForm"
                 name="school"
