@@ -1,8 +1,22 @@
-<div>
-    <ul>
+<app-api-content-wrapper
+    content="teachers"
+    buttonText="Create Teacher"
+    (clickEvent)="createTeacher()"
+    [loading]="loading"
+>
+    <app-item-list-header [columns]="['First Name', 'Last Name', 'School']" />
+    <app-conditional-message
+        [condition]="!loading && teachers?.length === 0"
+        message="No Teachers found"
+    >
         @for (teacher of teachers; track teacher.id) {
-            <h3>{{ teacher.firstName }}</h3>
-            <span>{{ teacher.lastName }}</span>
+            <app-list-item
+                (clickEvent)="viewTeacher(teacher.id)"
+                [item]="teacher | teacherDto"
+            />
         }
-    </ul>
-</div>
+    </app-conditional-message>
+    @if (teachers && teachers.length >= PAGE_SIZE) {
+        <button class="load-more-btn" (click)="getTeachers()">Load more</button>
+    }
+</app-api-content-wrapper>
