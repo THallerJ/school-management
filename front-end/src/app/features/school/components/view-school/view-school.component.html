@@ -9,37 +9,41 @@
         [formGroup]="updateSchoolForm"
         (ngSubmit)="updateSchool()"
     >
-        <app-input-label
-            [group]="updateSchoolForm"
-            name="name"
-            type="text"
-            [value]="school?.name"
-        >
-            School Name
-        </app-input-label>
-        <app-input-label
-            [group]="updateSchoolForm"
-            name="address"
-            type="text"
-            [value]="school?.address"
-        >
-            School Address
-        </app-input-label>
-        <app-input-label
-            [group]="updateSchoolForm"
-            name="phoneNumber"
-            type="tele"
-            [value]="school?.phoneNumber"
-        >
-            School Phone Number
-        </app-input-label>
-        <button class="btn" type="submit">Update</button>
-        <app-form-validator [form]="updateSchoolForm">
-            <ul>
-                <li>Name and address fields must have at least 3 characters</li>
-                <li>Phone number must be 10 digits</li>
-            </ul>
-        </app-form-validator>
+        <div class="app-form-content">
+            <app-input-label
+                [group]="updateSchoolForm"
+                name="name"
+                type="text"
+                [value]="school?.name"
+            >
+                School Name
+            </app-input-label>
+            <app-input-label
+                [group]="updateSchoolForm"
+                name="address"
+                type="text"
+                [value]="school?.address"
+            >
+                School Address
+            </app-input-label>
+            <app-input-label
+                [group]="updateSchoolForm"
+                name="phoneNumber"
+                type="tele"
+                [value]="school?.phoneNumber"
+            >
+                School Phone Number
+            </app-input-label>
+            <button class="btn" type="submit">Update</button>
+            <app-form-validator [form]="updateSchoolForm">
+                <ul>
+                    <li>
+                        Name and address fields must have at least 3 characters
+                    </li>
+                    <li>Phone number must be 10 digits</li>
+                </ul>
+            </app-form-validator>
+        </div>
     </form>
     <h2>Courses at school</h2>
     <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
