@@ -12,4 +12,5 @@ export class InputLabelComponent {
     @Input() type!: string;
     @Input() group!: FormGroup;
     @Input() value?: string;
+    @Input() forList?: string;
 }

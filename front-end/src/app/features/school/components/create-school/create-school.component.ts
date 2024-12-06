@@ -43,6 +43,7 @@ export class CreateSchoolComponent implements OnInit {
             { updateOn: 'submit' },
         );
     }
+
     ngOnInit() {
         this.initCreateSchoolForm();
     }

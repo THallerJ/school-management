@@ -1,1 +1,24 @@
-<p>create-teacher works!</p>
+<div>
+    <h2>Create School</h2>
+    <form class="app-form" [formGroup]="createTeacherForm">
+        <input class="app-form" [formGroup]="createTeacherForm" />
+        <app-input-label
+            [group]="createTeacherForm"
+            name="firstName"
+            type="text"
+            >First Name</app-input-label
+        >
+        <app-input-label [group]="createTeacherForm" name="lastName" type="text"
+            >Last Name</app-input-label
+        >
+        <app-input-label [group]="createTeacherForm" name="school" type="tel">
+            School
+        </app-input-label>
+        <button class="btn" type="submit">Create School</button>
+        <app-form-validator [form]="createTeacherForm">
+            <ul>
+                <li>All fields are required</li>
+            </ul>
+        </app-form-validator>
+    </form>
+</div>
