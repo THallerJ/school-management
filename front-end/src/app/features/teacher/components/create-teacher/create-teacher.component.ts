@@ -9,11 +9,16 @@ import {
 import { Router } from '@angular/router';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
-
+import { SelectLabelComponent } from '../../../../core/components/select-label/select-label.component';
 @Component({
     selector: 'app-create-teacher',
     standalone: true,
-    imports: [FormValidatorComponent, InputLabelComponent, ReactiveFormsModule],
+    imports: [
+        FormValidatorComponent,
+        InputLabelComponent,
+        ReactiveFormsModule,
+        SelectLabelComponent,
+    ],
     templateUrl: './create-teacher.component.html',
     styleUrl: './create-teacher.component.css',
 })

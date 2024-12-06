@@ -2,17 +2,11 @@
     <label for="name">
         <ng-content />
     </label>
-    @if (forList) {
-        <select for="name">
-            <ng-content />
-        </select>
-    } @else {
-        <input
-            [id]="name"
-            [name]="name"
-            [type]="type"
-            [value]="value"
-            [formControlName]="name"
-        />
-    }
+    <input
+        [id]="name"
+        [name]="name"
+        [type]="type"
+        [value]="value"
+        [formControlName]="name"
+    />
 </div>

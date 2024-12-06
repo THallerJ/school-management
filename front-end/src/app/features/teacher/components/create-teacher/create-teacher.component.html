@@ -1,24 +1,46 @@
 <div>
     <h2>Create School</h2>
     <form class="app-form" [formGroup]="createTeacherForm">
-        <input class="app-form" [formGroup]="createTeacherForm" />
-        <app-input-label
-            [group]="createTeacherForm"
-            name="firstName"
-            type="text"
-            >First Name</app-input-label
-        >
-        <app-input-label [group]="createTeacherForm" name="lastName" type="text"
-            >Last Name</app-input-label
-        >
-        <app-input-label [group]="createTeacherForm" name="school" type="tel">
-            School
-        </app-input-label>
-        <button class="btn" type="submit">Create School</button>
-        <app-form-validator [form]="createTeacherForm">
-            <ul>
-                <li>All fields are required</li>
-            </ul>
-        </app-form-validator>
+        <div class="app-form-content">
+            <app-input-label
+                [group]="createTeacherForm"
+                name="firstName"
+                type="text"
+                >First Name</app-input-label
+            >
+            <app-input-label
+                [group]="createTeacherForm"
+                name="lastName"
+                type="text"
+                >Last Name</app-input-label
+            >
+            <app-select-label
+                [group]="createTeacherForm"
+                name="school"
+                type="tel"
+                [options]="[
+                    {
+                        value: '1',
+                        label: 'School 1',
+                    },
+                    {
+                        value: '2',
+                        label: 'School 2',
+                    },
+                    {
+                        value: '3',
+                        label: 'School 3',
+                    },
+                ]"
+            >
+                School
+            </app-select-label>
+            <button class="btn" type="submit">Create School</button>
+            <app-form-validator [form]="createTeacherForm">
+                <ul>
+                    <li>All fields are required</li>
+                </ul>
+            </app-form-validator>
+        </div>
     </form>
 </div>

@@ -1,0 +1,16 @@
+.select-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.select-label > label {
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--dark-color);
+}
+
+.select-label > select {
+    padding: 0.5rem 0.5rem;
+}

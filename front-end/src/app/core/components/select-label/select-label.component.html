@@ -1,0 +1,12 @@
+<div class="select-label" [formGroup]="group">
+    <label for="name">
+        <ng-content />
+    </label>
+    <select [id]="name" [name]="name" [value]="value" [formControlName]="name">
+        @for (option of options; track option.value) {
+            <option [value]="option.value">
+                {{ option.label }}
+            </option>
+        }
+    </select>
+</div>
