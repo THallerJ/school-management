@@ -10,6 +10,7 @@ import { FormValidatorComponent } from '../../../../core/components/form-validat
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { SchoolSelectComponent } from './../../../../core/components/school-select/school-select.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
+import { ApiService } from '../../../../core/services/api-service.service';
 @Component({
     selector: 'app-create-teacher',
     standalone: true,
@@ -29,6 +30,7 @@ export class CreateTeacherComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
+        private apiService: ApiService,
         private router: Router,
     ) {}
 
@@ -60,15 +62,13 @@ export class CreateTeacherComponent implements OnInit {
 
         if (this.createTeacherForm.valid) {
             createdTeacher['schoolId'] = Number(createdTeacher['schoolId']);
-        }
-        /*
-        if (this.createTeacherForm.valid) {
+
             this.apiService
                 .post<Teacher>('teacher', createdTeacher)
                 .subscribe(() => {
                     this.router.navigate(['/teachers']);
                 });
-        } */
+        }
     }
 
     finishLoading() {
