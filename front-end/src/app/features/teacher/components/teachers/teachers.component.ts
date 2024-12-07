@@ -42,7 +42,7 @@ export class TeachersComponent implements OnInit {
             params: { pageNumber: this.page, pageSize: this.PAGE_SIZE },
         };
 
-        this.apiService.get(this.PATH).subscribe({
+        this.apiService.get(this.PATH, params).subscribe({
             next: data => {
                 const result = TeacherDtoRespSchema.safeParse(data);
                 if (result.success) {
@@ -70,7 +70,6 @@ export class TeachersComponent implements OnInit {
     }
 
     viewTeacher(id: number) {
-        console.log(id);
         this.router.navigate([`/teachers/${id}`]);
     }
 }

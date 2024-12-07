@@ -10,7 +10,7 @@
     }
     @if (loading) {
         <app-spinner />
-    } @else if (!loading && content !== undefined) {
+    } @else if (!loading && (content !== undefined || ignoreContent)) {
         <ng-content />
     } @else {
         <span>An error has occured or the content does not exist.</span>

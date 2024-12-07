@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
 import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
@@ -10,7 +10,8 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 })
 export class ApiContentWrapperComponent {
     @Input() loading!: boolean;
-    @Input() content!: unknown;
+    @Input() content: unknown;
+    @Input() ignoreContent?: boolean;
     @Input() buttonText!: string;
     @Input() useAltButtonColor?: boolean;
     @Input() hideButton?: boolean;

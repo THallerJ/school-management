@@ -1,14 +1,14 @@
 .loader {
     width: 2rem;
     height: 2rem;
-    border: 5px solid var(--dark-color);
+    border: 5px solid var(--accent-color);
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
     position: fixed;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

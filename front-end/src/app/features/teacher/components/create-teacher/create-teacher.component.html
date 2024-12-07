@@ -1,5 +1,9 @@
-<div>
-    <h2>Create School</h2>
+<app-api-content-wrapper
+    [hideButton]="true"
+    [ignoreContent]="true"
+    [loading]="loading"
+>
+    <h2>Create Teacher</h2>
     <form
         class="app-form"
         [formGroup]="createTeacherForm"
@@ -20,18 +24,12 @@
             >
                 Last Name
             </app-input-label>
-            @if (schools) {
-                <app-select-label
-                    [group]="createTeacherForm"
-                    name="school"
-                    type="tel"
-                    [options]="schools | schoolDtoNoPaging"
-                >
-                    School
-                </app-select-label>
-            }
-
-            <button class="btn" type="submit">Create School</button>
+            <app-school-select
+                [group]="createTeacherForm"
+                name="school"
+                (loadingEvent)="finishLoading()"
+            />
+            <button class="btn" type="submit">Create Teacher</button>
             <app-form-validator [form]="createTeacherForm">
                 <ul>
                     <li>All fields are required</li>
@@ -39,4 +37,4 @@
             </app-form-validator>
         </div>
     </form>
-</div>
+</app-api-content-wrapper>

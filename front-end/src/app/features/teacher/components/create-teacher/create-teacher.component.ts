@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../../core/services/api-service.service';
 import {
     FormGroup,
     ReactiveFormsModule,
@@ -9,13 +8,8 @@ import {
 import { Router } from '@angular/router';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
-import { SelectLabelComponent } from '../../../../core/components/select-label/select-label.component';
-import {
-    SchoolDtoNoPagingResp,
-    SchoolDtoNoPagingRespSchema,
-} from '../../../../core/types';
-import { SchoolDtoNoPagingPipe } from '../../pipes/school-dto-no-paging.pipe';
-import { AsyncPipe } from '@angular/common';
+import { SchoolSelectComponent } from './../../../../core/components/school-select/school-select.component';
+import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 @Component({
     selector: 'app-create-teacher',
     standalone: true,
@@ -23,20 +17,17 @@ import { AsyncPipe } from '@angular/common';
         FormValidatorComponent,
         InputLabelComponent,
         ReactiveFormsModule,
-        SelectLabelComponent,
-        SchoolDtoNoPagingPipe,
-        AsyncPipe,
+        SchoolSelectComponent,
+        ApiContentWrapperComponent,
     ],
     templateUrl: './create-teacher.component.html',
     styleUrl: './create-teacher.component.css',
 })
 export class CreateTeacherComponent implements OnInit {
     createTeacherForm!: FormGroup;
-    schools!: SchoolDtoNoPagingResp;
     loading = true;
 
     constructor(
-        private apiService: ApiService,
         private formBuilder: FormBuilder,
         private router: Router,
     ) {}
@@ -80,29 +71,11 @@ export class CreateTeacherComponent implements OnInit {
         } */
     }
 
-    getSchools() {
-        const params = { params: { disablePaging: true } };
-        this.apiService.get('school', params).subscribe({
-            next: data => {
-                const result = SchoolDtoNoPagingRespSchema.safeParse(data);
-                if (result.success) {
-                    this.schools = result.data;
-                }
-
-                this.loading = false;
-            },
-            error: error => {
-                this.loading = false;
-
-                if (error.status === 0) {
-                    return;
-                }
-            },
-        });
+    finishLoading() {
+        this.loading = false;
     }
 
     ngOnInit() {
-        this.getSchools();
         this.initCreateTeacherForm();
     }
 }
