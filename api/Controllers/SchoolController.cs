@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using school_management.Dtos.Common;
 using school_management.Dtos.School;
 using school_management.Interface;
 using school_management.Mappers;
@@ -15,8 +16,13 @@ namespace school_management.Controllers
         public async Task<IActionResult> GetSchools([FromQuery] SchoolFilter filter)
         {
             var schools = await _schoolRepo.GetSchools(filter);
-            var schoolsDto = schools.Select(school => school.ToSchoolDto());
-            return Ok(schoolsDto);
+            if (filter.DisablePaging) {
+                var schoolsDtoNoPaging = schools.Select(school => school.ToSchoolDtoNoPaging());
+                return Ok(schoolsDtoNoPaging);
+            } else {
+                var schoolsDto = schools.Select(school => school.ToSchoolDto());
+                return Ok(schoolsDto);
+            }
         }
 
         [HttpGet("{id:int}")]

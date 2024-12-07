@@ -40,4 +40,5 @@ type GetOptions = {
 type Params = {
     pageNumber?: number;
     pageSize?: number;
+    disablePaging?: boolean;
 };

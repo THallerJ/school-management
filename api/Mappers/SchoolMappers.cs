@@ -28,6 +28,16 @@ namespace school_management.Mappers
             };
         }
 
+        public static SchoolDtoNoPaging ToSchoolDtoNoPaging(this School school)
+        {
+            return new SchoolDtoNoPaging
+            {
+                Id = school.Id,
+                Name = school.Name,
+       
+            };
+        }
+
         public static CreateSchoolRespDto ToCreateSchoolRespDto(this School school)
         {
             return new CreateSchoolRespDto

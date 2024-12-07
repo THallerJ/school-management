@@ -43,6 +43,19 @@ export const SchoolDtoRespSchema = zod.array(SchoolDtoSchema);
 
 export type SchoolDtoResp = zod.infer<typeof SchoolDtoRespSchema>;
 
+export const SchoolDtoNoPagingSchema = zod.object({
+    id: zod.number(),
+    name: zod.string(),
+});
+
+export const SchoolDtoNoPagingRespSchema = zod.array(SchoolDtoNoPagingSchema);
+
+export type SchoolDtoNoPaging = zod.infer<typeof SchoolDtoSchema>;
+
+export type SchoolDtoNoPagingResp = zod.infer<
+    typeof SchoolDtoNoPagingRespSchema
+>;
+
 // Teacher==============================================================================
 
 export const CourseNoTeacherSchoolDto = zod.object({
@@ -123,3 +136,5 @@ export type Item = {
     id: number;
     properties: string[];
 };
+
+export type SelectOption = { value: string; label: string };

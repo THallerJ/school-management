@@ -53,6 +53,16 @@ namespace school_management.Mappers
             };
         }
 
+        public static CourseDtoNoPaging ToCourseNotDtoPaging(this Course course)
+        {
+            return new CourseDtoNoPaging
+            {
+                Id = course.Id,
+                Name = course.Name,
+    
+            };
+        }
+
         public static CourseNoTeacherSchoolDto ToCourseNoTeacherSchoolDto(this Course course)
         {
             return new CourseNoTeacherSchoolDto

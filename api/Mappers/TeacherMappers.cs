@@ -27,6 +27,16 @@ namespace school_management.Mappers
             };
         }
 
+        public static TeacherDtoNoPaging ToTeacherDtoNoPaging(this Teacher teacher)
+        {
+            return new TeacherDtoNoPaging
+            {
+                Id = teacher.Id,
+                FirstName = teacher.FirstName,
+                LastName = teacher.LastName,
+            };
+        }
+
         public static CreateTeacherRespDto ToCreateTeacherRespDto(this Teacher teacher)
         {
             return new CreateTeacherRespDto

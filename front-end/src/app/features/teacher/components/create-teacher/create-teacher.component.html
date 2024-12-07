@@ -20,27 +20,17 @@
             >
                 Last Name
             </app-input-label>
-            <app-select-label
-                [group]="createTeacherForm"
-                name="school"
-                type="tel"
-                [options]="[
-                    {
-                        value: '1',
-                        label: 'School 1',
-                    },
-                    {
-                        value: '2',
-                        label: 'School 2',
-                    },
-                    {
-                        value: '3',
-                        label: 'School 3',
-                    },
-                ]"
-            >
-                School
-            </app-select-label>
+            @if (schools) {
+                <app-select-label
+                    [group]="createTeacherForm"
+                    name="school"
+                    type="tel"
+                    [options]="schools | schoolDtoNoPaging"
+                >
+                    School
+                </app-select-label>
+            }
+
             <button class="btn" type="submit">Create School</button>
             <app-form-validator [form]="createTeacherForm">
                 <ul>

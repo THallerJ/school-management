@@ -44,8 +44,17 @@ namespace school_management.Repository
             if (!string.IsNullOrWhiteSpace(filter.PhoneNumber))
                 schools = schools.Where(school => school.PhoneNumber.Equals(filter.PhoneNumber));
 
+            schools = schools.OrderBy(id => id);
+
+            if (filter.DisablePaging) {
+                schools = schools.Skip((filter.PageNumber - 1) * filter.PageSize)
+                .Take(filter.PageSize);
+            }
+
+            return await schools.ToListAsync();
+/*
             return await schools.OrderBy(id => id).Skip((filter.PageNumber - 1) * filter.PageSize)
-                .Take(filter.PageSize).ToListAsync();
+                .Take(filter.PageSize).ToListAsync(); */
         }
 
         public async Task<School?> UpdateSchool(int id, PutSchoolDto schoolDto)
