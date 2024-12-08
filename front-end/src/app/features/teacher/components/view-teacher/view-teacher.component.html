@@ -39,4 +39,14 @@
             </app-form-validator>
         </div>
     </form>
+    <h2>Courses Taught</h2>
+    <app-item-list-header [columns]="['Name', 'Credits']" />
+    <app-conditional-message
+        [condition]="!loadingTeacher && teacher?.courses?.length === 0"
+        message="No courses at this school"
+    >
+        @for (course of teacher?.courses; track course.id) {
+            <app-list-item [item]="course | courseNoTeacher" />
+        }
+    </app-conditional-message>
 </app-view-item-wrapper>

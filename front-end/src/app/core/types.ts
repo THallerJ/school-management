@@ -58,12 +58,16 @@ export type SchoolDtoNoPagingResp = zod.infer<
 
 // Teacher==============================================================================
 
-export const CourseNoTeacherSchoolDto = zod.object({
+export const CourseNoTeacherSchoolDtoSchema = zod.object({
     id: zod.number(),
     name: zod.string(),
     registrations: zod.array(RegistrationStudentDtoSchema),
     credits: zod.number(),
 });
+
+export type CourseNoTeacherSchoolDto = zod.infer<
+    typeof CourseNoTeacherSchoolDtoSchema
+>;
 
 export const NestedSchoolDtoSchema = zod.object({
     id: zod.number(),
@@ -77,7 +81,7 @@ export const TeacherDtoSchema = zod.object({
     firstName: zod.string(),
     lastName: zod.string(),
     school: NestedSchoolDtoSchema,
-    courses: zod.array(CourseNoTeacherSchoolDto),
+    courses: zod.array(CourseNoTeacherSchoolDtoSchema),
 });
 
 export type TeacherDto = zod.infer<typeof TeacherDtoSchema>;

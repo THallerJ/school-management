@@ -17,7 +17,7 @@ import { ItemListHeaderComponent } from '../../../../core/components/item-list-h
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { SchoolSelectComponent } from './../../../../core/components/school-select/school-select.component';
-
+import { CourseNoTeacherPipe } from '../../pipes/course-no-teacher.pipe';
 @Component({
     selector: 'app-view-teacher',
     standalone: true,
@@ -30,6 +30,7 @@ import { SchoolSelectComponent } from './../../../../core/components/school-sele
         ListItemComponent,
         ConditionalMessageComponent,
         SchoolSelectComponent,
+        CourseNoTeacherPipe,
     ],
     templateUrl: './view-teacher.component.html',
     styleUrl: './view-teacher.component.css',
