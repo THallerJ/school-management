@@ -1,1 +1,42 @@
-<p>view-teacher works!</p>
+<app-view-item-wrapper
+    [loading]="loadingTeacher || loadingSchools"
+    [item]="teacher"
+    (deleteEvent)="onDelete()"
+>
+    <h2>Edit Teacher</h2>
+    <form
+        class="app-form"
+        [formGroup]="updateTeacherForm"
+        (ngSubmit)="updateTeacher()"
+    >
+        <div class="app-form-content">
+            <app-input-label
+                [group]="updateTeacherForm"
+                name="firstName"
+                type="text"
+                [value]="teacher?.firstName"
+            >
+                Teacher First Name
+            </app-input-label>
+            <app-input-label
+                [group]="updateTeacherForm"
+                name="lastName"
+                type="text"
+                [value]="teacher?.lastName"
+            >
+                Teacher Last Name
+            </app-input-label>
+            <app-school-select
+                [group]="updateTeacherForm"
+                name="school"
+                (loadingEvent)="finishLoadingSchools()"
+            />
+            <button class="btn" type="submit">Update</button>
+            <app-form-validator [form]="updateTeacherForm">
+                <ul>
+                    <li>Invalid input</li>
+                </ul>
+            </app-form-validator>
+        </div>
+    </form>
+</app-view-item-wrapper>

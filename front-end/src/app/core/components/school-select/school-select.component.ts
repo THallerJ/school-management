@@ -23,13 +23,14 @@ export class SchoolSelectComponent implements OnInit {
     @Output() loadingEvent = new EventEmitter<boolean>();
     schools?: SchoolDtoNoPagingResp;
     loading = true;
+    private readonly PATH = 'school';
 
     constructor(private apiService: ApiService) {}
 
     getSchools() {
         const params = { params: { disablePaging: true } };
 
-        this.apiService.get('school', params).subscribe({
+        this.apiService.get(this.PATH, params).subscribe({
             next: data => {
                 const result = SchoolDtoNoPagingRespSchema.safeParse(data);
                 if (result.success) {

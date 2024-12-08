@@ -25,6 +25,7 @@ import { ApiService } from '../../../../core/services/api-service.service';
     styleUrl: './create-teacher.component.css',
 })
 export class CreateTeacherComponent implements OnInit {
+    private readonly PATH = 'teacher';
     createTeacherForm!: FormGroup;
     loading = true;
 
@@ -64,7 +65,7 @@ export class CreateTeacherComponent implements OnInit {
             createdTeacher['schoolId'] = Number(createdTeacher['schoolId']);
 
             this.apiService
-                .post<Teacher>('teacher', createdTeacher)
+                .post<Teacher>(this.PATH, createdTeacher)
                 .subscribe(() => {
                     this.router.navigate(['/teachers']);
                 });

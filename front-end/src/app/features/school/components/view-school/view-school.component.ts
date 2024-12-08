@@ -82,7 +82,6 @@ export class ViewSchoolComponent implements OnInit {
     onDelete = () => {
         if (this.id) {
             this.apiService.delete(this.PATH, this.id).subscribe();
-            this.router.navigate(['/schools']);
         }
 
         this.router.navigate(['/schools']);
@@ -100,9 +99,9 @@ export class ViewSchoolComponent implements OnInit {
         if (this.updateSchoolForm.valid && this.id && this.school) {
             this.apiService
                 .put<School>(this.PATH, this.id, updatedSchool)
-                .subscribe();
-
-            this.router.navigate(['/schools']);
+                .subscribe(() => {
+                    this.router.navigate(['/schools']);
+                });
         }
     }
 
