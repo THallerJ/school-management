@@ -7,7 +7,7 @@ using school_management.Mappers;
 namespace school_management.Controllers
 {
     [ApiController]
-    [Route("api/school")]
+    [Route("api/schools")]
     public class SchoolController(ISchoolRepository schoolRepo) : ControllerBase
     {
         private readonly ISchoolRepository _schoolRepo = schoolRepo;

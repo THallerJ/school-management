@@ -25,7 +25,7 @@ import { ApiService } from '../../../../core/services/api-service.service';
     styleUrl: './create-teacher.component.css',
 })
 export class CreateTeacherComponent implements OnInit {
-    private readonly PATH = 'teacher';
+    private readonly PATH = 'teachers';
     createTeacherForm!: FormGroup;
     loading = true;
 

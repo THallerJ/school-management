@@ -6,7 +6,7 @@ using school_management.Mappers;
 namespace school_management.Controllers
 {
     [ApiController]
-    [Route("api/registration")]
+    [Route("api/registrations")]
     public class Registration(IRegistrationRepository registrationRepo) : ControllerBase
     {
         private readonly IRegistrationRepository _registrationRepo = registrationRepo;

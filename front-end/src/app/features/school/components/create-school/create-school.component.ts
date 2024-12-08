@@ -18,6 +18,7 @@ import { InputLabelComponent } from '../../../../core/components/input-label/inp
 })
 export class CreateSchoolComponent implements OnInit {
     createSchoolForm!: FormGroup;
+    private readonly PATH = 'schools';
 
     constructor(
         private apiService: ApiService,
@@ -59,7 +60,7 @@ export class CreateSchoolComponent implements OnInit {
 
         if (this.createSchoolForm.valid) {
             this.apiService
-                .post<School>('school', createdSchool)
+                .post<School>(this.PATH, createdSchool)
                 .subscribe(() => {
                     this.router.navigate(['/schools']);
                 });

@@ -8,7 +8,7 @@ import { CourseDtoRespSchema, CourseDtoResp } from '../../../../core/types';
     styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit {
-    private readonly PATH = 'course';
+    private readonly PATH = 'courses';
     courses: CourseDtoResp = [];
 
     constructor(private apiService: ApiService) {}

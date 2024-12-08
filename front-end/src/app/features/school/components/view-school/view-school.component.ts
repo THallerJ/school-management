@@ -35,7 +35,7 @@ import { ConditionalMessageComponent } from '../../../../core/components/conditi
     styleUrl: './view-school.component.css',
 })
 export class ViewSchoolComponent implements OnInit {
-    private readonly PATH = 'school';
+    private readonly PATH = 'schools';
     school?: SchoolDto;
     id?: number;
     loading = true;

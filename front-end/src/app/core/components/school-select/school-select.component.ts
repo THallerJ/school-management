@@ -23,7 +23,7 @@ export class SchoolSelectComponent implements OnInit {
     @Output() loadingEvent = new EventEmitter<boolean>();
     schools?: SchoolDtoNoPagingResp;
     loading = true;
-    private readonly PATH = 'school';
+    private readonly PATH = 'schools';
 
     constructor(private apiService: ApiService) {}
 

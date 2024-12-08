@@ -22,7 +22,7 @@ import { TeacherDtoPipe } from '../../pipes/teacher-dto.pipe';
     ],
 })
 export class TeachersComponent implements OnInit {
-    private readonly PATH = 'teacher';
+    private readonly PATH = 'teachers';
     teachers?: TeacherDtoResp;
     page = 1;
     readonly PAGE_SIZE = 20;

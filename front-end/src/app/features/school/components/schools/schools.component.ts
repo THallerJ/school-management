@@ -21,7 +21,7 @@ import { ConditionalMessageComponent } from '../../../../core/components/conditi
     ],
 })
 export class SchoolsComponent implements OnInit {
-    private readonly PATH = 'school';
+    private readonly PATH = 'schools';
     page = 1;
     readonly PAGE_SIZE = 20;
     schools?: SchoolDtoResp;

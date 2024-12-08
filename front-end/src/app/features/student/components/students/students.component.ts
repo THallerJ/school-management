@@ -20,7 +20,7 @@ import { ItemListHeaderComponent } from '../../../../core/components/item-list-h
     ],
 })
 export class StudentsComponent implements OnInit {
-    private readonly PATH = 'student';
+    private readonly PATH = 'students';
     loading = true;
     readonly PAGE_SIZE = 20;
     students?: StudentDtoResp;

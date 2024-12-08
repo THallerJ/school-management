@@ -35,7 +35,7 @@ import { SchoolSelectComponent } from './../../../../core/components/school-sele
     styleUrl: './view-teacher.component.css',
 })
 export class ViewTeacherComponent implements OnInit {
-    private readonly PATH = 'teacher';
+    private readonly PATH = 'teachers';
     id?: number;
     loadingTeacher = true;
     loadingSchools = true;
@@ -82,7 +82,7 @@ export class ViewTeacherComponent implements OnInit {
             createdTeacher['schoolId'] = Number(createdTeacher['schoolId']);
 
             this.apiService
-                .put(this.PATH, this.id, createdTeacher)
+                .put<Teacher>(this.PATH, this.id, createdTeacher)
                 .subscribe(() => {
                     this.router.navigate(['/teachers']);
                 });
