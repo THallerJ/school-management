@@ -5,6 +5,7 @@
     [useAltButtonColor]="true"
     (clickEvent)="openModal()"
     [hideButton]="true"
+    [altButtonMessage]="altButtonMessage"
 >
     <app-confirmation-modal (okEvent)="onClickDelete()" />
     <ng-content />

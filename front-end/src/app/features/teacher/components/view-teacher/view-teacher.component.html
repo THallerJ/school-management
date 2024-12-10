@@ -2,6 +2,11 @@
     [loading]="loadingTeacher || loadingSchools"
     [item]="teacher"
     (deleteEvent)="onDelete()"
+    [altButtonMessage]="
+        teacher?.courses?.length === 0
+            ? undefined
+            : 'This teacher cannot be deleted'
+    "
 >
     <h2>Edit Teacher</h2>
     <form

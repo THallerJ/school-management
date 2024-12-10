@@ -16,3 +16,11 @@
 .btn-alt:hover {
     color: var(--dark-text);
 }
+
+.content-wrapper > span {
+    text-align: end;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.75rem;
+    color: var(--dark-color);
+}

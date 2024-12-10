@@ -13,6 +13,7 @@ import { ApiContentWrapperComponent } from '../api-content-wrapper/api-content-w
 export class ViewItemWrapperComponent {
     @Input() loading!: boolean;
     @Input() item!: unknown;
+    @Input() altButtonMessage?: string;
     @Output() deleteEvent = new EventEmitter();
 
     constructor(private modalService: ModalService) {}

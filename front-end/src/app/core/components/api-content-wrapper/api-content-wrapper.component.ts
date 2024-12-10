@@ -15,6 +15,7 @@ export class ApiContentWrapperComponent {
     @Input() buttonText!: string;
     @Input() useAltButtonColor?: boolean;
     @Input() hideButton?: boolean;
+    @Input() altButtonMessage?: string;
     @Output() clickEvent = new EventEmitter();
 
     onClick() {

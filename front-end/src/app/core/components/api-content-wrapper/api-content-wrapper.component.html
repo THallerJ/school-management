@@ -1,5 +1,7 @@
 <div class="content-wrapper">
-    @if (!hideButton || content !== undefined) {
+    @if (
+        (!hideButton || content !== undefined) && altButtonMessage === undefined
+    ) {
         <button
             class="btn align-btn"
             [class.btn-alt]="useAltButtonColor"
@@ -7,6 +9,8 @@
         >
             {{ buttonText }}
         </button>
+    } @else if (altButtonMessage && !loading) {
+        <span class="">{{ altButtonMessage }}</span>
     }
     @if (loading) {
         <app-spinner />

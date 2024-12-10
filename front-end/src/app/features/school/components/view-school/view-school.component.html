@@ -2,6 +2,11 @@
     [loading]="loading"
     [item]="school"
     (deleteEvent)="onDelete()"
+    [altButtonMessage]="
+        school?.courses?.length === 0
+            ? undefined
+            : 'This school cannot be deleted'
+    "
 >
     <h2>Edit School</h2>
     <form
