@@ -126,6 +126,8 @@ export const StudentDtoSchema = zod.object({
     school: NestedSchoolDtoSchema,
 });
 
+export type StudentDto = zod.infer<typeof StudentDtoSchema>;
+
 export const StudentDtoRespSchema = zod.array(StudentDtoSchema);
 
 export type StudentDtoResp = zod.infer<typeof StudentDtoRespSchema>;
