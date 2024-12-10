@@ -1,7 +1,7 @@
 <app-api-content-wrapper
     [contentExists]="true"
     buttonText="Create Course"
-    (clickEvent)="createCourse()"
+    (clickEvent)="createItem()"
     [loading]="loading"
 >
     <app-item-list-header
@@ -13,12 +13,12 @@
     >
         @for (course of courses; track course.id) {
             <app-list-item
-                (clickEvent)="viewCourse(course.id)"
+                (clickEvent)="viewItem(course.id)"
                 [item]="course | courseDto"
             />
         }
     </app-conditional-message>
     @if (courses && courses.length >= PAGE_SIZE) {
-        <button class="load-more-btn" (click)="getCourses()">Load more</button>
+        <button class="load-more-btn" (click)="getItems()">Load more</button>
     }
 </app-api-content-wrapper>

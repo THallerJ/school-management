@@ -1,7 +1,7 @@
 <app-api-content-wrapper
     [contentExists]="true"
     buttonText="Create School"
-    (clickEvent)="createSchool()"
+    (clickEvent)="createItem()"
     [loading]="loading"
 >
     <app-item-list-header [columns]="['Name', 'Address', 'Phone Number']" />
@@ -11,12 +11,12 @@
     >
         @for (school of schools; track school.id) {
             <app-list-item
-                (clickEvent)="viewSchool(school.id)"
+                (clickEvent)="viewItem(school.id)"
                 [item]="school | schoolDto"
             />
         }
     </app-conditional-message>
     @if (schools && schools.length >= PAGE_SIZE) {
-        <button class="load-more-btn" (click)="getSchools()">Load more</button>
+        <button class="load-more-btn" (click)="getItems()">Load more</button>
     }
 </app-api-content-wrapper>

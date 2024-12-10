@@ -1,12 +1,11 @@
-import { ApiService } from '../../../../core/services/api-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StudentDtoResp, StudentDtoRespSchema } from '../../../../core/types';
-import { Router } from '@angular/router';
 import { ConditionalMessageComponent } from './../../../../core/components/conditional-message/conditional-message.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { StudentDtoPipe } from '../../pipes/student-dto.pipe';
+import { AbstractItemsListComponent } from '../../../../core/components/abstract-items-list/abstract-items-list.component';
 @Component({
     selector: 'app-students',
     standalone: true,
@@ -20,23 +19,11 @@ import { StudentDtoPipe } from '../../pipes/student-dto.pipe';
         StudentDtoPipe,
     ],
 })
-export class StudentsComponent implements OnInit {
+export class StudentsComponent extends AbstractItemsListComponent {
     private readonly PATH = 'students';
-    loading = true;
-    page = 1;
-    readonly PAGE_SIZE = 20;
     students?: StudentDtoResp;
 
-    constructor(
-        private apiService: ApiService,
-        private router: Router,
-    ) {}
-
-    ngOnInit(): void {
-        this.getStudents();
-    }
-
-    getStudents(): void {
+    getItems(): void {
         this.apiService.get(this.PATH).subscribe({
             next: data => {
                 const result = StudentDtoRespSchema.safeParse(data);
@@ -62,11 +49,11 @@ export class StudentsComponent implements OnInit {
         });
     }
 
-    createStudent() {
+    createItem() {
         this.router.navigate([`/create-student`]);
     }
 
-    viewStudent(id: number) {
+    viewItem(id: number) {
         this.router.navigate([`/students/${id}`]);
     }
 }

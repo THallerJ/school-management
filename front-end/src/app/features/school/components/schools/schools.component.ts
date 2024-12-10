@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../../core/services/api-service.service';
+import { Component } from '@angular/core';
 import { SchoolDtoRespSchema, SchoolDtoResp } from '../../../../core/types';
 import { SchoolDtoPipe } from '../../pipes/school-dto.pipe';
-import { Router } from '@angular/router';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
+import { AbstractItemsListComponent } from '../../../../core/components/abstract-items-list/abstract-items-list.component';
 @Component({
     selector: 'app-schools',
     standalone: true,
@@ -20,19 +19,11 @@ import { ConditionalMessageComponent } from '../../../../core/components/conditi
         ConditionalMessageComponent,
     ],
 })
-export class SchoolsComponent implements OnInit {
+export class SchoolsComponent extends AbstractItemsListComponent {
     private readonly PATH = 'schools';
-    page = 1;
-    readonly PAGE_SIZE = 20;
     schools?: SchoolDtoResp;
-    loading = true;
 
-    constructor(
-        private apiService: ApiService,
-        private router: Router,
-    ) {}
-
-    getSchools() {
+    getItems() {
         const params = {
             params: { pageNumber: this.page, pageSize: this.PAGE_SIZE },
         };
@@ -60,15 +51,11 @@ export class SchoolsComponent implements OnInit {
         });
     }
 
-    createSchool() {
+    createItem() {
         this.router.navigate([`/create-school`]);
     }
 
-    viewSchool(id: number) {
+    viewItem(id: number) {
         this.router.navigate([`/schools/${id}`]);
-    }
-
-    ngOnInit() {
-        this.getSchools();
     }
 }
