@@ -92,7 +92,7 @@ export type TeacherDtoResp = zod.infer<typeof TeacherDtoRespSchema>;
 
 // Course==============================================================================
 
-export const CourseDto = zod.object({
+export const CourseDtoSchema = zod.object({
     id: zod.number(),
     name: zod.string(),
     school: NestedSchoolDtoSchema,
@@ -101,7 +101,9 @@ export const CourseDto = zod.object({
     credits: zod.number(),
 });
 
-export const CourseDtoRespSchema = zod.array(CourseDto);
+export type CourseDto = zod.infer<typeof CourseDtoSchema>;
+
+export const CourseDtoRespSchema = zod.array(CourseDtoSchema);
 
 export type CourseDtoResp = zod.infer<typeof CourseDtoRespSchema>;
 

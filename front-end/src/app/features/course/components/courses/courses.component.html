@@ -1,7 +1,24 @@
-<div>
-    <ul>
+<app-api-content-wrapper
+    content="courses"
+    buttonText="Create Course"
+    (clickEvent)="createCourse()"
+    [loading]="loading"
+>
+    <app-item-list-header
+        [columns]="['Name', 'Teacher', 'School', 'Credits']"
+    />
+    <app-conditional-message
+        [condition]="!loading && courses?.length === 0"
+        message="No schools found"
+    >
         @for (course of courses; track course.id) {
-            <h3>{{ course.name }}</h3>
+            <app-list-item
+                (clickEvent)="viewCourse(course.id)"
+                [item]="course | courseDto"
+            />
         }
-    </ul>
-</div>
+    </app-conditional-message>
+    @if (courses && courses.length >= PAGE_SIZE) {
+        <button class="load-more-btn" (click)="getCourses()">Load more</button>
+    }
+</app-api-content-wrapper>
