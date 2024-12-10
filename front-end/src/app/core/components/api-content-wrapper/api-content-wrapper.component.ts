@@ -10,7 +10,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 })
 export class ApiContentWrapperComponent {
     @Input() loading!: boolean;
-    @Input() content: unknown;
+    @Input() contentExists!: boolean;
     @Input() ignoreContent?: boolean;
     @Input() buttonText!: string;
     @Input() useAltButtonColor?: boolean;

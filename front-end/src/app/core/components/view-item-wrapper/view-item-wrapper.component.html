@@ -1,6 +1,6 @@
 <app-api-content-wrapper
     [loading]="loading"
-    [content]="item"
+    [contentExists]="item !== undefined"
     buttonText="Delete"
     [useAltButtonColor]="true"
     (clickEvent)="openModal()"

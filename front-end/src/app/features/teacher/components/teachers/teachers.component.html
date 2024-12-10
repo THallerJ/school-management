@@ -1,5 +1,5 @@
 <app-api-content-wrapper
-    content="teachers"
+    [contentExists]="true"
     buttonText="Create Teacher"
     (clickEvent)="createTeacher()"
     [loading]="loading"

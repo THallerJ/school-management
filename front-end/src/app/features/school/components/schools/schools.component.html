@@ -1,5 +1,5 @@
 <app-api-content-wrapper
-    content="schools"
+    [contentExists]="true"
     buttonText="Create School"
     (clickEvent)="createSchool()"
     [loading]="loading"
