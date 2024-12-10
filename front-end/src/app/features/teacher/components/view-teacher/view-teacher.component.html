@@ -1,5 +1,5 @@
 <app-view-item-wrapper
-    [loading]="loadingTeacher || loadingSchools"
+    [loading]="loading || loadingSchools"
     [item]="teacher"
     (deleteEvent)="onDelete()"
     [altButtonMessage]="
@@ -9,14 +9,10 @@
     "
 >
     <h2>Edit Teacher</h2>
-    <form
-        class="app-form"
-        [formGroup]="updateTeacherForm"
-        (ngSubmit)="updateTeacher()"
-    >
+    <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">
         <div class="app-form-content">
             <app-input-label
-                [group]="updateTeacherForm"
+                [group]="form"
                 name="firstName"
                 type="text"
                 [value]="teacher?.firstName"
@@ -24,7 +20,7 @@
                 Teacher First Name
             </app-input-label>
             <app-input-label
-                [group]="updateTeacherForm"
+                [group]="form"
                 name="lastName"
                 type="text"
                 [value]="teacher?.lastName"
@@ -32,12 +28,12 @@
                 Teacher Last Name
             </app-input-label>
             <app-school-select
-                [group]="updateTeacherForm"
+                [group]="form"
                 name="school"
                 (loadingEvent)="finishLoadingSchools()"
             />
             <button class="btn" type="submit">Update</button>
-            <app-form-validator [form]="updateTeacherForm">
+            <app-form-validator [form]="form">
                 <ul>
                     <li>Invalid input</li>
                 </ul>
@@ -47,7 +43,7 @@
     <h2>Courses Taught</h2>
     <app-item-list-header [columns]="['Name', 'Credits']" />
     <app-conditional-message
-        [condition]="!loadingTeacher && teacher?.courses?.length === 0"
+        [condition]="!loading && teacher?.courses?.length === 0"
         message="No courses at this school"
     >
         @for (course of teacher?.courses; track course.id) {

@@ -9,14 +9,10 @@
     "
 >
     <h2>Edit School</h2>
-    <form
-        class="app-form"
-        [formGroup]="updateSchoolForm"
-        (ngSubmit)="updateSchool()"
-    >
+    <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">
         <div class="app-form-content">
             <app-input-label
-                [group]="updateSchoolForm"
+                [group]="form"
                 name="name"
                 type="text"
                 [value]="school?.name"
@@ -24,7 +20,7 @@
                 School Name
             </app-input-label>
             <app-input-label
-                [group]="updateSchoolForm"
+                [group]="form"
                 name="address"
                 type="text"
                 [value]="school?.address"
@@ -32,7 +28,7 @@
                 School Address
             </app-input-label>
             <app-input-label
-                [group]="updateSchoolForm"
+                [group]="form"
                 name="phoneNumber"
                 type="tele"
                 [value]="school?.phoneNumber"
@@ -40,7 +36,7 @@
                 School Phone Number
             </app-input-label>
             <button class="btn" type="submit">Update</button>
-            <app-form-validator [form]="updateSchoolForm">
+            <app-form-validator [form]="form">
                 <ul>
                     <li>
                         Name and address fields must have at least 3 characters

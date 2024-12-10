@@ -1,15 +1,6 @@
-import { ModalService } from './../../../../core/services/modal-service.service';
-import { ApiService } from './../../../../core/services/api-service.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
 import { TeacherDto, TeacherDtoSchema } from '../../../../core/types';
-import {
-    ReactiveFormsModule,
-    FormGroup,
-    FormBuilder,
-    Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
@@ -18,6 +9,7 @@ import { ListItemComponent } from '../../../../core/components/list-item/list-it
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { SchoolSelectComponent } from './../../../../core/components/school-select/school-select.component';
 import { CourseNoTeacherPipe } from '../../pipes/course-no-teacher.pipe';
+import { AbstractViewItemComponent } from '../../../../core/components/abstract-view-item/abstract-view-item.component';
 @Component({
     selector: 'app-view-teacher',
     standalone: true,
@@ -35,32 +27,21 @@ import { CourseNoTeacherPipe } from '../../pipes/course-no-teacher.pipe';
     templateUrl: './view-teacher.component.html',
     styleUrl: './view-teacher.component.css',
 })
-export class ViewTeacherComponent implements OnInit {
+export class ViewTeacherComponent extends AbstractViewItemComponent {
     private readonly PATH = 'teachers';
-    id?: number;
-    loadingTeacher = true;
     loadingSchools = true;
-    updateTeacherForm!: FormGroup;
     teacher?: TeacherDto;
 
-    constructor(
-        private route: ActivatedRoute,
-        private apiService: ApiService,
-        private router: Router,
-        private modalService: ModalService,
-        private formBuilder: FormBuilder,
-    ) {}
-
-    patchUpdateForm() {
-        this.updateTeacherForm.patchValue({
+    patchForm() {
+        this.form.patchValue({
             firstName: this.teacher?.firstName,
             lastName: this.teacher?.lastName,
             school: this.teacher?.school?.id,
         });
     }
 
-    initCreateTeacherForm() {
-        this.updateTeacherForm = this.formBuilder.group(
+    initForm() {
+        this.form = this.formBuilder.group(
             {
                 firstName: '',
                 lastName: '',
@@ -70,16 +51,16 @@ export class ViewTeacherComponent implements OnInit {
         );
     }
 
-    updateTeacher() {
+    updateItem() {
         const createdTeacher = {
-            firstName: this.updateTeacherForm.value.firstName,
-            lastName: this.updateTeacherForm.value.lastName,
-            schoolId: this.updateTeacherForm.value.school,
+            firstName: this.form.value.firstName,
+            lastName: this.form.value.lastName,
+            schoolId: this.form.value.school,
         };
 
-        this.updateTeacherForm.markAsTouched();
+        this.form.markAsTouched();
 
-        if (this.updateTeacherForm.valid && this.id) {
+        if (this.form.valid && this.id) {
             createdTeacher['schoolId'] = Number(createdTeacher['schoolId']);
 
             this.apiService
@@ -90,19 +71,19 @@ export class ViewTeacherComponent implements OnInit {
         }
     }
 
-    getTeacher(id: number) {
+    getItem(id: number) {
         this.apiService.get(this.PATH, { id }).subscribe({
             next: data => {
                 const result = TeacherDtoSchema.safeParse(data);
                 if (result.success) this.teacher = result.data;
-                this.loadingTeacher = false;
-                this.patchUpdateForm();
+                this.loading = false;
+                this.patchForm();
             },
             error: error => {
+                this.loading = false;
+
                 if (error.status === 0) {
                     return;
-                } else {
-                    this.loadingTeacher = false;
                 }
             },
         });
@@ -118,20 +99,6 @@ export class ViewTeacherComponent implements OnInit {
 
     finishLoadingSchools() {
         this.loadingSchools = false;
-    }
-
-    openModal() {
-        this.modalService.openModal();
-    }
-
-    initId() {
-        this.id = this.route.snapshot.params['id'];
-        if (this.id) this.getTeacher(this.id);
-    }
-
-    ngOnInit() {
-        this.initId();
-        this.initCreateTeacherForm();
     }
 }
 
