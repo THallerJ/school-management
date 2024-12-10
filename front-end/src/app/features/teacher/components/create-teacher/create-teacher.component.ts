@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {
-    FormGroup,
-    ReactiveFormsModule,
-    FormBuilder,
-    Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { SchoolSelectComponent } from './../../../../core/components/school-select/school-select.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
-import { ApiService } from '../../../../core/services/api-service.service';
+import { AbstractCreateItemComponent } from '../../../../core/components/abstract-create-item/abstract-create-item.component';
 @Component({
     selector: 'app-create-teacher',
     standalone: true,
@@ -24,19 +18,11 @@ import { ApiService } from '../../../../core/services/api-service.service';
     templateUrl: './create-teacher.component.html',
     styleUrl: './create-teacher.component.css',
 })
-export class CreateTeacherComponent implements OnInit {
+export class CreateTeacherComponent extends AbstractCreateItemComponent {
     private readonly PATH = 'teachers';
-    createTeacherForm!: FormGroup;
-    loading = true;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private apiService: ApiService,
-        private router: Router,
-    ) {}
-
-    initCreateTeacherForm() {
-        this.createTeacherForm = this.formBuilder.group(
+    initForm() {
+        this.form = this.formBuilder.group(
             {
                 firstName: ['', Validators.required],
                 lastName: ['', Validators.required],
@@ -52,16 +38,16 @@ export class CreateTeacherComponent implements OnInit {
         );
     }
 
-    createTeacher() {
+    createItem() {
         const createdTeacher = {
-            firstName: this.createTeacherForm.value.firstName,
-            lastName: this.createTeacherForm.value.lastName,
-            schoolId: this.createTeacherForm.value.school,
+            firstName: this.form.value.firstName,
+            lastName: this.form.value.lastName,
+            schoolId: this.form.value.school,
         };
 
-        this.createTeacherForm.markAsTouched();
+        this.form.markAsTouched();
 
-        if (this.createTeacherForm.valid) {
+        if (this.form.valid) {
             createdTeacher['schoolId'] = Number(createdTeacher['schoolId']);
 
             this.apiService
@@ -70,14 +56,6 @@ export class CreateTeacherComponent implements OnInit {
                     this.router.navigate(['/teachers']);
                 });
         }
-    }
-
-    finishLoading() {
-        this.loading = false;
-    }
-
-    ngOnInit() {
-        this.initCreateTeacherForm();
     }
 }
 

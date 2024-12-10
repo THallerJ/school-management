@@ -1,14 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../../../core/services/api-service.service';
-import {
-    FormGroup,
-    ReactiveFormsModule,
-    FormBuilder,
-    Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
+import { AbstractCreateItemComponent } from '../../../../core/components/abstract-create-item/abstract-create-item.component';
 @Component({
     selector: 'app-create-school',
     standalone: true,
@@ -16,18 +10,11 @@ import { InputLabelComponent } from '../../../../core/components/input-label/inp
     templateUrl: './create-school.component.html',
     styleUrl: './create-school.component.css',
 })
-export class CreateSchoolComponent implements OnInit {
-    createSchoolForm!: FormGroup;
+export class CreateSchoolComponent extends AbstractCreateItemComponent {
     private readonly PATH = 'schools';
 
-    constructor(
-        private apiService: ApiService,
-        private formBuilder: FormBuilder,
-        private router: Router,
-    ) {}
-
-    initCreateSchoolForm() {
-        this.createSchoolForm = this.formBuilder.group(
+    initForm() {
+        this.form = this.formBuilder.group(
             {
                 name: ['', Validators.required],
                 address: ['', Validators.required],
@@ -45,20 +32,16 @@ export class CreateSchoolComponent implements OnInit {
         );
     }
 
-    ngOnInit() {
-        this.initCreateSchoolForm();
-    }
-
-    createSchool() {
+    createItem() {
         const createdSchool = {
-            name: this.createSchoolForm.value.name,
-            address: this.createSchoolForm.value.address,
-            phoneNumber: this.createSchoolForm.value.phoneNumber,
+            name: this.form.value.name,
+            address: this.form.value.address,
+            phoneNumber: this.form.value.phoneNumber,
         };
 
-        this.createSchoolForm.markAsTouched();
+        this.form.markAsTouched();
 
-        if (this.createSchoolForm.valid) {
+        if (this.form.valid) {
             this.apiService
                 .post<School>(this.PATH, createdSchool)
                 .subscribe(() => {

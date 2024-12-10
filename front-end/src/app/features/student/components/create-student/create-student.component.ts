@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {
-    FormGroup,
-    ReactiveFormsModule,
-    FormBuilder,
-    Validators,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { SchoolSelectComponent } from './../../../../core/components/school-select/school-select.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
-import { ApiService } from '../../../../core/services/api-service.service';
+import { AbstractCreateItemComponent } from '../../../../core/components/abstract-create-item/abstract-create-item.component';
 
 @Component({
     selector: 'app-create-student',
@@ -25,19 +19,11 @@ import { ApiService } from '../../../../core/services/api-service.service';
     templateUrl: './create-student.component.html',
     styleUrl: './create-student.component.css',
 })
-export class CreateStudentComponent {
+export class CreateStudentComponent extends AbstractCreateItemComponent {
     private readonly PATH = 'students';
-    createStudentForm!: FormGroup;
-    loading = true;
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private apiService: ApiService,
-        private router: Router,
-    ) {}
-
-    initCreateStudentForm() {
-        this.createStudentForm = this.formBuilder.group(
+    initForm() {
+        this.form = this.formBuilder.group(
             {
                 firstName: ['', Validators.required],
                 lastName: ['', Validators.required],
@@ -53,16 +39,16 @@ export class CreateStudentComponent {
         );
     }
 
-    createStudent() {
+    createItem() {
         const createdStudent = {
-            firstName: this.createStudentForm.value.firstName,
-            lastName: this.createStudentForm.value.lastName,
-            schoolId: this.createStudentForm.value.school,
+            firstName: this.form.value.firstName,
+            lastName: this.form.value.lastName,
+            schoolId: this.form.value.school,
         };
 
-        this.createStudentForm.markAsTouched();
+        this.form.markAsTouched();
 
-        if (this.createStudentForm.valid) {
+        if (this.form.valid) {
             createdStudent['schoolId'] = Number(createdStudent['schoolId']);
 
             this.apiService
@@ -71,14 +57,6 @@ export class CreateStudentComponent {
                     this.router.navigate(['/students']);
                 });
         }
-    }
-
-    finishLoading() {
-        this.loading = false;
-    }
-
-    ngOnInit() {
-        this.initCreateStudentForm();
     }
 }
 

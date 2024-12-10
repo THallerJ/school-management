@@ -1,29 +1,18 @@
 <div>
     <h2>Create School</h2>
-    <form
-        class="app-form"
-        [formGroup]="createSchoolForm"
-        (ngSubmit)="createSchool()"
-    >
+    <form class="app-form" [formGroup]="form" (ngSubmit)="createItem()">
         <div class="app-form-content">
-            <app-input-label [group]="createSchoolForm" name="name" type="text"
+            <app-input-label [group]="form" name="name" type="text"
                 >School Name</app-input-label
             >
-            <app-input-label
-                [group]="createSchoolForm"
-                name="address"
-                type="text"
+            <app-input-label [group]="form" name="address" type="text"
                 >School Address</app-input-label
             >
-            <app-input-label
-                [group]="createSchoolForm"
-                name="phoneNumber"
-                type="tel"
-            >
+            <app-input-label [group]="form" name="phoneNumber" type="tel">
                 School Phone Number
             </app-input-label>
             <button class="btn" type="submit">Create School</button>
-            <app-form-validator [form]="createSchoolForm">
+            <app-form-validator [form]="form">
                 <ul>
                     <li>All fields are required</li>
                     <li>Phone number must be 10 digits</li>
