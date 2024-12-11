@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api-service.service';
 import { ModalService } from '../../services/modal-service.service';
+import { z } from 'zod';
 
 @Component({
     selector: 'app-abstract-view-item',
@@ -11,7 +12,11 @@ import { ModalService } from '../../services/modal-service.service';
     templateUrl: './abstract-view-item.component.html',
     styleUrl: './abstract-view-item.component.css',
 })
-export abstract class AbstractViewItemComponent<T> implements OnInit {
+export abstract class AbstractViewItemComponent<T, S> implements OnInit {
+    protected abstract SCHEMA: z.ZodSchema<T>;
+    protected abstract PATH: string;
+    protected abstract REDIRECT: string;
+
     protected id?: number;
     protected loading = true;
     protected form!: FormGroup;
@@ -25,15 +30,51 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
         protected formBuilder: FormBuilder,
     ) {}
 
-    abstract getItem(id: number): void;
-
-    abstract onDelete(): void;
-
-    abstract updateItem(): void;
+    abstract getUpdatedItem(): S;
 
     abstract patchForm(): void;
 
     abstract initForm(): void;
+
+    getItem(id: number) {
+        this.apiService.get(this.PATH, { id }).subscribe({
+            next: data => {
+                const result = this.SCHEMA.safeParse(data);
+                if (result.success) this.item = result.data;
+                this.loading = false;
+                this.patchForm();
+            },
+            error: error => {
+                this.loading = false;
+
+                if (error.status === 0) {
+                    return;
+                }
+            },
+        });
+    }
+
+    onDelete = () => {
+        if (this.id) {
+            this.apiService.delete(this.PATH, this.id).subscribe();
+        }
+
+        this.router.navigate([this.REDIRECT]);
+    };
+
+    updateItem() {
+        const updatedItem = this.getUpdatedItem();
+
+        this.form.markAsTouched();
+
+        if (this.form.valid && this.id && this.item) {
+            this.apiService
+                .put<S>(this.PATH, this.id, updatedItem)
+                .subscribe(() => {
+                    this.router.navigate(['/schools']);
+                });
+        }
+    }
 
     protected initId() {
         this.id = Number(this.route.snapshot.paramMap.get('id'));

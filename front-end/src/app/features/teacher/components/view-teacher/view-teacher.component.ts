@@ -27,8 +27,13 @@ import { AbstractViewItemComponent } from '../../../../core/components/abstract-
     templateUrl: './view-teacher.component.html',
     styleUrl: './view-teacher.component.css',
 })
-export class ViewTeacherComponent extends AbstractViewItemComponent<TeacherDto> {
-    private readonly PATH = 'teachers';
+export class ViewTeacherComponent extends AbstractViewItemComponent<
+    TeacherDto,
+    UpdatedTeacher
+> {
+    PATH = 'teachers';
+    REDIRECT = '/teachers';
+    SCHEMA = TeacherDtoSchema;
     loadingSchools = true;
 
     patchForm() {
@@ -50,58 +55,20 @@ export class ViewTeacherComponent extends AbstractViewItemComponent<TeacherDto> 
         );
     }
 
-    updateItem() {
-        const createdTeacher = {
+    override getUpdatedItem(): UpdatedTeacher {
+        return {
             firstName: this.form.value.firstName,
             lastName: this.form.value.lastName,
             schoolId: this.form.value.school,
         };
-
-        this.form.markAsTouched();
-
-        if (this.form.valid && this.id) {
-            createdTeacher['schoolId'] = Number(createdTeacher['schoolId']);
-
-            this.apiService
-                .put<Teacher>(this.PATH, this.id, createdTeacher)
-                .subscribe(() => {
-                    this.router.navigate(['/teachers']);
-                });
-        }
     }
-
-    getItem(id: number) {
-        this.apiService.get(this.PATH, { id }).subscribe({
-            next: data => {
-                const result = TeacherDtoSchema.safeParse(data);
-                if (result.success) this.item = result.data;
-                this.loading = false;
-                this.patchForm();
-            },
-            error: error => {
-                this.loading = false;
-
-                if (error.status === 0) {
-                    return;
-                }
-            },
-        });
-    }
-
-    onDelete = () => {
-        if (this.id) {
-            this.apiService.delete(this.PATH, this.id).subscribe();
-        }
-
-        this.router.navigate(['/teachers']);
-    };
 
     finishLoadingSchools() {
         this.loadingSchools = false;
     }
 }
 
-type Teacher = {
+type UpdatedTeacher = {
     firstName?: string;
     lastName?: string;
     schoolId?: number;
