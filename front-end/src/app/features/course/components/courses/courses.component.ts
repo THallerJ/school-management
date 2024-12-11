@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    CourseDtoRespSchema,
-    CourseDtoResp,
-    CourseDto,
-} from '../../../../core/types';
+import { CourseDtoRespSchema, CourseDto } from '../../../../core/types';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
@@ -24,7 +20,7 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
     styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent extends AbstractItemsListComponent<CourseDto> {
-    PATH = 'courses';
-    SCHEMA = CourseDtoRespSchema;
-    CREATE_ITEM_PATH = '/create-course';
+    override PATH = 'courses';
+    override SCHEMA = CourseDtoRespSchema;
+    override CREATE_ITEM_PATH = '/create-course';
 }

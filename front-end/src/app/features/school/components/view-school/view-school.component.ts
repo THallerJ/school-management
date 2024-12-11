@@ -29,11 +29,11 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<
     SchoolDto,
     UpdatedSchool
 > {
-    PATH = 'schools';
-    SCHEMA = SchoolDtoSchema;
-    REDIRECT = '/schools';
+    override PATH = 'schools';
+    override SCHEMA = SchoolDtoSchema;
+    override REDIRECT = '/schools';
 
-    patchForm() {
+    override patchForm() {
         this.form.patchValue({
             name: this.item?.name,
             address: this.item?.address,
@@ -41,7 +41,7 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<
         });
     }
 
-    initForm() {
+    override initForm() {
         this.form = this.formBuilder.group(
             {
                 name: ['', Validators.minLength(3)],
@@ -59,7 +59,7 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<
         );
     }
 
-    getUpdatedItem(): UpdatedSchool {
+    override getUpdatedItem(): UpdatedSchool {
         return {
             name: this.form.value.name,
             address: this.form.value.address,

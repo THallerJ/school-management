@@ -18,10 +18,11 @@ import { AbstractCreateItemComponent } from '../../../../core/components/abstrac
     templateUrl: './create-teacher.component.html',
     styleUrl: './create-teacher.component.css',
 })
-export class CreateTeacherComponent extends AbstractCreateItemComponent {
-    private readonly PATH = 'teachers';
+export class CreateTeacherComponent extends AbstractCreateItemComponent<CreatedTeacher> {
+    override PATH = 'teachers';
+    override REDIRECT = '/teachers';
 
-    initForm() {
+    override initForm() {
         this.form = this.formBuilder.group(
             {
                 firstName: ['', Validators.required],
@@ -38,28 +39,16 @@ export class CreateTeacherComponent extends AbstractCreateItemComponent {
         );
     }
 
-    createItem() {
-        const createdTeacher = {
+    override getCreatedItem(): CreatedTeacher {
+        return {
             firstName: this.form.value.firstName,
             lastName: this.form.value.lastName,
             schoolId: this.form.value.school,
         };
-
-        this.form.markAsTouched();
-
-        if (this.form.valid) {
-            createdTeacher['schoolId'] = Number(createdTeacher['schoolId']);
-
-            this.apiService
-                .post<Teacher>(this.PATH, createdTeacher)
-                .subscribe(() => {
-                    this.router.navigate(['/teachers']);
-                });
-        }
     }
 }
 
-type Teacher = {
+type CreatedTeacher = {
     firstName: string;
     lastName: string;
     schoolId: number;

@@ -21,7 +21,7 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
     ],
 })
 export class TeachersComponent extends AbstractItemsListComponent<TeacherDto> {
-    PATH = 'teachers';
-    SCHEMA = TeacherDtoRespSchema;
-    CREATE_ITEM_PATH = '/create-teacher';
+    override PATH = 'teachers';
+    override SCHEMA = TeacherDtoRespSchema;
+    override CREATE_ITEM_PATH = '/create-teacher';
 }

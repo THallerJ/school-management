@@ -31,12 +31,13 @@ export class ViewTeacherComponent extends AbstractViewItemComponent<
     TeacherDto,
     UpdatedTeacher
 > {
-    PATH = 'teachers';
-    REDIRECT = '/teachers';
-    SCHEMA = TeacherDtoSchema;
+    override PATH = 'teachers';
+    override REDIRECT = '/teachers';
+    override SCHEMA = TeacherDtoSchema;
+
     loadingSchools = true;
 
-    patchForm() {
+    override patchForm() {
         this.form.patchValue({
             firstName: this.item?.firstName,
             lastName: this.item?.lastName,
@@ -44,7 +45,7 @@ export class ViewTeacherComponent extends AbstractViewItemComponent<
         });
     }
 
-    initForm() {
+    override initForm() {
         this.form = this.formBuilder.group(
             {
                 firstName: '',

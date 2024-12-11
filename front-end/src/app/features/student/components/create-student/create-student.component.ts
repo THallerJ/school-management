@@ -19,10 +19,11 @@ import { AbstractCreateItemComponent } from '../../../../core/components/abstrac
     templateUrl: './create-student.component.html',
     styleUrl: './create-student.component.css',
 })
-export class CreateStudentComponent extends AbstractCreateItemComponent {
-    private readonly PATH = 'students';
+export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedStudent> {
+    override PATH = 'students';
+    override REDIRECT = '/students';
 
-    initForm() {
+    override initForm() {
         this.form = this.formBuilder.group(
             {
                 firstName: ['', Validators.required],
@@ -39,28 +40,16 @@ export class CreateStudentComponent extends AbstractCreateItemComponent {
         );
     }
 
-    createItem() {
-        const createdStudent = {
+    override getCreatedItem(): CreatedStudent {
+        return {
             firstName: this.form.value.firstName,
             lastName: this.form.value.lastName,
             schoolId: this.form.value.school,
         };
-
-        this.form.markAsTouched();
-
-        if (this.form.valid) {
-            createdStudent['schoolId'] = Number(createdStudent['schoolId']);
-
-            this.apiService
-                .post<Student>(this.PATH, createdStudent)
-                .subscribe(() => {
-                    this.router.navigate(['/students']);
-                });
-        }
     }
 }
 
-type Student = {
+type CreatedStudent = {
     firstName: string;
     lastName: string;
     schoolId: number;

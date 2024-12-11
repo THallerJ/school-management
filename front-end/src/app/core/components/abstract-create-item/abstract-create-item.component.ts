@@ -10,7 +10,10 @@ import { ApiService } from '../../services/api-service.service';
     templateUrl: './abstract-create-item.component.html',
     styleUrl: './abstract-create-item.component.css',
 })
-export abstract class AbstractCreateItemComponent implements OnInit {
+export abstract class AbstractCreateItemComponent<T> implements OnInit {
+    protected abstract PATH: string;
+    protected abstract REDIRECT: string;
+
     protected loading = true;
     protected form!: FormGroup;
 
@@ -21,7 +24,20 @@ export abstract class AbstractCreateItemComponent implements OnInit {
     ) {}
 
     abstract initForm(): void;
-    abstract createItem(): void;
+
+    abstract getCreatedItem(): T;
+
+    protected createItem() {
+        const createdSchool = this.getCreatedItem();
+
+        this.form.markAsTouched();
+
+        if (this.form.valid) {
+            this.apiService.post<T>(this.PATH, createdSchool).subscribe(() => {
+                this.router.navigate([this.REDIRECT]);
+            });
+        }
+    }
 
     protected finishLoading() {
         this.loading = false;
