@@ -8,17 +8,17 @@
         [columns]="['Name', 'Teacher', 'School', 'Credits']"
     />
     <app-conditional-message
-        [condition]="!loading && courses?.length === 0"
+        [condition]="!loading && items?.length === 0"
         message="No schools found"
     >
-        @for (course of courses; track course.id) {
+        @for (course of items; track course.id) {
             <app-list-item
                 (clickEvent)="viewItem(course.id)"
                 [item]="course | courseDto"
             />
         }
     </app-conditional-message>
-    @if (courses && courses.length >= PAGE_SIZE) {
+    @if (items && items.length >= PAGE_SIZE) {
         <button class="load-more-btn" (click)="getItems()">Load more</button>
     }
 </app-api-content-wrapper>

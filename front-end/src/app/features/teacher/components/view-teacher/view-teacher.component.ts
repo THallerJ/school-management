@@ -27,16 +27,15 @@ import { AbstractViewItemComponent } from '../../../../core/components/abstract-
     templateUrl: './view-teacher.component.html',
     styleUrl: './view-teacher.component.css',
 })
-export class ViewTeacherComponent extends AbstractViewItemComponent {
+export class ViewTeacherComponent extends AbstractViewItemComponent<TeacherDto> {
     private readonly PATH = 'teachers';
     loadingSchools = true;
-    teacher?: TeacherDto;
 
     patchForm() {
         this.form.patchValue({
-            firstName: this.teacher?.firstName,
-            lastName: this.teacher?.lastName,
-            school: this.teacher?.school?.id,
+            firstName: this.item?.firstName,
+            lastName: this.item?.lastName,
+            school: this.item?.school?.id,
         });
     }
 
@@ -75,7 +74,7 @@ export class ViewTeacherComponent extends AbstractViewItemComponent {
         this.apiService.get(this.PATH, { id }).subscribe({
             next: data => {
                 const result = TeacherDtoSchema.safeParse(data);
-                if (result.success) this.teacher = result.data;
+                if (result.success) this.item = result.data;
                 this.loading = false;
                 this.patchForm();
             },

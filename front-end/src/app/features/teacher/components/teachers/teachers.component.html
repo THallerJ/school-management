@@ -6,17 +6,17 @@
 >
     <app-item-list-header [columns]="['First Name', 'Last Name', 'School']" />
     <app-conditional-message
-        [condition]="!loading && teachers?.length === 0"
+        [condition]="!loading && items?.length === 0"
         message="No Teachers found"
     >
-        @for (teacher of teachers; track teacher.id) {
+        @for (teacher of items; track teacher.id) {
             <app-list-item
                 (clickEvent)="viewItem(teacher.id)"
                 [item]="teacher | teacherDto"
             />
         }
     </app-conditional-message>
-    @if (teachers && teachers.length >= PAGE_SIZE) {
+    @if (items && items.length >= PAGE_SIZE) {
         <button class="load-more-btn" (click)="getItems()">Load more</button>
     }
 </app-api-content-wrapper>

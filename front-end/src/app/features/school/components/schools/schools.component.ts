@@ -19,9 +19,8 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
         ConditionalMessageComponent,
     ],
 })
-export class SchoolsComponent extends AbstractItemsListComponent {
+export class SchoolsComponent extends AbstractItemsListComponent<SchoolDtoResp> {
     private readonly PATH = 'schools';
-    schools?: SchoolDtoResp;
 
     getItems() {
         const params = {
@@ -32,9 +31,9 @@ export class SchoolsComponent extends AbstractItemsListComponent {
             next: data => {
                 const result = SchoolDtoRespSchema.safeParse(data);
                 if (result.success) {
-                    if (this.page === 1) this.schools = result.data;
-                    else if (result.data.length > 0 && this.schools)
-                        this.schools = [...this.schools, ...result.data];
+                    if (this.page === 1) this.items = result.data;
+                    else if (result.data.length > 0 && this.items)
+                        this.items = [...this.items, ...result.data];
 
                     this.page = this.page + 1;
                 }

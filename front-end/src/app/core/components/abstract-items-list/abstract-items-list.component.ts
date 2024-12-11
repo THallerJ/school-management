@@ -9,10 +9,11 @@ import { Router } from '@angular/router';
     templateUrl: './abstract-items-list.component.html',
     styleUrl: './abstract-items-list.component.css',
 })
-export abstract class AbstractItemsListComponent implements OnInit {
+export abstract class AbstractItemsListComponent<T> implements OnInit {
     protected page = 1;
     protected readonly PAGE_SIZE = 20;
     protected loading = true;
+    items?: T;
 
     constructor(
         protected apiService: ApiService,

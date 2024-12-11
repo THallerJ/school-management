@@ -6,17 +6,17 @@
 >
     <app-item-list-header [columns]="['First Name', 'Last Name', 'School']" />
     <app-conditional-message
-        [condition]="!loading && students?.length === 0"
+        [condition]="!loading && items?.length === 0"
         message="No schools found"
     >
-        @for (student of students; track student.id) {
+        @for (student of items; track student.id) {
             <app-list-item
                 (clickEvent)="viewItem(student.id)"
                 [item]="student | studentDto"
             />
         }
     </app-conditional-message>
-    @if (students && students.length >= PAGE_SIZE) {
+    @if (items && items.length >= PAGE_SIZE) {
         <button class="load-more-btn" (click)="getItems()">Load more</button>
     }
 </app-api-content-wrapper>

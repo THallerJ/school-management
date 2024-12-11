@@ -1,9 +1,9 @@
 <app-view-item-wrapper
     [loading]="loading || loadingSchools"
-    [item]="teacher"
+    [item]="item"
     (deleteEvent)="onDelete()"
     [altButtonMessage]="
-        teacher?.courses?.length === 0
+        item?.courses?.length === 0
             ? undefined
             : 'This teacher cannot be deleted'
     "
@@ -15,7 +15,7 @@
                 [group]="form"
                 name="firstName"
                 type="text"
-                [value]="teacher?.firstName"
+                [value]="item?.firstName"
             >
                 Teacher First Name
             </app-input-label>
@@ -23,7 +23,7 @@
                 [group]="form"
                 name="lastName"
                 type="text"
-                [value]="teacher?.lastName"
+                [value]="item?.lastName"
             >
                 Teacher Last Name
             </app-input-label>
@@ -43,10 +43,10 @@
     <h2>Courses Taught</h2>
     <app-item-list-header [columns]="['Name', 'Credits']" />
     <app-conditional-message
-        [condition]="!loading && teacher?.courses?.length === 0"
+        [condition]="!loading && item?.courses?.length === 0"
         message="No courses at this school"
     >
-        @for (course of teacher?.courses; track course.id) {
+        @for (course of item?.courses; track course.id) {
             <app-list-item [item]="course | courseNoTeacher" />
         }
     </app-conditional-message>

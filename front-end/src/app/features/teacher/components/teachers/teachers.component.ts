@@ -1,3 +1,4 @@
+import { TeacherDto } from './../../../../core/types';
 import { Component } from '@angular/core';
 import { TeacherDtoRespSchema, TeacherDtoResp } from '../../../../core/types';
 import { ConditionalMessageComponent } from './../../../../core/components/conditional-message/conditional-message.component';
@@ -19,9 +20,8 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
         TeacherDtoPipe,
     ],
 })
-export class TeachersComponent extends AbstractItemsListComponent {
+export class TeachersComponent extends AbstractItemsListComponent<TeacherDtoResp> {
     private readonly PATH = 'teachers';
-    teachers?: TeacherDtoResp;
 
     getItems(): void {
         const params = {
@@ -32,9 +32,9 @@ export class TeachersComponent extends AbstractItemsListComponent {
             next: data => {
                 const result = TeacherDtoRespSchema.safeParse(data);
                 if (result.success) {
-                    if (this.page === 1) this.teachers = result.data;
-                    else if (result.data.length > 0 && this.teachers)
-                        this.teachers = [...this.teachers, ...result.data];
+                    if (this.page === 1) this.items = result.data;
+                    else if (result.data.length > 0 && this.items)
+                        this.items = [...this.items, ...result.data];
 
                     this.page = this.page + 1;
                 }

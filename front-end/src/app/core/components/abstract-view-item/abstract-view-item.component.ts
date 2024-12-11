@@ -11,10 +11,11 @@ import { ModalService } from '../../services/modal-service.service';
     templateUrl: './abstract-view-item.component.html',
     styleUrl: './abstract-view-item.component.css',
 })
-export abstract class AbstractViewItemComponent implements OnInit {
+export abstract class AbstractViewItemComponent<T> implements OnInit {
     protected id?: number;
     protected loading = true;
     protected form!: FormGroup;
+    protected item?: T;
 
     constructor(
         protected route: ActivatedRoute,

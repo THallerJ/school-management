@@ -19,22 +19,21 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
         StudentDtoPipe,
     ],
 })
-export class StudentsComponent extends AbstractItemsListComponent {
+export class StudentsComponent extends AbstractItemsListComponent<StudentDtoResp> {
     private readonly PATH = 'students';
-    students?: StudentDtoResp;
 
     getItems(): void {
         this.apiService.get(this.PATH).subscribe({
             next: data => {
                 const result = StudentDtoRespSchema.safeParse(data);
                 if (result.success) {
-                    if (this.page === 1) this.students = result.data;
-                    else if (result.data.length > 0 && this.students)
-                        this.students = [...this.students, ...result.data];
+                    if (this.page === 1) this.items = result.data;
+                    else if (result.data.length > 0 && this.items)
+                        this.items = [...this.items, ...result.data];
 
                     this.page = this.page + 1;
 
-                    this.students = result.data;
+                    this.items = result.data;
                 }
 
                 this.loading = false;
