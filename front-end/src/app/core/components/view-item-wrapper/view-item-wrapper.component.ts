@@ -11,8 +11,8 @@ import { ApiContentWrapperComponent } from '../api-content-wrapper/api-content-w
     styleUrl: './view-item-wrapper.component.css',
 })
 export class ViewItemWrapperComponent {
-    @Input() loading!: boolean;
-    @Input() item!: unknown;
+    @Input({ required: true }) loading!: boolean;
+    @Input({ required: true }) item!: unknown;
     @Input() altButtonMessage?: string;
     @Output() deleteEvent = new EventEmitter();
 

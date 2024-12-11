@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrl: './item-list-header.component.css',
 })
 export class ItemListHeaderComponent implements OnInit {
-    @Input() columns!: string[];
+    @Input({ required: true }) columns!: string[];
     width!: string;
 
     ngOnInit() {

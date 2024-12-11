@@ -8,7 +8,7 @@ import { Item } from '../../types';
     styleUrl: './list-item.component.css',
 })
 export class ListItemComponent implements OnInit {
-    @Input() item!: Item;
+    @Input({ required: true }) item!: Item;
     @Output() clickEvent = new EventEmitter();
     width!: string;
 

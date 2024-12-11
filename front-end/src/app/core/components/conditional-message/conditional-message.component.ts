@@ -9,6 +9,6 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConditionalMessageComponent {
-    @Input() condition!: boolean;
-    @Input() message!: string;
+    @Input({ required: true }) condition!: boolean;
+    @Input({ required: true }) message!: string;
 }

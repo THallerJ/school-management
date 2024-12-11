@@ -10,8 +10,8 @@ import { SelectOption } from '../../types';
     styleUrl: './select-label.component.css',
 })
 export class SelectLabelComponent {
-    @Input() name!: string;
-    @Input() group!: FormGroup;
+    @Input({ required: true }) name!: string;
+    @Input({ required: true }) group!: FormGroup;
     @Input() value?: string;
     @Input() options?: SelectOption[];
 }

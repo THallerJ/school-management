@@ -9,5 +9,5 @@ import { FormGroup } from '@angular/forms';
     styleUrl: './form-validator.component.css',
 })
 export class FormValidatorComponent {
-    @Input() form!: FormGroup;
+    @Input({ required: true }) form!: FormGroup;
 }

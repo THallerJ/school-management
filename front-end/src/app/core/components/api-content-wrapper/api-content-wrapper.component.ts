@@ -9,10 +9,10 @@ import { SpinnerComponent } from '../spinner/spinner.component';
     styleUrl: './api-content-wrapper.component.css',
 })
 export class ApiContentWrapperComponent {
-    @Input() loading!: boolean;
-    @Input() contentExists!: boolean;
+    @Input({ required: true }) loading!: boolean;
+    @Input() contentExists?: boolean;
     @Input() ignoreContent?: boolean;
-    @Input() buttonText!: string;
+    @Input() buttonText?: string;
     @Input() useAltButtonColor?: boolean;
     @Input() hideButton?: boolean;
     @Input() altButtonMessage?: string;

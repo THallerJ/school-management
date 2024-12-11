@@ -8,8 +8,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
     styleUrl: './input-label.component.css',
 })
 export class InputLabelComponent {
-    @Input() name!: string;
-    @Input() type!: string;
-    @Input() group!: FormGroup;
+    @Input({ required: true }) name!: string;
+    @Input({ required: true }) type!: string;
+    @Input({ required: true }) group!: FormGroup;
     @Input() value?: string;
 }
