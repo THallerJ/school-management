@@ -15,8 +15,13 @@ namespace school_management.Controllers
         public async Task<IActionResult> GetCourses([FromQuery] CourseFilter filter)
         {
             var courses = await _courseRepo.GetCourses(filter);
-            var coursesDto = courses.Select(course => course.ToCourseDto());
-            return Ok(coursesDto);
+            if (filter.DisablePaging) {
+                var coursesDtoNoPaging = courses.Select(course=> course.ToCourseNotDtoPaging());
+                return Ok(coursesDtoNoPaging);
+            } else {
+                var coursesDto = courses.Select(course => course.ToCourseDto());
+                return Ok(coursesDto);
+            }
         }
 
         [HttpGet("{id:int}")]

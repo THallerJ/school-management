@@ -15,8 +15,13 @@ namespace school_management.Controllers
         public async Task<IActionResult> GetStudents([FromQuery] StudentFilter filter)
         {
             var students = await _studentRepo.GetStudents(filter);
-            var studentsDto = students.Select(student => student.ToStudentDto());
-            return Ok(studentsDto);
+            if (filter.DisablePaging) {
+                var studentsDtoNoPaging = students.Select(student => student.ToStudentDtoNoPaging());
+                return Ok(studentsDtoNoPaging);
+            } else {
+                var studentsDto = students.Select(student => student.ToStudentDto());
+                return Ok(studentsDto);
+            }
         }
 
         [HttpGet("{id:int}")]

@@ -44,8 +44,17 @@ namespace school_management.Repository
             if (filter.SchoolId != null)
                 teachers = teachers.Where(teacher => teacher.SchoolId.Equals(filter.SchoolId));
 
-            return await teachers.OrderBy(id => id).Skip((filter.PageNumber - 1) * filter.PageSize)
-                .Take(filter.PageSize).ToListAsync();
+           // return await teachers.OrderBy(id => id).Skip((filter.PageNumber - 1) * filter.PageSize)
+             //   .Take(filter.PageSize).ToListAsync();
+
+            teachers = teachers.OrderBy(id => id);
+
+            if (!filter.DisablePaging) {
+                teachers = teachers.Skip((filter.PageNumber - 1) * filter.PageSize)
+                .Take(filter.PageSize);
+            }
+
+            return await teachers.ToListAsync();
         }
 
         public async Task<Teacher?> UpdateTeacher(int id, PutTeacherDto teacherDto)

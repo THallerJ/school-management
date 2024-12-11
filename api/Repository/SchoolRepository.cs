@@ -46,15 +46,12 @@ namespace school_management.Repository
 
             schools = schools.OrderBy(id => id);
 
-            if (filter.DisablePaging) {
+            if (!filter.DisablePaging) {
                 schools = schools.Skip((filter.PageNumber - 1) * filter.PageSize)
                 .Take(filter.PageSize);
             }
 
             return await schools.ToListAsync();
-/*
-            return await schools.OrderBy(id => id).Skip((filter.PageNumber - 1) * filter.PageSize)
-                .Take(filter.PageSize).ToListAsync(); */
         }
 
         public async Task<School?> UpdateSchool(int id, PutSchoolDto schoolDto)
