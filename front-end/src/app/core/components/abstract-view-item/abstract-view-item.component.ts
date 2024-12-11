@@ -71,7 +71,7 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
             this.apiService
                 .put<S>(this.PATH, this.id, updatedItem)
                 .subscribe(() => {
-                    this.router.navigate(['/schools']);
+                    this.router.navigate([this.REDIRECT]);
                 });
         }
     }

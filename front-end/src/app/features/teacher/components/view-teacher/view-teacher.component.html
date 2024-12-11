@@ -27,7 +27,8 @@
             >
                 Teacher Last Name
             </app-input-label>
-            <app-school-select
+            <app-select-item
+                path="schools"
                 [group]="form"
                 name="school"
                 (loadingEvent)="finishLoadingSchools()"

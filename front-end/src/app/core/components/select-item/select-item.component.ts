@@ -1,34 +1,35 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api-service.service';
-import { z } from 'zod';
+import { ItemNoPaging, ItemsNoPagingRespSchema } from '../../types';
+import { SelectLabelComponent } from './../select-label/select-label.component';
+import { ItemsNoPagingPipe } from './items-no-paging.pipe';
 
 @Component({
-    selector: 'app-abstract-select-item',
+    selector: 'app-select-item',
     standalone: true,
-    imports: [],
-    templateUrl: './abstract-select-item.component.html',
-    styleUrl: './abstract-select-item.component.css',
+    imports: [SelectLabelComponent, ItemsNoPagingPipe],
+    templateUrl: './select-item.component.html',
+    styleUrl: './select-item.component.css',
 })
-export abstract class AbstractSelectItemComponent<T> implements OnInit {
-    protected abstract PATH: string;
-    protected abstract SCHEMA: z.ZodSchema<T[]>;
-
-    protected loading = true;
-    protected items?: T[];
-
-    @Input() name!: string;
-    @Input() group!: FormGroup;
+export class SelectItemComponent {
+    @Input({ required: true }) path!: string;
+    @Input({ required: true }) name!: string;
+    @Input({ required: true }) group!: FormGroup;
     @Output() loadingEvent = new EventEmitter<boolean>();
+
+    loading = true;
+    items?: ItemNoPaging[];
 
     constructor(private apiService: ApiService) {}
 
     getItems() {
         const params = { params: { disablePaging: true } };
 
-        this.apiService.get(this.PATH, params).subscribe({
+        this.apiService.get(this.path, params).subscribe({
             next: data => {
-                const result = this.SCHEMA.safeParse(data);
+                console.log;
+                const result = ItemsNoPagingRespSchema.safeParse(data);
                 if (result.success) {
                     this.items = result.data;
                 }

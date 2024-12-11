@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
-import { SchoolSelectComponent } from './../../../../core/components/school-select/school-select.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { AbstractCreateItemComponent } from '../../../../core/components/abstract-create-item/abstract-create-item.component';
-
+import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 @Component({
     selector: 'app-create-student',
     standalone: true,
@@ -13,7 +12,7 @@ import { AbstractCreateItemComponent } from '../../../../core/components/abstrac
         FormValidatorComponent,
         InputLabelComponent,
         ReactiveFormsModule,
-        SchoolSelectComponent,
+        SelectItemComponent,
         ApiContentWrapperComponent,
     ],
     templateUrl: './create-student.component.html',
