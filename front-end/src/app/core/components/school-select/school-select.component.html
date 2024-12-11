@@ -1,12 +1,11 @@
-@if (!loading && schools && schools.length > 0) {
+@if (!loading && items && items.length > 0) {
     <app-select-label
         [group]="group"
         [name]="name"
-        type="tel"
-        [options]="schools | schoolDtoNoPaging"
+        [options]="items | schoolDtoNoPaging"
     >
         School
     </app-select-label>
-} @else if (!loading && schools && schools.length == 0) {
+} @else if (!loading && items && items.length == 0) {
     <span>No schools found</span>
 }

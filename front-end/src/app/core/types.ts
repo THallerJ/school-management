@@ -50,7 +50,7 @@ export const SchoolDtoNoPagingSchema = zod.object({
 
 export const SchoolDtoNoPagingRespSchema = zod.array(SchoolDtoNoPagingSchema);
 
-export type SchoolDtoNoPaging = zod.infer<typeof SchoolDtoSchema>;
+export type SchoolDtoNoPaging = zod.infer<typeof SchoolDtoNoPagingSchema>;
 
 export type SchoolDtoNoPagingResp = zod.infer<
     typeof SchoolDtoNoPagingRespSchema
