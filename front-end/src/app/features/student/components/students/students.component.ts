@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { StudentDtoResp, StudentDtoRespSchema } from '../../../../core/types';
+import {
+    StudentDto,
+    StudentDtoResp,
+    StudentDtoRespSchema,
+} from '../../../../core/types';
 import { ConditionalMessageComponent } from './../../../../core/components/conditional-message/conditional-message.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
@@ -19,40 +23,8 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
         StudentDtoPipe,
     ],
 })
-export class StudentsComponent extends AbstractItemsListComponent<StudentDtoResp> {
-    private readonly PATH = 'students';
-
-    getItems(): void {
-        this.apiService.get(this.PATH).subscribe({
-            next: data => {
-                const result = StudentDtoRespSchema.safeParse(data);
-                if (result.success) {
-                    if (this.page === 1) this.items = result.data;
-                    else if (result.data.length > 0 && this.items)
-                        this.items = [...this.items, ...result.data];
-
-                    this.page = this.page + 1;
-
-                    this.items = result.data;
-                }
-
-                this.loading = false;
-            },
-            error: error => {
-                this.loading = false;
-
-                if (error.status === 0) {
-                    return;
-                }
-            },
-        });
-    }
-
-    createItem() {
-        this.router.navigate([`/create-student`]);
-    }
-
-    viewItem(id: number) {
-        this.router.navigate([`/students/${id}`]);
-    }
+export class StudentsComponent extends AbstractItemsListComponent<StudentDto> {
+    PATH = 'students';
+    SCHEMA = StudentDtoRespSchema;
+    CREATE_ITEM_PATH = '/create-student';
 }

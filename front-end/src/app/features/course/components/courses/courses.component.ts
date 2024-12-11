@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { CourseDtoRespSchema, CourseDtoResp } from '../../../../core/types';
+import {
+    CourseDtoRespSchema,
+    CourseDtoResp,
+    CourseDto,
+} from '../../../../core/types';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
@@ -19,38 +23,8 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
     templateUrl: './courses.component.html',
     styleUrls: ['./courses.component.css'],
 })
-export class CoursesComponent extends AbstractItemsListComponent<CourseDtoResp> {
-    private readonly PATH = 'courses';
-
-    getItems(): void {
-        this.apiService.get(this.PATH).subscribe({
-            next: data => {
-                const result = CourseDtoRespSchema.safeParse(data);
-                if (result.success) {
-                    if (this.page === 1) this.items = result.data;
-                    else if (result.data.length > 0 && this.items)
-                        this.items = [...this.items, ...result.data];
-
-                    this.page = this.page + 1;
-                }
-
-                this.loading = false;
-            },
-            error: error => {
-                this.loading = false;
-
-                if (error.status === 0) {
-                    return;
-                }
-            },
-        });
-    }
-
-    createItem() {
-        this.router.navigate([`/create-course`]);
-    }
-
-    viewItem(id: number) {
-        this.router.navigate([`/courses/${id}`]);
-    }
+export class CoursesComponent extends AbstractItemsListComponent<CourseDto> {
+    PATH = 'courses';
+    SCHEMA = CourseDtoRespSchema;
+    CREATE_ITEM_PATH = '/create-course';
 }

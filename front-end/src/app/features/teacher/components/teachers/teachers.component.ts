@@ -20,42 +20,8 @@ import { AbstractItemsListComponent } from '../../../../core/components/abstract
         TeacherDtoPipe,
     ],
 })
-export class TeachersComponent extends AbstractItemsListComponent<TeacherDtoResp> {
-    private readonly PATH = 'teachers';
-
-    getItems(): void {
-        const params = {
-            params: { pageNumber: this.page, pageSize: this.PAGE_SIZE },
-        };
-
-        this.apiService.get(this.PATH, params).subscribe({
-            next: data => {
-                const result = TeacherDtoRespSchema.safeParse(data);
-                if (result.success) {
-                    if (this.page === 1) this.items = result.data;
-                    else if (result.data.length > 0 && this.items)
-                        this.items = [...this.items, ...result.data];
-
-                    this.page = this.page + 1;
-                }
-
-                this.loading = false;
-            },
-            error: error => {
-                this.loading = false;
-
-                if (error.status === 0) {
-                    return;
-                }
-            },
-        });
-    }
-
-    createItem() {
-        this.router.navigate(['/create-teacher']);
-    }
-
-    viewItem(id: number) {
-        this.router.navigate([`/teachers/${id}`]);
-    }
+export class TeachersComponent extends AbstractItemsListComponent<TeacherDto> {
+    PATH = 'teachers';
+    SCHEMA = TeacherDtoRespSchema;
+    CREATE_ITEM_PATH = '/create-teacher';
 }
