@@ -1,1 +1,53 @@
-<p>view-student works!</p>
+<app-view-item-wrapper
+    [loading]="loading || loadingSchools"
+    [item]="item"
+    (deleteEvent)="onDelete()"
+    altButtonMessage="This teacher cannot be deleted"
+    [hideButton]="item?.registrations?.length !== 0"
+>
+    <h2>Edit Student</h2>
+    <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">
+        <div class="app-form-content">
+            <app-input-label
+                [group]="form"
+                name="firstName"
+                type="text"
+                [value]="item?.firstName"
+            >
+                Student First Name
+            </app-input-label>
+            <app-input-label
+                [group]="form"
+                name="lastName"
+                type="text"
+                [value]="item?.lastName"
+            >
+                Student Last Name
+            </app-input-label>
+            <app-select-item
+                path="schools"
+                [group]="form"
+                name="school"
+                (loadingEvent)="finishLoadingSchools()"
+            />
+            <button class="btn" type="submit">Update</button>
+            <app-form-validator [form]="form">
+                <ul>
+                    <li>Invalid input</li>
+                </ul>
+            </app-form-validator>
+        </div>
+    </form>
+    <h2>Current Courses</h2>
+    <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
+    <app-conditional-message
+        [condition]="!loading && item?.registrations?.length === 0"
+        message="THis student isn't taking any courses"
+    >
+        @for (course of item?.registrations; track course.course?.id) {
+            @if (course.course) {
+                <app-list-item [item]="course.course | courseRegistration" />
+            }
+        }
+    </app-conditional-message>
+</app-view-item-wrapper>

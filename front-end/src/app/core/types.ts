@@ -103,8 +103,10 @@ export const NestedCourseDtoSchema = zod.object({
     credits: zod.number(),
 });
 
+export type NestedCourseDto = zod.infer<typeof NestedCourseDtoSchema>;
+
 export const RegistractionCourseDtoSchema = zod.object({
-    Course: NestedCourseDtoSchema.optional(),
+    course: NestedCourseDtoSchema.optional(),
 });
 
 export const StudentDtoSchema = zod.object({
