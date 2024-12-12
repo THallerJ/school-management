@@ -1,12 +1,10 @@
 <app-view-item-wrapper
     [loading]="loading"
     [item]="item"
+    [errorFlag]="errorFlag"
     (deleteEvent)="onDelete()"
-    [altButtonMessage]="
-        item?.courses?.length === 0
-            ? undefined
-            : 'This school cannot be deleted'
-    "
+    altButtonMessage="This school cannot be deleted"
+    [hideButton]="item?.courses?.length !== 0 || !item"
 >
     <h2>Edit School</h2>
     <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">

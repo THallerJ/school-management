@@ -1,11 +1,11 @@
 <app-api-content-wrapper
     [loading]="loading"
-    [contentExists]="item !== undefined"
+    [errorFlag]="errorFlag"
     buttonText="Delete"
     [useAltButtonColor]="true"
     (clickEvent)="openModal()"
-    [hideButton]="true"
     [altButtonMessage]="altButtonMessage"
+    [hideButton]="hideButton"
 >
     <app-confirmation-modal (okEvent)="onClickDelete()" />
     <ng-content />

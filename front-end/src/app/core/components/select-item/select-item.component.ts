@@ -28,7 +28,6 @@ export class SelectItemComponent {
 
         this.apiService.get(this.path, params).subscribe({
             next: data => {
-                console.log;
                 const result = ItemsNoPagingRespSchema.safeParse(data);
                 if (result.success) {
                     this.items = result.data;

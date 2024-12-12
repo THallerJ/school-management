@@ -14,6 +14,8 @@ export class ViewItemWrapperComponent {
     @Input({ required: true }) loading!: boolean;
     @Input({ required: true }) item!: unknown;
     @Input() altButtonMessage?: string;
+    @Input() errorFlag?: boolean;
+    @Input() hideButton?: boolean;
     @Output() deleteEvent = new EventEmitter();
 
     constructor(private modalService: ModalService) {}

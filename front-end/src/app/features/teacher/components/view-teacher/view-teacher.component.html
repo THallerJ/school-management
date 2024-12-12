@@ -2,11 +2,8 @@
     [loading]="loading || loadingSchools"
     [item]="item"
     (deleteEvent)="onDelete()"
-    [altButtonMessage]="
-        item?.courses?.length === 0
-            ? undefined
-            : 'This teacher cannot be deleted'
-    "
+    altButtonMessage="This teacher cannot be deleted"
+    [hideButton]="item?.courses?.length !== 0 || !item"
 >
     <h2>Edit Teacher</h2>
     <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">

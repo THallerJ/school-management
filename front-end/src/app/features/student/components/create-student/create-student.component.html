@@ -1,8 +1,4 @@
-<app-api-content-wrapper
-    [hideButton]="true"
-    [ignoreContent]="true"
-    [loading]="loading"
->
+<app-api-content-wrapper [hideButton]="true" [loading]="loading">
     <h2>Create Student</h2>
     <form class="app-form" [formGroup]="form" (ngSubmit)="createItem()">
         <div class="app-form-content">

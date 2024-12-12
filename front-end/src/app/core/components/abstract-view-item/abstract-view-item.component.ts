@@ -18,9 +18,10 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
     protected abstract REDIRECT: string;
 
     protected id?: number;
-    protected loading = true;
+    protected loading = false;
     protected form!: FormGroup;
     protected item?: T;
+    protected errorFlag = false;
 
     constructor(
         protected route: ActivatedRoute,
@@ -37,18 +38,22 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
     abstract initForm(): void;
 
     getItem(id: number) {
+        this.loading = true;
+        this.errorFlag = false;
+
         this.apiService.get(this.PATH, { id }).subscribe({
             next: data => {
                 const result = this.SCHEMA.safeParse(data);
                 if (result.success) this.item = result.data;
-                this.loading = false;
                 this.patchForm();
+                this.loading = false;
             },
             error: error => {
-                this.loading = false;
-
                 if (error.status === 0) {
                     return;
+                } else {
+                    this.loading = false;
+                    this.errorFlag = true;
                 }
             },
         });

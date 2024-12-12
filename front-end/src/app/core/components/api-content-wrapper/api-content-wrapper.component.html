@@ -1,5 +1,5 @@
 <div class="content-wrapper">
-    @if ((!hideButton || contentExists) && altButtonMessage === undefined) {
+    @if (!loading && !hideButton && !errorFlag) {
         <button
             class="btn align-btn"
             [class.btn-alt]="useAltButtonColor"
@@ -7,12 +7,13 @@
         >
             {{ buttonText }}
         </button>
-    } @else if (altButtonMessage && !loading && contentExists) {
+    } @else if (altButtonMessage && !loading && !errorFlag) {
         <span class="altButtonMessage">{{ altButtonMessage }}</span>
     }
+
     @if (loading) {
         <app-spinner />
-    } @else if (!loading && (contentExists || ignoreContent)) {
+    } @else if (!errorFlag) {
         <ng-content />
     } @else {
         <span>An error has occured or the content does not exist.</span>
