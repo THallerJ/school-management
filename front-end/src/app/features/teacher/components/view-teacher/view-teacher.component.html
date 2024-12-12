@@ -38,7 +38,7 @@
             </app-form-validator>
         </div>
     </form>
-    <h2>Courses Taught</h2>
+    <h2>Current Courses</h2>
     <app-item-list-header [columns]="['Name', 'Credits']" />
     <app-conditional-message
         [condition]="!loading && item?.courses?.length === 0"
