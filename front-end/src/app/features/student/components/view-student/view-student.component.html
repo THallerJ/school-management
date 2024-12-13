@@ -38,6 +38,22 @@
             </app-form-validator>
         </div>
     </form>
+    <h2>Add Courses</h2>
+    <form
+        class="app-form"
+        [formGroup]="registrationForm"
+        (ngSubmit)="addRegistration()"
+    >
+        <div class="app-form-content">
+            <app-select-item
+                path="courses"
+                [group]="registrationForm"
+                name="course"
+                (loadingEvent)="finishLoadingRegistrations()"
+            />
+            <button class="btn" type="submit">Submit</button>
+        </div>
+    </form>
     <h2>Current Courses</h2>
     <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
     <app-conditional-message

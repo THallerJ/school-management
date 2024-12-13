@@ -10,6 +10,7 @@ import { ConditionalMessageComponent } from '../../../../core/components/conditi
 import { AbstractViewItemComponent } from '../../../../core/components/abstract-view-item/abstract-view-item.component';
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { CourseRegistrationPipe } from '../../pipes/course-registration.pipe';
+import { FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-view-student',
@@ -36,7 +37,9 @@ export class ViewStudentComponent extends AbstractViewItemComponent<
     override REDIRECT = '/students';
     override SCHEMA = StudentDtoSchema;
 
+    registrationForm!: FormGroup;
     loadingSchools = true;
+    loadingCourses = true;
 
     override getUpdatedItem(): UpdatedStudent {
         return {
@@ -63,10 +66,10 @@ export class ViewStudentComponent extends AbstractViewItemComponent<
             },
             { updateOn: 'submit' },
         );
-    }
 
-    finishLoadingSchools() {
-        this.loadingSchools = false;
+        this.registrationForm = this.formBuilder.group({
+            course: ['', Validators.required],
+        });
     }
 
     removeLocalRegistration(courseId: number) {
@@ -91,6 +94,27 @@ export class ViewStudentComponent extends AbstractViewItemComponent<
                 });
         }
     }
+
+    addRegistration() {
+        if (this.item) {
+            this.apiService
+                .post<addRegistration>(this.REGISTRATIONS_PATH, {
+                    studentId: this.item.id,
+                    courseId: this.registrationForm.value.course,
+                })
+                .subscribe(() => {
+                    window.location.reload();
+                });
+        }
+    }
+
+    finishLoadingSchools() {
+        this.loadingSchools = false;
+    }
+
+    finishLoadingRegistrations() {
+        this.loadingCourses = false;
+    }
 }
 
 type UpdatedStudent = {
@@ -98,3 +122,5 @@ type UpdatedStudent = {
     lastName?: string;
     schoolId?: number;
 };
+
+type addRegistration = { courseId: number; studentId: number };
