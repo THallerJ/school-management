@@ -8,4 +8,8 @@
             <span [style.width]="width">{{ prop }}</span>
         }
     </div>
+
+    @if (buttonEvent.observed) {
+        <button class="remove-btn" (click)="onButtonClick()">remove</button>
+    }
 </div>

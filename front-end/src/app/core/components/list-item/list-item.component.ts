@@ -10,6 +10,7 @@ import { Item } from '../../types';
 export class ListItemComponent implements OnInit {
     @Input({ required: true }) item!: Item;
     @Output() clickEvent = new EventEmitter();
+    @Output() buttonEvent = new EventEmitter();
     width!: string;
 
     ngOnInit() {
@@ -18,5 +19,9 @@ export class ListItemComponent implements OnInit {
 
     onClick() {
         this.clickEvent.emit();
+    }
+
+    onButtonClick() {
+        this.buttonEvent.emit();
     }
 }

@@ -47,7 +47,7 @@
         @for (course of item?.registrations; track course.course?.id) {
             @if (course.course) {
                 <app-list-item
-                    (clickEvent)="deleteRegistration(course.course.id)"
+                    (buttonEvent)="deleteRegistration(course.course.id)"
                     [item]="course.course | courseRegistration"
                 />
             }
