@@ -5,7 +5,7 @@ import { ItemListHeaderComponent } from '../../../../core/components/item-list-h
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { CourseDtoPipe } from './../../pipes/course-dto.pipe';
-import { AbstractItemsListComponent } from '../../../../core/components/abstract-items-list/abstract-items-list.component';
+import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-items-list/abstract-items-list.component';
 @Component({
     selector: 'app-courses',
     standalone: true,

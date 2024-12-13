@@ -9,7 +9,7 @@ import { ApiContentWrapperComponent } from '../../../../core/components/api-cont
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { StudentDtoPipe } from '../../pipes/student-dto.pipe';
-import { AbstractItemsListComponent } from '../../../../core/components/abstract-items-list/abstract-items-list.component';
+import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-items-list/abstract-items-list.component';
 @Component({
     selector: 'app-students',
     standalone: true,

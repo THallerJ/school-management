@@ -5,7 +5,7 @@ import { ItemListHeaderComponent } from '../../../../core/components/item-list-h
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
-import { AbstractItemsListComponent } from '../../../../core/components/abstract-items-list/abstract-items-list.component';
+import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-items-list/abstract-items-list.component';
 @Component({
     selector: 'app-schools',
     standalone: true,

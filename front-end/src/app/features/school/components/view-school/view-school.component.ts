@@ -8,7 +8,7 @@ import { ItemListHeaderComponent } from '../../../../core/components/item-list-h
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { CourseNoSchoolPipe } from './../../pipes/course-no-school.pipe';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
-import { AbstractViewItemComponent } from '../../../../core/components/abstract-view-item/abstract-view-item.component';
+import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 @Component({
     selector: 'app-view-school',
     standalone: true,

@@ -7,7 +7,7 @@ import { ViewItemWrapperComponent } from '../../../../core/components/view-item-
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
-import { AbstractViewItemComponent } from '../../../../core/components/abstract-view-item/abstract-view-item.component';
+import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { CourseRegistrationPipe } from '../../pipes/course-registration.pipe';
 import { FormGroup } from '@angular/forms';
