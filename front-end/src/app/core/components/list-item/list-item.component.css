@@ -27,4 +27,5 @@
 
 .remove-btn:hover {
     cursor: pointer;
+    background-color: var(--dark-text);
 }
