@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StudentDto, StudentDtoSchema } from '../../../../core/types';
-import { ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
@@ -69,14 +69,27 @@ export class ViewStudentComponent extends AbstractViewItemComponent<
         this.loadingSchools = false;
     }
 
-    deleteRegistration(courseId: number) {
-        if (!this.item) return;
+    removeLocalRegistration(courseId: number) {
+        this.item?.registrations.map(r => {
+            if (r.course?.id === courseId) {
+                this.item?.registrations.splice(
+                    this.item?.registrations.indexOf(r),
+                    1,
+                );
+            }
+        });
+    }
 
-        this.apiService
-            .delete(this.REGISTRATIONS_PATH, {
-                body: { courseId: courseId, studentId: this.item?.id },
-            })
-            .subscribe();
+    deleteRegistration(courseId: number) {
+        if (this.item) {
+            this.apiService
+                .delete(this.REGISTRATIONS_PATH, {
+                    body: { courseId: courseId, studentId: this.item.id },
+                })
+                .subscribe(() => {
+                    this.removeLocalRegistration(courseId);
+                });
+        }
     }
 }
 
