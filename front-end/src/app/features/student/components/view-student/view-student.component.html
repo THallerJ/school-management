@@ -29,6 +29,7 @@
                 [group]="form"
                 name="school"
                 (loadingEvent)="finishLoadingSchools()"
+                label="School"
             />
             <button class="btn" type="submit">Update</button>
             <app-form-validator [form]="form">
@@ -50,6 +51,7 @@
                 [group]="registrationForm"
                 name="course"
                 (loadingEvent)="finishLoadingRegistrations()"
+                label="course"
             />
             <button class="btn" type="submit">Submit</button>
         </div>
@@ -63,7 +65,7 @@
         @for (course of item?.registrations; track course.course?.id) {
             @if (course.course) {
                 <app-list-item
-                    (buttonEvent)="deleteRegistration(course.course.id)"
+                    (buttonEvent)="removeRegistration(course.course.id)"
                     [item]="course.course | courseRegistration"
                 />
             }

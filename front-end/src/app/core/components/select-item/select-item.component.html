@@ -4,7 +4,7 @@
         [name]="name"
         [options]="items | itemsNoPaging"
     >
-        School
+        {{ label }}
     </app-select-label>
 } @else if (!loading && items && items.length == 0) {
     <span>No schools found</span>

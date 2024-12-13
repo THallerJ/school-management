@@ -11,6 +11,7 @@ import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-vi
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { CourseRegistrationPipe } from '../../pipes/course-registration.pipe';
 import { FormGroup } from '@angular/forms';
+import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
 
 @Component({
     selector: 'app-view-student',
@@ -29,10 +30,10 @@ import { FormGroup } from '@angular/forms';
     templateUrl: './view-student.component.html',
     styleUrl: './view-student.component.css',
 })
-export class ViewStudentComponent extends AbstractViewItemComponent<
-    StudentDto,
-    UpdatedStudent
-> {
+export class ViewStudentComponent
+    extends AbstractViewItemComponent<StudentDto, UpdatedStudent>
+    implements RegistrationInterface
+{
     override PATH = 'students';
     override REDIRECT = '/students';
     override SCHEMA = StudentDtoSchema;
@@ -83,7 +84,7 @@ export class ViewStudentComponent extends AbstractViewItemComponent<
         });
     }
 
-    deleteRegistration(courseId: number) {
+    removeRegistration(courseId: number) {
         if (this.item) {
             this.apiService
                 .delete(this.REGISTRATIONS_PATH, {
