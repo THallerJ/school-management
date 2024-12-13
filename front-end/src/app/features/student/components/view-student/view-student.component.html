@@ -46,7 +46,10 @@
     >
         @for (course of item?.registrations; track course.course?.id) {
             @if (course.course) {
-                <app-list-item [item]="course.course | courseRegistration" />
+                <app-list-item
+                    (clickEvent)="deleteRegistration(course.course.id)"
+                    [item]="course.course | courseRegistration"
+                />
             }
         }
     </app-conditional-message>

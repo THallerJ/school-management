@@ -68,6 +68,16 @@ export class ViewStudentComponent extends AbstractViewItemComponent<
     finishLoadingSchools() {
         this.loadingSchools = false;
     }
+
+    deleteRegistration(courseId: number) {
+        if (!this.item) return;
+
+        this.apiService
+            .delete(this.REGISTRATIONS_PATH, {
+                body: { courseId: courseId, studentId: this.item?.id },
+            })
+            .subscribe();
+    }
 }
 
 type UpdatedStudent = {

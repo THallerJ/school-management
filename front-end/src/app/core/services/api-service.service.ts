@@ -27,14 +27,24 @@ export class ApiService {
         return this.http.put(`${this.apiUrl}/${path}/${id}`, data);
     }
 
-    delete(path: string, id: number): Observable<unknown> {
-        return this.http.delete(`${this.apiUrl}/${path}/${id}`);
+    delete<T>(path: string, options: DeleteOptions<T>): Observable<unknown> {
+        const url = `${this.apiUrl}/${path}`;
+        if (options.id) return this.http.delete(`${url}/${options.id}`);
+        else
+            return this.http.delete(`${url}`, {
+                body: options.body,
+            });
     }
 }
 
 type GetOptions = {
     id?: number;
     params?: Params;
+};
+
+type DeleteOptions<T> = {
+    id?: number;
+    body?: T;
 };
 
 type Params = {

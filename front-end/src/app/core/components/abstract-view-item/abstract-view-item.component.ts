@@ -17,6 +17,8 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
 
+    protected REGISTRATIONS_PATH = 'registrations';
+
     protected id?: number;
     protected loading = false;
     protected form!: FormGroup;
@@ -61,7 +63,7 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
 
     onDelete = () => {
         if (this.id) {
-            this.apiService.delete(this.PATH, this.id).subscribe();
+            this.apiService.delete(this.PATH, { id: this.id }).subscribe();
         }
 
         this.router.navigate([this.REDIRECT]);
