@@ -3,7 +3,6 @@ import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-vi
 import { CourseDto, CourseDtoSchema } from '../../../../core/types';
 import { Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
-import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
@@ -12,6 +11,7 @@ import { ListItemComponent } from '../../../../core/components/list-item/list-it
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
 import { StudentRegistrationPipe } from '../../pipes/student-registration.pipe';
 import { AddRegistration } from '../../../../core/types';
+import { CourseFormComponent } from '../course-form/course-form.component';
 @Component({
     selector: 'app-view-course',
     standalone: true,
@@ -21,10 +21,10 @@ import { AddRegistration } from '../../../../core/types';
         ListItemComponent,
         ItemListHeaderComponent,
         FormValidatorComponent,
-        InputLabelComponent,
         ConditionalMessageComponent,
         ReactiveFormsModule,
         StudentRegistrationPipe,
+        CourseFormComponent,
     ],
     templateUrl: './view-course.component.html',
     styleUrl: './view-course.component.css',

@@ -1,0 +1,26 @@
+<form class="app-form" [formGroup]="form" (ngSubmit)="submitItem()">
+    <div class="app-form-content">
+        <app-input-label [group]="form" name="name" type="text">
+            Course Name
+        </app-input-label>
+        <app-input-label [group]="form" name="credits" type="text">
+            Course Credits
+        </app-input-label>
+        <app-select-item
+            path="schools"
+            [group]="form"
+            name="school"
+            (loadingEvent)="finishLoadingSchools()"
+            label="school"
+        />
+        <app-select-item
+            path="teachers"
+            [group]="form"
+            name="teacher"
+            (loadingEvent)="finishLoadingTeachers()"
+            label="teacher"
+        />
+        <button class="btn" type="submit">{{ buttonText }}</button>
+        <ng-content />
+    </div>
+</form>
