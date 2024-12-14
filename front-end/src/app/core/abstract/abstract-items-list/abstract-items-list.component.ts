@@ -26,17 +26,19 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
     ) {}
 
     getItems() {
-        this.apiService.get(this.PATH).subscribe({
+        const params = { pageNumber: this.page, pageSize: this.PAGE_SIZE };
+
+        this.apiService.get(this.PATH, { params }).subscribe({
             next: data => {
                 const result = this.SCHEMA.safeParse(data);
                 if (result.success) {
-                    if (this.page === 1) this.items = result.data;
-                    else if (result.data.length > 0 && this.items)
+                    if (this.page === 1) {
+                        this.items = result.data;
+                    } else if (result.data.length > 0 && this.items) {
                         this.items = [...this.items, ...result.data];
+                    }
 
                     this.page = this.page + 1;
-
-                    this.items = result.data;
                 }
 
                 this.loading = false;
