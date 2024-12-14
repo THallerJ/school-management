@@ -20,6 +20,8 @@ export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedS
     override PATH = 'students';
     override REDIRECT = '/students';
 
+    loading = true;
+
     override initForm() {
         this.form = this.formBuilder.group(
             {
@@ -43,6 +45,10 @@ export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedS
             lastName: this.form.value.lastName,
             schoolId: this.form.value.school,
         };
+    }
+
+    finishLoading() {
+        this.loading = false;
     }
 }
 
