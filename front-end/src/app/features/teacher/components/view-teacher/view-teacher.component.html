@@ -6,39 +6,18 @@
     [hideButton]="item?.courses?.length !== 0 || !item"
 >
     <h2>Edit Teacher</h2>
-    <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">
-        <div class="app-form-content">
-            <app-input-label
-                [group]="form"
-                name="firstName"
-                type="text"
-                [value]="item?.firstName"
-            >
-                Teacher First Name
-            </app-input-label>
-            <app-input-label
-                [group]="form"
-                name="lastName"
-                type="text"
-                [value]="item?.lastName"
-            >
-                Teacher Last Name
-            </app-input-label>
-            <app-select-item
-                path="schools"
-                [group]="form"
-                name="school"
-                (loadingEvent)="finishLoadingSchools()"
-                label="school"
-            />
-            <button class="btn" type="submit">Update</button>
-            <app-form-validator [form]="form">
-                <ul>
-                    <li>Invalid input</li>
-                </ul>
-            </app-form-validator>
-        </div>
-    </form>
+    <app-teacher-form
+        [form]="form"
+        buttonText="Update Teacher"
+        (submitEvent)="updateItem()"
+        (loadSchoolsEvent)="finishLoadingSchools()"
+    >
+        <app-form-validator [form]="form">
+            <ul>
+                <li>Invalid input</li>
+            </ul>
+        </app-form-validator>
+    </app-teacher-form>
     <h2>Current Courses</h2>
     <app-item-list-header [columns]="['Name', 'Credits']" />
     <app-conditional-message

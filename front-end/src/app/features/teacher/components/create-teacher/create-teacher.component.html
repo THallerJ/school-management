@@ -1,26 +1,15 @@
 <app-api-content-wrapper [hideButton]="true" [loading]="loading">
     <h2>Create Teacher</h2>
-    <form class="app-form" [formGroup]="form" (ngSubmit)="createItem()">
-        <div class="app-form-content">
-            <app-input-label [group]="form" name="firstName" type="text">
-                First Name
-            </app-input-label>
-            <app-input-label [group]="form" name="lastName" type="text">
-                Last Name
-            </app-input-label>
-            <app-select-item
-                path="schools"
-                [group]="form"
-                name="school"
-                (loadingEvent)="finishLoading()"
-                label="School"
-            />
-            <button class="btn" type="submit">Create Teacher</button>
-            <app-form-validator [form]="form">
-                <ul>
-                    <li>All fields are required</li>
-                </ul>
-            </app-form-validator>
-        </div>
-    </form>
+    <app-teacher-form
+        [form]="form"
+        buttonText="Create Teacher"
+        (loadSchoolsEvent)="finishLoading()"
+        (submitEvent)="createItem()"
+    >
+        <app-form-validator [form]="form">
+            <ul>
+                <li>All fields are required</li>
+            </ul>
+        </app-form-validator>
+    </app-teacher-form>
 </app-api-content-wrapper>

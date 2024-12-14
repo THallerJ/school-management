@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
-import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-create-item/abstract-create-item.component';
-import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
+import { TeacherFormComponent } from './../teacher-form/teacher-form.component';
+
 @Component({
     selector: 'app-create-teacher',
     standalone: true,
     imports: [
         FormValidatorComponent,
-        InputLabelComponent,
         ReactiveFormsModule,
         ApiContentWrapperComponent,
-        SelectItemComponent,
+        TeacherFormComponent,
     ],
     templateUrl: './create-teacher.component.html',
     styleUrl: './create-teacher.component.css',
