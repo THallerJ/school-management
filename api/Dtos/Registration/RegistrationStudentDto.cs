@@ -4,6 +4,6 @@ namespace school_management.Dtos.Course
 {
     public class RegistrationStudentDto
     {
-        public NestedStudentDto? Student { get; set; }
+        public NestedStudentDto? student { get; set; }
     }
 }

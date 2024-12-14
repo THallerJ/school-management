@@ -1,1 +1,76 @@
-<p>view-course works!</p>
+<app-view-item-wrapper
+    [loading]="
+        loading || loadingSchools || loadingTeachers || loadingRegistrations
+    "
+    [item]="item"
+    (deleteEvent)="onDelete()"
+    altButtonMessage="This course cannot be deleted"
+    [hideButton]="item?.registrations?.length !== 0"
+>
+    <h2>Edit Course</h2>
+    <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">
+        <div class="app-form-content">
+            <app-input-label [group]="form" name="name" type="text">
+                Course Name
+            </app-input-label>
+            <app-input-label [group]="form" name="credits" type="text">
+                Course Credits
+            </app-input-label>
+            <app-select-item
+                path="schools"
+                [group]="form"
+                name="school"
+                (loadingEvent)="finishLoadingSchools()"
+                label="school"
+            />
+            <app-select-item
+                path="teachers"
+                [group]="form"
+                name="teacher"
+                (loadingEvent)="finishLoadingTeachers()"
+                label="teacher"
+            />
+            <button class="btn" type="submit">Update</button>
+            <app-form-validator [form]="form">
+                <ul>
+                    <li>
+                        The credits field must be a whole number greater than or
+                        equal to 0
+                    </li>
+                </ul>
+            </app-form-validator>
+        </div>
+    </form>
+    <h2>Add Student</h2>
+    <form
+        class="app-form"
+        [formGroup]="registrationForm"
+        (ngSubmit)="addRegistration()"
+    >
+        <div class="app-form-content">
+            <app-select-item
+                path="students"
+                [group]="registrationForm"
+                name="student"
+                (loadingEvent)="finishLoadingRegistrations()"
+                label="student"
+            />
+            <button class="btn" type="submit">Submit</button>
+        </div>
+    </form>
+    <h2>Current Students</h2>
+    <app-item-list-header [columns]="['First Name', 'Last Name']" />
+    <app-conditional-message
+        [condition]="!loading && item?.registrations?.length === 0"
+        message="This course has no students"
+    >
+        @for (student of item?.registrations; track student.student?.id) {
+            @if (student.student) {
+                <app-list-item
+                    (buttonEvent)="removeRegistration(student.student.id)"
+                    [item]="student.student | studentRegistration"
+                />
+            }
+        }
+    </app-conditional-message>
+</app-view-item-wrapper>

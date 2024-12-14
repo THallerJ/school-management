@@ -1,8 +1,8 @@
 <app-view-item-wrapper
-    [loading]="loading || loadingSchools"
+    [loading]="loading || loadingSchools || loadingRegistrations"
     [item]="item"
     (deleteEvent)="onDelete()"
-    altButtonMessage="This teacher cannot be deleted"
+    altButtonMessage="This student cannot be deleted"
     [hideButton]="item?.registrations?.length !== 0"
 >
     <h2>Edit Student</h2>

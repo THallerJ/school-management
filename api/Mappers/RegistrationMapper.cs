@@ -17,7 +17,7 @@ namespace school_management.Mappers
         {
             return new RegistrationStudentDto
             {
-                Student = registration.Student?.ToNestedStudentDto(),
+                student = registration.Student?.ToNestedStudentDto(),
             };
         }
 

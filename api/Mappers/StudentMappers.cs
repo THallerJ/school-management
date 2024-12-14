@@ -33,8 +33,7 @@ namespace school_management.Mappers
             return new StudentDtoNoPaging
             {
                 Id = student.Id,
-                FirstName = student.FirstName,
-                LastName = student.LastName,
+                Name = student.FirstName + " " + student.LastName
             };
         }
 

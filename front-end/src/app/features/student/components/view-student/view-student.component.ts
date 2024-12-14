@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { StudentDto, StudentDtoSchema } from '../../../../core/types';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+    StudentDto,
+    StudentDtoSchema,
+    AddRegistration,
+} from '../../../../core/types';
+import { ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
@@ -10,7 +14,6 @@ import { ConditionalMessageComponent } from '../../../../core/components/conditi
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { CourseRegistrationPipe } from '../../pipes/course-registration.pipe';
-import { FormGroup } from '@angular/forms';
 import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
 
 @Component({
@@ -40,7 +43,7 @@ export class ViewStudentComponent
 
     registrationForm!: FormGroup;
     loadingSchools = true;
-    loadingCourses = true;
+    loadingRegistrations = true;
 
     override getUpdatedItem(): UpdatedStudent {
         return {
@@ -99,7 +102,7 @@ export class ViewStudentComponent
     addRegistration() {
         if (this.item) {
             this.apiService
-                .post<addRegistration>(this.REGISTRATIONS_PATH, {
+                .post<AddRegistration>(this.REGISTRATIONS_PATH, {
                     studentId: this.item.id,
                     courseId: this.registrationForm.value.course,
                 })
@@ -114,7 +117,7 @@ export class ViewStudentComponent
     }
 
     finishLoadingRegistrations() {
-        this.loadingCourses = false;
+        this.loadingRegistrations = false;
     }
 }
 
@@ -123,5 +126,3 @@ type UpdatedStudent = {
     lastName?: string;
     schoolId?: number;
 };
-
-type addRegistration = { courseId: number; studentId: number };

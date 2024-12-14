@@ -9,8 +9,10 @@ export const NestedStudentDtoSchema = zod.object({
     lastName: zod.string(),
 });
 
+export type NestedStudentDto = zod.infer<typeof NestedStudentDtoSchema>;
+
 export const RegistrationStudentDtoSchema = zod.object({
-    Student: NestedStudentDtoSchema.optional(),
+    student: NestedStudentDtoSchema.optional(),
 });
 
 export const NestedTeacherDtoSchema = zod.object({
@@ -146,3 +148,5 @@ export const ItemsNoPagingRespSchema = zod.array(ItemNoPagingSchema);
 export type ItemNoPaging = zod.infer<typeof ItemNoPagingSchema>;
 
 export type ItemsNoPagingResp = zod.infer<typeof ItemsNoPagingRespSchema>;
+
+export type AddRegistration = { courseId: number; studentId: number };
