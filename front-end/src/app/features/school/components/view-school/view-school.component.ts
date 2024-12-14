@@ -9,6 +9,7 @@ import { ListItemComponent } from '../../../../core/components/list-item/list-it
 import { CourseNoSchoolPipe } from './../../pipes/course-no-school.pipe';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
+import { SchoolFormComponent } from '../school-form/school-form.component';
 @Component({
     selector: 'app-view-school',
     standalone: true,
@@ -21,6 +22,7 @@ import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-vi
         ListItemComponent,
         CourseNoSchoolPipe,
         ConditionalMessageComponent,
+        SchoolFormComponent,
     ],
     templateUrl: './view-school.component.html',
     styleUrl: './view-school.component.css',

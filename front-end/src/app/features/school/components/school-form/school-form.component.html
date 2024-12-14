@@ -1,0 +1,15 @@
+<form class="app-form" [formGroup]="form" (ngSubmit)="submitItem()">
+    <div class="app-form-content">
+        <app-input-label [group]="form" name="name" type="text"
+            >School Name</app-input-label
+        >
+        <app-input-label [group]="form" name="address" type="text"
+            >School Address</app-input-label
+        >
+        <app-input-label [group]="form" name="phoneNumber" type="tel">
+            School Phone Number
+        </app-input-label>
+        <button class="btn" type="submit">{{ buttonText }}</button>
+        <ng-content />
+    </div>
+</form>

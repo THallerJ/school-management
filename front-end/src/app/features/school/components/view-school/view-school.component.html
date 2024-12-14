@@ -7,43 +7,18 @@
     [hideButton]="item?.courses?.length !== 0 || !item"
 >
     <h2>Edit School</h2>
-    <form class="app-form" [formGroup]="form" (ngSubmit)="updateItem()">
-        <div class="app-form-content">
-            <app-input-label
-                [group]="form"
-                name="name"
-                type="text"
-                [value]="item?.name"
-            >
-                School Name
-            </app-input-label>
-            <app-input-label
-                [group]="form"
-                name="address"
-                type="text"
-                [value]="item?.address"
-            >
-                School Address
-            </app-input-label>
-            <app-input-label
-                [group]="form"
-                name="phoneNumber"
-                type="tele"
-                [value]="item?.phoneNumber"
-            >
-                School Phone Number
-            </app-input-label>
-            <button class="btn" type="submit">Update</button>
-            <app-form-validator [form]="form">
-                <ul>
-                    <li>
-                        Name and address fields must have at least 3 characters
-                    </li>
-                    <li>Phone number must be 10 digits</li>
-                </ul>
-            </app-form-validator>
-        </div>
-    </form>
+    <app-school-form
+        [form]="form"
+        buttonText="Update School"
+        (submitEvent)="updateItem()"
+    >
+        <app-form-validator [form]="form">
+            <ul>
+                <li>Name and address fields must have at least 3 characters</li>
+                <li>Phone number must be 10 digits</li>
+            </ul>
+        </app-form-validator></app-school-form
+    >
     <h2>Courses at school</h2>
     <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
     <app-conditional-message
