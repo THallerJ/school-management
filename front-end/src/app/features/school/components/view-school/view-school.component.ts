@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { SchoolDto, SchoolDtoSchema } from '../../../../core/types';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
-import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
@@ -16,7 +15,6 @@ import { SchoolFormComponent } from '../school-form/school-form.component';
     imports: [
         ReactiveFormsModule,
         FormValidatorComponent,
-        InputLabelComponent,
         ViewItemWrapperComponent,
         ItemListHeaderComponent,
         ListItemComponent,

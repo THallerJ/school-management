@@ -6,7 +6,6 @@ import {
 } from '../../../../core/types';
 import { ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
-import { InputLabelComponent } from '../../../../core/components/input-label/input-label.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
@@ -15,6 +14,7 @@ import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-vi
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { CourseRegistrationPipe } from '../../pipes/course-registration.pipe';
 import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
+import { StudentFormComponent } from './../student-form/student-form.component';
 
 @Component({
     selector: 'app-view-student',
@@ -25,10 +25,10 @@ import { RegistrationInterface } from '../../../../core/interfaces/registration-
         ListItemComponent,
         ItemListHeaderComponent,
         FormValidatorComponent,
-        InputLabelComponent,
         ConditionalMessageComponent,
         ReactiveFormsModule,
         CourseRegistrationPipe,
+        StudentFormComponent,
     ],
     templateUrl: './view-student.component.html',
     styleUrl: './view-student.component.css',

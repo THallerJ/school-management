@@ -1,0 +1,19 @@
+<form class="app-form" [formGroup]="form" (ngSubmit)="submitItem()">
+    <div class="app-form-content">
+        <app-input-label [group]="form" name="firstName" type="text">
+            First Name
+        </app-input-label>
+        <app-input-label [group]="form" name="lastName" type="text">
+            Last Name
+        </app-input-label>
+        <app-select-item
+            path="schools"
+            [group]="form"
+            name="school"
+            (loadingEvent)="finishLoading()"
+            label="school"
+        />
+        <button class="btn" type="submit">{{ buttonText }}</button>
+        <ng-content />
+    </div>
+</form>
