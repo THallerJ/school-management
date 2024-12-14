@@ -32,8 +32,8 @@ namespace school_management.Mappers
             return new TeacherDtoNoPaging
             {
                 Id = teacher.Id,
-                FirstName = teacher.FirstName,
-                LastName = teacher.LastName,
+                Name = teacher.FirstName + ' ' + teacher.LastName,
+        
             };
         }
 

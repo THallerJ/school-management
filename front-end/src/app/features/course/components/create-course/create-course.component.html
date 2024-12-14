@@ -1,1 +1,37 @@
-<p>create-course works!</p>
+<div>
+    <h2>Create Course</h2>
+    <form class="app-form" [formGroup]="form" (ngSubmit)="createItem()">
+        <div class="app-form-content">
+            <app-input-label [group]="form" name="name" type="text">
+                Course Name
+            </app-input-label>
+            <app-input-label [group]="form" name="credits" type="text">
+                Course Credits
+            </app-input-label>
+            <app-select-item
+                path="schools"
+                [group]="form"
+                name="school"
+                (loadingEvent)="finishLoadingSchools()"
+                label="school"
+            />
+            <app-select-item
+                path="teachers"
+                [group]="form"
+                name="teacher"
+                (loadingEvent)="finishLoadingTeachers()"
+                label="teacher"
+            />
+            <button class="btn" type="submit">Create Course</button>
+            <app-form-validator [form]="form">
+                <ul>
+                    <li>All fields are required</li>
+                    <li>
+                        The credits field must be a whole number greater than or
+                        equal to 0
+                    </li>
+                </ul>
+            </app-form-validator>
+        </div>
+    </form>
+</div>
