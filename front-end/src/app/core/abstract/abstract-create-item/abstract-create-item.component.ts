@@ -14,7 +14,6 @@ export abstract class AbstractCreateItemComponent<T> implements OnInit {
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
 
-    protected loading = true;
     protected form!: FormGroup;
 
     constructor(
@@ -37,10 +36,6 @@ export abstract class AbstractCreateItemComponent<T> implements OnInit {
                 this.router.navigate([this.REDIRECT]);
             });
         }
-    }
-
-    protected finishLoading() {
-        this.loading = false;
     }
 
     ngOnInit() {

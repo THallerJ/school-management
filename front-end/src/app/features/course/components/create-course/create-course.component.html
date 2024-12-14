@@ -1,20 +1,25 @@
-<div>
-    <h2>Create Course</h2>
-    <app-course-form
-        [form]="form"
-        buttonText="Create Course"
-        (loadSchoolsEvent)="finishLoadingSchools()"
-        (loadTeachersEvent)="finishLoadingTeachers()"
-        (submitItemEvent)="createItem()"
-    >
-        <app-form-validator [form]="form">
-            <ul>
-                <li>All fields are required</li>
-                <li>
-                    The credits field must be a whole number greater than or
-                    equal to 0
-                </li>
-            </ul>
-        </app-form-validator>
-    </app-course-form>
-</div>
+<app-api-content-wrapper
+    [hideButton]="true"
+    [loading]="loadingSchools || loadingTeachers"
+>
+    <div>
+        <h2>Create Course</h2>
+        <app-course-form
+            [form]="form"
+            buttonText="Create Course"
+            (loadSchoolsEvent)="finishLoadingSchools()"
+            (loadTeachersEvent)="finishLoadingTeachers()"
+            (submitItemEvent)="createItem()"
+        >
+            <app-form-validator [form]="form">
+                <ul>
+                    <li>All fields are required</li>
+                    <li>
+                        The credits field must be a whole number greater than or
+                        equal to 0
+                    </li>
+                </ul>
+            </app-form-validator>
+        </app-course-form>
+    </div>
+</app-api-content-wrapper>

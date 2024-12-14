@@ -3,10 +3,16 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-create-item/abstract-create-item.component';
 import { CourseFormComponent } from '../course-form/course-form.component';
+import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 @Component({
     selector: 'app-create-course',
     standalone: true,
-    imports: [ReactiveFormsModule, FormValidatorComponent, CourseFormComponent],
+    imports: [
+        ReactiveFormsModule,
+        FormValidatorComponent,
+        CourseFormComponent,
+        ApiContentWrapperComponent,
+    ],
     templateUrl: './create-course.component.html',
     styleUrl: './create-course.component.css',
 })
