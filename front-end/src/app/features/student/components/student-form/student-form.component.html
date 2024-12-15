@@ -6,11 +6,15 @@
         <app-input-label [group]="form" name="lastName" type="text">
             Last Name
         </app-input-label>
+        <app-input-label [group]="form" name="email" type="email">
+            Email
+        </app-input-label>
         <app-select-item
             path="schools"
             [group]="form"
             name="school"
             (loadingEvent)="finishLoading()"
+            message="No schools found"
             label="school"
         />
         <button class="btn" type="submit">{{ buttonText }}</button>

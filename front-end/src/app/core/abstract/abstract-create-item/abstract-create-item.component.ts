@@ -27,6 +27,7 @@ export abstract class AbstractCreateItemComponent<T> implements OnInit {
     abstract getCreatedItem(): T;
 
     protected createItem() {
+        console.log('called');
         const createdSchool = this.getCreatedItem();
 
         this.form.markAsTouched();

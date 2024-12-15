@@ -14,6 +14,7 @@ import { ItemsNoPagingPipe } from './items-no-paging.pipe';
 })
 export class SelectItemComponent {
     @Input({ required: true }) path!: string;
+    @Input({ required: true }) message!: string;
     @Input({ required: true }) name!: string;
     @Input({ required: true }) group!: FormGroup;
     @Input({ required: true }) label!: string;

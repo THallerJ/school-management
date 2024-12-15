@@ -37,12 +37,13 @@
                 name="student"
                 (loadingEvent)="finishLoadingRegistrations()"
                 label="student"
+                message="No students found"
             />
             <button class="btn" type="submit">Submit</button>
         </div>
     </form>
     <h2>Current Students</h2>
-    <app-item-list-header [columns]="['First Name', 'Last Name']" />
+    <app-item-list-header [columns]="['First Name', 'Last Name', 'Email']" />
     <app-conditional-message
         [condition]="!loading && item?.registrations?.length === 0"
         message="This course has no students"

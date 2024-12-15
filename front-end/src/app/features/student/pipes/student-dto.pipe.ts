@@ -12,6 +12,7 @@ export class StudentDtoPipe implements PipeTransform {
             properties: [
                 student.firstName,
                 student.lastName,
+                student.email,
                 student.school.name,
             ],
         };

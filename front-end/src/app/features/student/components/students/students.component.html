@@ -3,10 +3,12 @@
     (clickEvent)="createItem()"
     [loading]="loading"
 >
-    <app-item-list-header [columns]="['First Name', 'Last Name', 'School']" />
+    <app-item-list-header
+        [columns]="['First Name', 'Last Name', 'Email', 'School']"
+    />
     <app-conditional-message
         [condition]="!loading && items?.length === 0"
-        message="No schools found"
+        message="No students found"
     >
         @for (student of items; track student.id) {
             <app-list-item

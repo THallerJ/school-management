@@ -41,6 +41,9 @@ namespace school_management.Repository
             if (!string.IsNullOrWhiteSpace(filter.LastName))
                 students = students.Where(student => student.LastName.Equals(filter.LastName));
 
+            if (!string.IsNullOrWhiteSpace(filter.Email))
+                students = students.Where(student => student.Email.Equals(filter.Email));
+
             if (filter.SchoolId != null)
                 students = students.Where(student => student.SchoolId.Equals(filter.SchoolId));
                 

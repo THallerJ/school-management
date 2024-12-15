@@ -22,7 +22,7 @@
     <app-item-list-header [columns]="['Name', 'Credits']" />
     <app-conditional-message
         [condition]="!loading && item?.courses?.length === 0"
-        message="No courses at this school"
+        message="This teacher has no courses"
     >
         @for (course of item?.courses; track course.id) {
             <app-list-item [item]="course | courseNoTeacher" />

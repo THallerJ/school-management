@@ -9,7 +9,7 @@ export class StudentRegistrationPipe implements PipeTransform {
     transform(student: NestedStudentDto): Item {
         return {
             id: student.id,
-            properties: [student.firstName, student.lastName],
+            properties: [student.firstName, student.lastName, student.email],
         };
     }
 }

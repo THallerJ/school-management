@@ -7,6 +7,7 @@ export const NestedStudentDtoSchema = zod.object({
     id: zod.number(),
     firstName: zod.string(),
     lastName: zod.string(),
+    email: zod.string(),
 });
 
 export type NestedStudentDto = zod.infer<typeof NestedStudentDtoSchema>;
@@ -115,6 +116,7 @@ export const StudentDtoSchema = zod.object({
     id: zod.number(),
     firstName: zod.string(),
     lastName: zod.string(),
+    email: zod.string(),
     registrations: zod.array(RegistractionCourseDtoSchema),
     school: NestedSchoolDtoSchema,
 });

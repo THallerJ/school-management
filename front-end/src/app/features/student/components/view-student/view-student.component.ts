@@ -50,6 +50,7 @@ export class ViewStudentComponent
             firstName: this.form.value.firstName,
             lastName: this.form.value.lastName,
             schoolId: this.form.value.school,
+            email: this.form.value.email,
         };
     }
 
@@ -58,6 +59,7 @@ export class ViewStudentComponent
             firstName: this.item?.firstName,
             lastName: this.item?.lastName,
             school: this.item?.school?.id,
+            email: this.item?.email,
         });
     }
 
@@ -67,6 +69,7 @@ export class ViewStudentComponent
                 firstName: '',
                 lastName: '',
                 school: ['', Validators.pattern('^[0-9]*$')],
+                email: ['', Validators.email],
             },
             { updateOn: 'submit' },
         );
@@ -125,4 +128,5 @@ type UpdatedStudent = {
     firstName?: string;
     lastName?: string;
     schoolId?: number;
+    email?: string;
 };

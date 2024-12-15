@@ -10,6 +10,8 @@
 
         public int? SchoolId { get; set; }
 
+        public string Email { get; set; } = String.Empty;
+
         public School? School { get; set; }
 
         public List<Registration> Registrations { get; set; } = new List<Registration>();

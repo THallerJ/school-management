@@ -12,6 +12,7 @@
             name="school"
             (loadingEvent)="finishLoadingSchools()"
             label="school"
+            message="No schools found"
         />
         <app-select-item
             path="teachers"
@@ -19,6 +20,7 @@
             name="teacher"
             (loadingEvent)="finishLoadingTeachers()"
             label="teacher"
+            message="No teachers found"
         />
         <button class="btn" type="submit">{{ buttonText }}</button>
         <ng-content />

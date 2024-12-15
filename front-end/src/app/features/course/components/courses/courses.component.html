@@ -8,7 +8,7 @@
     />
     <app-conditional-message
         [condition]="!loading && items?.length === 0"
-        message="No schools found"
+        message="No courses found"
     >
         @for (course of items; track course.id) {
             <app-list-item

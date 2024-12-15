@@ -27,6 +27,10 @@ export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedS
             {
                 firstName: ['', Validators.required],
                 lastName: ['', Validators.required],
+                email: [
+                    '',
+                    Validators.compose([Validators.required, Validators.email]),
+                ],
                 school: [
                     '',
                     Validators.compose([
@@ -44,6 +48,7 @@ export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedS
             firstName: this.form.value.firstName,
             lastName: this.form.value.lastName,
             schoolId: this.form.value.school,
+            email: this.form.value.email,
         };
     }
 
@@ -56,4 +61,5 @@ type CreatedStudent = {
     firstName: string;
     lastName: string;
     schoolId: number;
+    email: string;
 };

@@ -13,7 +13,8 @@ namespace school_management.Mappers
                 FirstName = student.FirstName,
                 LastName = student.LastName,
                 School = student.School?.ToNestedSchooLDto(),
-                Registrations = student.Registrations.Select(reg => reg.ToRegistrationCourseDto()).ToList()
+                Registrations = student.Registrations.Select(reg => reg.ToRegistrationCourseDto()).ToList(),
+                Email = student.Email
 
             };
         }
@@ -25,6 +26,7 @@ namespace school_management.Mappers
                 Id = student.Id,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
+                Email = student.Email
             };
         }
 
@@ -45,17 +47,19 @@ namespace school_management.Mappers
                 Id = student.Id,
                 FirstName = student.FirstName,
                 LastName = student.LastName,
-                SchoolId = student.SchoolId
+                SchoolId = student.SchoolId,
+                Email = student.Email
             };
         }
 
-        public static Student ToStudentFromCreateDto(this CreateStudentDto stockDto)
+        public static Student ToStudentFromCreateDto(this CreateStudentDto studentDto)
         {
             return new Student
             {
-                FirstName = stockDto.FirstName,
-                LastName = stockDto.LastName,
-                SchoolId = stockDto.SchoolId
+                FirstName = studentDto.FirstName,
+                LastName = studentDto.LastName,
+                SchoolId = studentDto.SchoolId,
+                Email = studentDto.Email
             };
         }
     }
