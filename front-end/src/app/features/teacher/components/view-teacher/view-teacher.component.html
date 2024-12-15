@@ -4,6 +4,7 @@
     (deleteEvent)="onDelete()"
     altButtonMessage="This teacher cannot be deleted"
     [hideButton]="item?.courses?.length !== 0 || !item"
+    [errorFlag]="errorFlag"
 >
     <h2>Edit Teacher</h2>
     <app-teacher-form
