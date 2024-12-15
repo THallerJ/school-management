@@ -63,10 +63,10 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
 
     onDelete = () => {
         if (this.id) {
-            this.apiService.delete(this.PATH, { id: this.id }).subscribe();
+            this.apiService.delete(this.PATH, { id: this.id }).subscribe(() => {
+                this.router.navigate([this.REDIRECT]);
+            });
         }
-
-        this.router.navigate([this.REDIRECT]);
     };
 
     updateItem() {
