@@ -5,6 +5,7 @@
     justify-content: center;
     top: 0;
     background-color: var(--dark-color);
+    padding: 0rem 1rem 0 1rem;
 }
 
 a {
@@ -33,7 +34,7 @@ a {
 }
 
 .header-body {
-    width: var(--desktop-app-width);
+    width: 100%;
     display: flex;
     align-items: center;
 }
@@ -47,4 +48,22 @@ a {
 
 .header-nav a:hover {
     color: var(--accent-color);
+}
+
+@media screen and (min-width: 780px) {
+    .header-body {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 1050px) {
+    .header-body {
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .header-body {
+        width: 50%;
+    }
 }
