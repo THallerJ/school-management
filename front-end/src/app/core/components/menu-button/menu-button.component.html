@@ -1,0 +1,17 @@
+<button aria-label="menu" class="menu" (click)="toggleMenuButton()">
+    <span
+        class="top-menu-line closed"
+        [class.open]="toggled"
+        [class.closed]="!toggled"
+    ></span>
+    <span
+        class="mid-menu-line closed"
+        [class.open]="toggled"
+        [class.closed]="!toggled"
+    ></span>
+    <span
+        class="bottom-menu-line closed"
+        [class.open]="toggled"
+        [class.closed]="!toggled"
+    ></span>
+</button>

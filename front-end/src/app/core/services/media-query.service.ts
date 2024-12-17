@@ -12,6 +12,7 @@ export class MediaQueryService {
     constructor(@Inject(PLATFORM_ID) private platformId: Object) {
         if (isPlatformBrowser(this.platformId)) {
             this.udpateWidth();
+
             window.addEventListener('resize', () => {
                 this.udpateWidth();
             });
@@ -23,7 +24,11 @@ export class MediaQueryService {
         this.widthSubject.next(this.width);
     }
 
-    public getWidth(): Observable<number> {
+    getCurrentWidth() {
+        return this.width ?? -1;
+    }
+
+    getWidth(): Observable<number> {
         if (isPlatformBrowser(this.platformId)) {
             return this.widthSubject.asObservable();
         } else {

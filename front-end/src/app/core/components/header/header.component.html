@@ -11,7 +11,7 @@
             <a routerLink="/">School Management</a>
         </h1>
         @if (isMobile) {
-            <span>mobile</span>
+            <app-menu-button (clickEvent)="onClickMenu()" />
         } @else {
             <nav class="header-nav">
                 <ng-template [ngTemplateOutlet]="links" />
