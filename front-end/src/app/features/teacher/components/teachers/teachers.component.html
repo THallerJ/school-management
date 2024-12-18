@@ -3,6 +3,7 @@
     (clickEvent)="createItem()"
     [loading]="loading"
 >
+    <h2>All Teachers</h2>
     <app-item-list-header [columns]="['First Name', 'Last Name', 'School']" />
     <app-conditional-message
         [condition]="!loading && items?.length === 0"

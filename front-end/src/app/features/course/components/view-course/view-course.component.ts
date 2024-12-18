@@ -100,6 +100,8 @@ export class ViewCourseComponent
     }
 
     addRegistration() {
+        this.registrationForm.markAsTouched();
+
         if (this.item) {
             this.apiService
                 .post<AddRegistration>(this.REGISTRATIONS_PATH, {

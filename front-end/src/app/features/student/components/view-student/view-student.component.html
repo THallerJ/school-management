@@ -17,8 +17,8 @@
             <ul>
                 <li>Invalid input</li>
             </ul>
-        </app-form-validator></app-student-form
-    >
+        </app-form-validator>
+    </app-student-form>
     <h2>Add Courses</h2>
     <form
         class="app-form"
@@ -35,6 +35,11 @@
                 message="No courses found"
             />
             <button class="btn" type="submit">Submit</button>
+            <app-form-validator [form]="registrationForm">
+                <ul>
+                    <li>Invalid input</li>
+                </ul>
+            </app-form-validator>
         </div>
     </form>
     <h2>Current Courses</h2>

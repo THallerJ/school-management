@@ -41,6 +41,11 @@
                 message="No students found"
             />
             <button class="btn" type="submit">Submit</button>
+            <app-form-validator [form]="registrationForm">
+                <ul>
+                    <li>Invalid input</li>
+                </ul>
+            </app-form-validator>
         </div>
     </form>
     <h2>Current Students</h2>

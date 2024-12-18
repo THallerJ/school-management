@@ -5,7 +5,6 @@
 
 .align-btn {
     align-self: end;
-    margin-bottom: 2rem;
 }
 
 .btn-alt {
@@ -27,5 +26,4 @@
 .altButtonMessage {
     align-self: end;
     text-align: end;
-    padding-bottom: 2rem;
 }
