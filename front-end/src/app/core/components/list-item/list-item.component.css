@@ -29,3 +29,9 @@
     cursor: pointer;
     background-color: var(--dark-text);
 }
+
+span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
