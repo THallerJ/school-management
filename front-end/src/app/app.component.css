@@ -27,14 +27,19 @@
     width: 100%;
     background-color: var(--body-color);
     overflow: auto;
+}
 
-    @media screen {
-    }
+.app-router-outlet {
+    padding: 1rem 1rem 1rem 1rem;
 }
 
 @media screen and (min-width: 780px) {
     .app-body {
         width: 80%;
+    }
+
+    .app-router-outlet {
+        padding: 1rem 2rem 1rem 2rem;
     }
 }
 
@@ -48,8 +53,4 @@
     .app-body {
         width: 50%;
     }
-}
-
-.app-router-outlet {
-    padding: 1rem 2rem 1rem 2rem;
 }
