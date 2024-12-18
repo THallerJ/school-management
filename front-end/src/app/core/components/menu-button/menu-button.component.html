@@ -1,16 +1,20 @@
-<button aria-label="menu" class="menu" (click)="toggleMenuButton()">
+<button
+    aria-label="menu-button"
+    class="menu-button"
+    (click)="toggleMenuButton()"
+>
     <span
-        class="top-menu-line closed"
+        class="top-menu line button-animation"
         [class.open]="toggled"
         [class.closed]="!toggled"
     ></span>
     <span
-        class="mid-menu-line closed"
+        class="mid-menu line button-animation"
         [class.open]="toggled"
         [class.closed]="!toggled"
     ></span>
     <span
-        class="bottom-menu-line closed"
+        class="bottom-menu line button-animation"
         [class.open]="toggled"
         [class.closed]="!toggled"
     ></span>
