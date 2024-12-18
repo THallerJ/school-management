@@ -16,9 +16,6 @@
                     class="mobile-nav-wrapper"
                     (click)="toggleMenu(false)"
                 ></div>
-                <div class="mobile-nav">
-                    <ng-template [ngTemplateOutlet]="links" />
-                </div>
             }
 
             <div class="menu-button-header">
@@ -32,5 +29,9 @@
                 <ng-template [ngTemplateOutlet]="links" />
             </nav>
         }
+
+        <div class="mobile-nav" [class.open]="showMobileNav">
+            <ng-template [ngTemplateOutlet]="links" />
+        </div>
     </div>
 </header>
