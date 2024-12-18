@@ -30,7 +30,7 @@
             </nav>
         }
 
-        <div class="mobile-nav" [class.open]="showMobileNav">
+        <div class="mobile-nav" [class.open]="showMobileNav && isMobile">
             <ng-template [ngTemplateOutlet]="links" />
         </div>
     </div>
