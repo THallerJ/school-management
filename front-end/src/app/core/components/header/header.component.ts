@@ -12,6 +12,7 @@ import { MenuButtonComponent } from '../menu-button/menu-button.component';
 })
 export class HeaderComponent implements OnInit {
     isMobile = false;
+    showMobileNav = false;
     private readonly MOBILE_WIDTH = 780;
 
     constructor(private mediaQueryService: MediaQueryService) {
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
             this.mediaQueryService.getCurrentWidth() < this.MOBILE_WIDTH;
     }
 
-    onClickMenu() {
-        console.log('hello world')
+    toggleMenu(val?: boolean) {
+        this.showMobileNav = val ? val : !this.showMobileNav;
     }
 }

@@ -1,8 +1,8 @@
 <ng-template #links>
-    <a routerLink="/schools">Schools</a>
-    <a routerLink="/teachers">Teachers</a>
-    <a routerLink="/courses">Courses</a>
-    <a routerLink="/students">Students</a>
+    <a routerLink="/schools" (click)="toggleMenu()">Schools</a>
+    <a routerLink="/teachers" (click)="toggleMenu()">Teachers</a>
+    <a routerLink="/courses" (click)="toggleMenu()">Courses</a>
+    <a routerLink="/students" (click)="toggleMenu()">Students</a>
 </ng-template>
 
 <header class="app-header">
@@ -11,7 +11,22 @@
             <a routerLink="/">School Management</a>
         </h1>
         @if (isMobile) {
-            <app-menu-button (clickEvent)="onClickMenu()" />
+            @if (showMobileNav) {
+                <div
+                    class="mobile-nav-wrapper"
+                    (click)="toggleMenu(false)"
+                ></div>
+                <div class="mobile-nav">
+                    <ng-template [ngTemplateOutlet]="links" />
+                </div>
+            }
+
+            <div class="menu-button-header">
+                <app-menu-button
+                    [toggled]="showMobileNav"
+                    (clickEvent)="toggleMenu()"
+                />
+            </div>
         } @else {
             <nav class="header-nav">
                 <ng-template [ngTemplateOutlet]="links" />

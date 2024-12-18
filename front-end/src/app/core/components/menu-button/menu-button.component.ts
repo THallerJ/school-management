@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
     selector: 'app-menu-button',
@@ -8,7 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
     styleUrl: './menu-button.component.css',
 })
 export class MenuButtonComponent {
-    toggled = false;
+    @Input({ required: true }) toggled!: boolean;
     @Output() clickEvent = new EventEmitter();
 
     toggleMenuButton() {
