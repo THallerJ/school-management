@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api-service.service';
 import { ModalService } from '../../services/modal-service.service';
@@ -12,7 +12,7 @@ import { z } from 'zod';
     templateUrl: './abstract-view-item.component.html',
     styleUrl: './abstract-view-item.component.css',
 })
-export abstract class AbstractViewItemComponent<T, S> implements OnInit {
+export abstract class AbstractViewItemComponent<T> implements OnInit {
     protected abstract SCHEMA: z.ZodSchema<T>;
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
@@ -30,14 +30,11 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
         protected apiService: ApiService,
         protected router: Router,
         protected modalService: ModalService,
-        protected formBuilder: FormBuilder,
     ) {}
-
-    abstract getUpdatedItem(): S;
 
     abstract patchForm(): void;
 
-    abstract initForm(): void;
+    abstract initForm(): FormGroup;
 
     getItem(id: number) {
         this.loading = true;
@@ -70,13 +67,13 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
     };
 
     updateItem() {
-        const updatedItem = this.getUpdatedItem();
+        const updatedItem = this.form.value;
 
         this.form.markAsTouched();
 
         if (this.form.valid && this.id && this.item) {
             this.apiService
-                .put<S>(this.PATH, this.id, updatedItem)
+                .put(this.PATH, this.id, updatedItem)
                 .subscribe(() => {
                     this.router.navigate([this.REDIRECT]);
                 });
@@ -94,6 +91,6 @@ export abstract class AbstractViewItemComponent<T, S> implements OnInit {
 
     ngOnInit() {
         this.initId();
-        this.initForm();
+        this.form = this.initForm();
     }
 }

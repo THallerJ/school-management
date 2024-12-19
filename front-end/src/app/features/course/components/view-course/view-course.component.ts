@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { CourseDto, CourseDtoSchema } from '../../../../core/types';
-import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import {
+    ReactiveFormsModule,
+    FormGroup,
+    FormBuilder,
+    Validators,
+} from '@angular/forms';
 import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
@@ -12,7 +17,6 @@ import { ViewItemWrapperComponent } from '../../../../core/components/view-item-
 import { StudentRegistrationPipe } from '../../pipes/student-registration.pipe';
 import { AddRegistration } from '../../../../core/types';
 import { CourseFormComponent } from '../course-form/course-form.component';
-import { FormCourse } from '../../models/types';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api-service.service';
@@ -36,7 +40,7 @@ import { CourseFormService } from '../../services/course-form.service';
     styleUrl: './view-course.component.css',
 })
 export class ViewCourseComponent
-    extends AbstractViewItemComponent<CourseDto, FormCourse>
+    extends AbstractViewItemComponent<CourseDto>
     implements RegistrationInterface
 {
     override SCHEMA = CourseDtoSchema;
@@ -53,26 +57,26 @@ export class ViewCourseComponent
         override apiService: ApiService,
         override router: Router,
         override modalService: ModalService,
-        override formBuilder: FormBuilder,
         private courseFormService: CourseFormService,
+        private formBuilder: FormBuilder,
     ) {
-        super(route, apiService, router, modalService, formBuilder);
+        super(route, apiService, router, modalService);
     }
 
-    override getUpdatedItem(): FormCourse {
-        return this.form.value;
-    }
+    override initForm() {
+        this.registrationForm = this.formBuilder.group({
+            student: ['', Validators.required],
+        });
 
-    override initForm(): void {
-        this.form = this.courseFormService.buildForm(this.formBuilder);
+        return this.courseFormService.buildForm();
     }
 
     override patchForm(): void {
         this.form.patchValue({
             name: this.item?.name,
             credits: this.item?.credits,
-            school: this.item?.school?.id,
-            teacher: this.item?.teacher?.id,
+            schoolId: this.item?.school?.id,
+            teacherId: this.item?.teacher?.id,
         });
     }
 

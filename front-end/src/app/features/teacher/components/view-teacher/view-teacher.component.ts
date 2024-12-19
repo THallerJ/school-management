@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TeacherDto, TeacherDtoSchema } from '../../../../core/types';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
@@ -9,6 +9,11 @@ import { ConditionalMessageComponent } from '../../../../core/components/conditi
 import { CourseNoTeacherPipe } from '../../pipes/course-no-teacher.pipe';
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { TeacherFormComponent } from './../teacher-form/teacher-form.component';
+import { TeacherFormService } from '../../services/teacher-form.service';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { ApiService } from '../../../../core/services/api-service.service';
+import { ModalService } from '../../../../core/services/modal-service.service';
 @Component({
     selector: 'app-view-teacher',
     standalone: true,
@@ -25,13 +30,19 @@ import { TeacherFormComponent } from './../teacher-form/teacher-form.component';
     templateUrl: './view-teacher.component.html',
     styleUrl: './view-teacher.component.css',
 })
-export class ViewTeacherComponent extends AbstractViewItemComponent<
-    TeacherDto,
-    UpdatedTeacher
-> {
+export class ViewTeacherComponent extends AbstractViewItemComponent<TeacherDto> {
     override PATH = 'teachers';
     override REDIRECT = '/teachers';
     override SCHEMA = TeacherDtoSchema;
+    constructor(
+        override route: ActivatedRoute,
+        override apiService: ApiService,
+        override router: Router,
+        override modalService: ModalService,
+        private teacherFormService: TeacherFormService,
+    ) {
+        super(route, apiService, router, modalService);
+    }
 
     loadingSchools = true;
 
@@ -39,36 +50,15 @@ export class ViewTeacherComponent extends AbstractViewItemComponent<
         this.form.patchValue({
             firstName: this.item?.firstName,
             lastName: this.item?.lastName,
-            school: this.item?.school?.id,
+            schoolId: this.item?.school?.id,
         });
     }
 
     override initForm() {
-        this.form = this.formBuilder.group(
-            {
-                firstName: '',
-                lastName: '',
-                school: ['', Validators.pattern('^[0-9]*$')],
-            },
-            { updateOn: 'submit' },
-        );
-    }
-
-    override getUpdatedItem(): UpdatedTeacher {
-        return {
-            firstName: this.form.value.firstName,
-            lastName: this.form.value.lastName,
-            schoolId: this.form.value.school,
-        };
+        return this.teacherFormService.buildForm();
     }
 
     finishLoadingSchools() {
         this.loadingSchools = false;
     }
 }
-
-type UpdatedTeacher = {
-    firstName?: string;
-    lastName?: string;
-    schoolId?: number;
-};

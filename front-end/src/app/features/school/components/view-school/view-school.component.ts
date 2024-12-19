@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SchoolDto, SchoolDtoSchema } from '../../../../core/types';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
@@ -9,7 +9,11 @@ import { CourseNoSchoolPipe } from './../../pipes/course-no-school.pipe';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { SchoolFormComponent } from '../school-form/school-form.component';
-import { FormSchool } from '../../models/types';
+import { SchoolFormService } from '../../services/school-form.service';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { ApiService } from '../../../../core/services/api-service.service';
+import { ModalService } from '../../../../core/services/modal-service.service';
 @Component({
     selector: 'app-view-school',
     standalone: true,
@@ -26,13 +30,20 @@ import { FormSchool } from '../../models/types';
     templateUrl: './view-school.component.html',
     styleUrl: './view-school.component.css',
 })
-export class ViewSchoolComponent extends AbstractViewItemComponent<
-    SchoolDto,
-    FormSchool
-> {
+export class ViewSchoolComponent extends AbstractViewItemComponent<SchoolDto> {
     override PATH = 'schools';
     override SCHEMA = SchoolDtoSchema;
     override REDIRECT = '/schools';
+
+    constructor(
+        override route: ActivatedRoute,
+        override apiService: ApiService,
+        override router: Router,
+        override modalService: ModalService,
+        private schoolFormService: SchoolFormService,
+    ) {
+        super(route, apiService, router, modalService);
+    }
 
     override patchForm() {
         this.form.patchValue({
@@ -43,29 +54,6 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<
     }
 
     override initForm() {
-        this.form = this.formBuilder.group(
-            {
-                name: ['', Validators.required],
-                address: ['', Validators.required],
-                phoneNumber: [
-                    '',
-                    Validators.compose([
-                        Validators.required,
-                        Validators.minLength(10),
-                        Validators.maxLength(10),
-                        Validators.pattern(/^\d+$/),
-                    ]),
-                ],
-            },
-            { updateOn: 'submit' },
-        );
-    }
-
-    override getUpdatedItem(): FormSchool {
-        return {
-            name: this.form.value.name,
-            address: this.form.value.address,
-            phoneNumber: this.form.value.phoneNumber,
-        };
+        return this.schoolFormService.buildForm();
     }
 }

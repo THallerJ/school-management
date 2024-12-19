@@ -4,7 +4,12 @@ import {
     StudentDtoSchema,
     AddRegistration,
 } from '../../../../core/types';
-import { ReactiveFormsModule, Validators, FormGroup } from '@angular/forms';
+import {
+    ReactiveFormsModule,
+    Validators,
+    FormGroup,
+    FormBuilder,
+} from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { ViewItemWrapperComponent } from '../../../../core/components/view-item-wrapper/view-item-wrapper.component';
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
@@ -15,8 +20,11 @@ import { SelectItemComponent } from '../../../../core/components/select-item/sel
 import { CourseRegistrationPipe } from '../../pipes/course-registration.pipe';
 import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
 import { StudentFormComponent } from './../student-form/student-form.component';
-import { FormStudent } from './../../models/types';
-
+import { StudentFormService } from '../../services/student-form.service';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { ApiService } from '../../../../core/services/api-service.service';
+import { ModalService } from '../../../../core/services/modal-service.service';
 @Component({
     selector: 'app-view-student',
     standalone: true,
@@ -35,7 +43,7 @@ import { FormStudent } from './../../models/types';
     styleUrl: './view-student.component.css',
 })
 export class ViewStudentComponent
-    extends AbstractViewItemComponent<StudentDto, FormStudent>
+    extends AbstractViewItemComponent<StudentDto>
     implements RegistrationInterface
 {
     override PATH = 'students';
@@ -46,47 +54,32 @@ export class ViewStudentComponent
     loadingSchools = true;
     loadingRegistrations = true;
 
-    override getUpdatedItem(): FormStudent {
-        return {
-            firstName: this.form.value.firstName,
-            lastName: this.form.value.lastName,
-            schoolId: this.form.value.school,
-            email: this.form.value.email,
-        };
+    constructor(
+        override route: ActivatedRoute,
+        override apiService: ApiService,
+        override router: Router,
+        override modalService: ModalService,
+        private studentFormService: StudentFormService,
+        private formBuilder: FormBuilder,
+    ) {
+        super(route, apiService, router, modalService);
     }
 
     override patchForm(): void {
         this.form.patchValue({
             firstName: this.item?.firstName,
             lastName: this.item?.lastName,
-            school: this.item?.school?.id,
+            schoolId: this.item?.school?.id,
             email: this.item?.email,
         });
     }
 
-    override initForm(): void {
-        this.form = this.formBuilder.group(
-            {
-                firstName: ['', Validators.required],
-                lastName: ['', Validators.required],
-                email: [
-                    '',
-                    Validators.compose([Validators.required, Validators.email]),
-                ],
-                school: [
-                    '',
-                    Validators.compose([
-                        Validators.required,
-                        Validators.pattern('^[0-9]*$'),
-                    ]),
-                ],
-            },
-            { updateOn: 'submit' },
-        );
-
+    override initForm() {
         this.registrationForm = this.formBuilder.group({
             course: ['', Validators.required],
         });
+
+        return this.studentFormService.buildForm();
     }
 
     removeLocalRegistration(courseId: number) {

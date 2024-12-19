@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-create-item/abstract-create-item.component';
 import { TeacherFormComponent } from './../teacher-form/teacher-form.component';
-
+import { TeacherFormService } from './../../services/teacher-form.service';
+import { Router } from '@angular/router';
+import { ApiService } from '../../../../core/services/api-service.service';
 @Component({
     selector: 'app-create-teacher',
     standalone: true,
@@ -17,35 +19,22 @@ import { TeacherFormComponent } from './../teacher-form/teacher-form.component';
     templateUrl: './create-teacher.component.html',
     styleUrl: './create-teacher.component.css',
 })
-export class CreateTeacherComponent extends AbstractCreateItemComponent<CreatedTeacher> {
+export class CreateTeacherComponent extends AbstractCreateItemComponent {
     override PATH = 'teachers';
     override REDIRECT = '/teachers';
 
     loading = true;
 
-    override initForm() {
-        this.form = this.formBuilder.group(
-            {
-                firstName: ['', Validators.required],
-                lastName: ['', Validators.required],
-                school: [
-                    '',
-                    Validators.compose([
-                        Validators.required,
-                        Validators.pattern('^[0-9]*$'),
-                    ]),
-                ],
-            },
-            { updateOn: 'submit' },
-        );
+    constructor(
+        override apiService: ApiService,
+        override router: Router,
+        private teacherFormService: TeacherFormService,
+    ) {
+        super(apiService, router);
     }
 
-    override getCreatedItem(): CreatedTeacher {
-        return {
-            firstName: this.form.value.firstName,
-            lastName: this.form.value.lastName,
-            schoolId: this.form.value.school,
-        };
+    override initForm() {
+        this.form = this.teacherFormService.buildForm();
     }
 
     finishLoading() {

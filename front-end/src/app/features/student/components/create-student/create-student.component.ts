@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-create-item/abstract-create-item.component';
 import { StudentFormComponent } from './../student-form/student-form.component';
-import { FormStudent } from '../../models/types';
+import { Router } from '@angular/router';
+import { ApiService } from '../../../../core/services/api-service.service';
+import { StudentFormService } from '../../services/student-form.service';
 @Component({
     selector: 'app-create-student',
     standalone: true,
@@ -17,40 +19,22 @@ import { FormStudent } from '../../models/types';
     templateUrl: './create-student.component.html',
     styleUrl: './create-student.component.css',
 })
-export class CreateStudentComponent extends AbstractCreateItemComponent<FormStudent> {
+export class CreateStudentComponent extends AbstractCreateItemComponent {
     override PATH = 'students';
     override REDIRECT = '/students';
 
     loading = true;
 
-    override initForm() {
-        this.form = this.formBuilder.group(
-            {
-                firstName: ['', Validators.required],
-                lastName: ['', Validators.required],
-                email: [
-                    '',
-                    Validators.compose([Validators.required, Validators.email]),
-                ],
-                school: [
-                    '',
-                    Validators.compose([
-                        Validators.required,
-                        Validators.pattern('^[0-9]*$'),
-                    ]),
-                ],
-            },
-            { updateOn: 'submit' },
-        );
+    constructor(
+        override apiService: ApiService,
+        override router: Router,
+        private studentFormService: StudentFormService,
+    ) {
+        super(apiService, router);
     }
 
-    override getCreatedItem(): FormStudent {
-        return {
-            firstName: this.form.value.firstName,
-            lastName: this.form.value.lastName,
-            schoolId: this.form.value.school,
-            email: this.form.value.email,
-        };
+    override initForm() {
+        this.form = this.studentFormService.buildForm();
     }
 
     finishLoading() {

@@ -6,10 +6,10 @@ import { FormServiceInterface } from '../../../core/interfaces/form-service-inte
     providedIn: 'root',
 })
 export class CourseFormService implements FormServiceInterface {
-    constructor() {}
+    constructor(private formBuilder: FormBuilder) {}
 
-    buildForm(formBuilder: FormBuilder) {
-        return formBuilder.group(
+    buildForm() {
+        return this.formBuilder.group(
             {
                 name: ['', Validators.required],
                 schoolId: [
