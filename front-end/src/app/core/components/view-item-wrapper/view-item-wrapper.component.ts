@@ -1,4 +1,4 @@
-import { ModalService } from './../../services/modal-service.service';
+import { ModalService } from '../../services/modal.service';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 import { ApiContentWrapperComponent } from '../api-content-wrapper/api-content-wrapper.component';

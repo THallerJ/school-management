@@ -12,8 +12,8 @@ import { SchoolFormComponent } from '../school-form/school-form.component';
 import { SchoolFormService } from '../../services/school-form.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../../core/services/api-service.service';
-import { ModalService } from '../../../../core/services/modal-service.service';
+import { ApiService } from '../../../../core/services/api.service';
+import { ModalService } from '../../../../core/services/modal.service';
 @Component({
     selector: 'app-view-school',
     standalone: true,

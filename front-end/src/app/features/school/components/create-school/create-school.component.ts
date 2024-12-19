@@ -5,7 +5,7 @@ import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-
 import { SchoolFormComponent } from '../school-form/school-form.component';
 import { SchoolFormService } from '../../services/school-form.service';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../../core/services/api-service.service';
+import { ApiService } from '../../../../core/services/api.service';
 
 @Component({
     selector: 'app-create-school',

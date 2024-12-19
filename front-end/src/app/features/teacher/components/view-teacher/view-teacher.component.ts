@@ -12,8 +12,8 @@ import { TeacherFormComponent } from './../teacher-form/teacher-form.component';
 import { TeacherFormService } from '../../services/teacher-form.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../../core/services/api-service.service';
-import { ModalService } from '../../../../core/services/modal-service.service';
+import { ApiService } from '../../../../core/services/api.service';
+import { ModalService } from '../../../../core/services/modal.service';
 @Component({
     selector: 'app-view-teacher',
     standalone: true,

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ApiService } from '../../services/api-service.service';
+import { ApiService } from '../../services/api.service';
 import { ItemNoPaging, ItemsNoPagingRespSchema } from '../../types';
 import { SelectLabelComponent } from './../select-label/select-label.component';
 import { ItemsNoPagingPipe } from './items-no-paging.pipe';

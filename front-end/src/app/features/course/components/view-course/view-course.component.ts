@@ -19,8 +19,8 @@ import { AddRegistration } from '../../../../core/types';
 import { CourseFormComponent } from '../course-form/course-form.component';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../../core/services/api-service.service';
-import { ModalService } from '../../../../core/services/modal-service.service';
+import { ApiService } from '../../../../core/services/api.service';
+import { ModalService } from '../../../../core/services/modal.service';
 import { CourseFormService } from '../../services/course-form.service';
 @Component({
     selector: 'app-view-course',

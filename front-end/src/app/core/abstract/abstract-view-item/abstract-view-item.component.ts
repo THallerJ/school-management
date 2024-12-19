@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../../services/api-service.service';
-import { ModalService } from '../../services/modal-service.service';
+import { ApiService } from '../../services/api.service';
+import { ModalService } from '../../services/modal.service';
 import { z } from 'zod';
 
 @Component({

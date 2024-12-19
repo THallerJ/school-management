@@ -5,7 +5,7 @@ import { ApiContentWrapperComponent } from '../../../../core/components/api-cont
 import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-create-item/abstract-create-item.component';
 import { StudentFormComponent } from './../student-form/student-form.component';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../../core/services/api-service.service';
+import { ApiService } from '../../../../core/services/api.service';
 import { StudentFormService } from '../../services/student-form.service';
 @Component({
     selector: 'app-create-student',

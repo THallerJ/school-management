@@ -23,8 +23,8 @@ import { StudentFormComponent } from './../student-form/student-form.component';
 import { StudentFormService } from '../../services/student-form.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { ApiService } from '../../../../core/services/api-service.service';
-import { ModalService } from '../../../../core/services/modal-service.service';
+import { ApiService } from '../../../../core/services/api.service';
+import { ModalService } from '../../../../core/services/modal.service';
 @Component({
     selector: 'app-view-student',
     standalone: true,
