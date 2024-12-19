@@ -29,9 +29,9 @@ export abstract class AbstractCreateItemComponent<T> implements OnInit {
     protected createItem() {
         const createdSchool = this.getCreatedItem();
 
-        this.form.markAsTouched();
+        this.form?.markAsTouched();
 
-        if (this.form.valid) {
+        if (this.form?.valid && createdSchool) {
             this.apiService.post<T>(this.PATH, createdSchool).subscribe(() => {
                 this.router.navigate([this.REDIRECT]);
             });

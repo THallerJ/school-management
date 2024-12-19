@@ -3,6 +3,7 @@ import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
 import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-create-item/abstract-create-item.component';
 import { SchoolFormComponent } from '../school-form/school-form.component';
+import { FormSchool } from '../../models/types';
 
 @Component({
     selector: 'app-create-school',
@@ -11,7 +12,7 @@ import { SchoolFormComponent } from '../school-form/school-form.component';
     templateUrl: './create-school.component.html',
     styleUrl: './create-school.component.css',
 })
-export class CreateSchoolComponent extends AbstractCreateItemComponent<CreatedSchool> {
+export class CreateSchoolComponent extends AbstractCreateItemComponent<FormSchool> {
     override PATH = 'schools';
     override REDIRECT = '/schools';
 
@@ -34,7 +35,7 @@ export class CreateSchoolComponent extends AbstractCreateItemComponent<CreatedSc
         );
     }
 
-    override getCreatedItem(): CreatedSchool {
+    override getCreatedItem(): FormSchool {
         return {
             name: this.form.value.name,
             address: this.form.value.address,
@@ -42,9 +43,3 @@ export class CreateSchoolComponent extends AbstractCreateItemComponent<CreatedSc
         };
     }
 }
-
-type CreatedSchool = {
-    name: string;
-    address: string;
-    phoneNumber: string;
-};

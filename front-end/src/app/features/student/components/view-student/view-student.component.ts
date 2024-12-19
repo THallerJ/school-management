@@ -15,6 +15,7 @@ import { SelectItemComponent } from '../../../../core/components/select-item/sel
 import { CourseRegistrationPipe } from '../../pipes/course-registration.pipe';
 import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
 import { StudentFormComponent } from './../student-form/student-form.component';
+import { FormStudent } from './../../models/types';
 
 @Component({
     selector: 'app-view-student',
@@ -34,7 +35,7 @@ import { StudentFormComponent } from './../student-form/student-form.component';
     styleUrl: './view-student.component.css',
 })
 export class ViewStudentComponent
-    extends AbstractViewItemComponent<StudentDto, UpdatedStudent>
+    extends AbstractViewItemComponent<StudentDto, FormStudent>
     implements RegistrationInterface
 {
     override PATH = 'students';
@@ -45,7 +46,7 @@ export class ViewStudentComponent
     loadingSchools = true;
     loadingRegistrations = true;
 
-    override getUpdatedItem(): UpdatedStudent {
+    override getUpdatedItem(): FormStudent {
         return {
             firstName: this.form.value.firstName,
             lastName: this.form.value.lastName,
@@ -66,10 +67,19 @@ export class ViewStudentComponent
     override initForm(): void {
         this.form = this.formBuilder.group(
             {
-                firstName: '',
-                lastName: '',
-                school: ['', Validators.pattern('^[0-9]*$')],
-                email: ['', Validators.email],
+                firstName: ['', Validators.required],
+                lastName: ['', Validators.required],
+                email: [
+                    '',
+                    Validators.compose([Validators.required, Validators.email]),
+                ],
+                school: [
+                    '',
+                    Validators.compose([
+                        Validators.required,
+                        Validators.pattern('^[0-9]*$'),
+                    ]),
+                ],
             },
             { updateOn: 'submit' },
         );
@@ -125,10 +135,3 @@ export class ViewStudentComponent
         this.loadingRegistrations = false;
     }
 }
-
-type UpdatedStudent = {
-    firstName?: string;
-    lastName?: string;
-    schoolId?: number;
-    email?: string;
-};

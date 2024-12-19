@@ -9,6 +9,7 @@ import { CourseNoSchoolPipe } from './../../pipes/course-no-school.pipe';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { SchoolFormComponent } from '../school-form/school-form.component';
+import { FormSchool } from '../../models/types';
 @Component({
     selector: 'app-view-school',
     standalone: true,
@@ -27,7 +28,7 @@ import { SchoolFormComponent } from '../school-form/school-form.component';
 })
 export class ViewSchoolComponent extends AbstractViewItemComponent<
     SchoolDto,
-    UpdatedSchool
+    FormSchool
 > {
     override PATH = 'schools';
     override SCHEMA = SchoolDtoSchema;
@@ -44,11 +45,12 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<
     override initForm() {
         this.form = this.formBuilder.group(
             {
-                name: ['', Validators.minLength(3)],
-                address: ['', Validators.minLength(3)],
+                name: ['', Validators.required],
+                address: ['', Validators.required],
                 phoneNumber: [
                     '',
                     Validators.compose([
+                        Validators.required,
                         Validators.minLength(10),
                         Validators.maxLength(10),
                         Validators.pattern(/^\d+$/),
@@ -59,7 +61,7 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<
         );
     }
 
-    override getUpdatedItem(): UpdatedSchool {
+    override getUpdatedItem(): FormSchool {
         return {
             name: this.form.value.name,
             address: this.form.value.address,
@@ -67,9 +69,3 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<
         };
     }
 }
-
-type UpdatedSchool = {
-    name?: string;
-    address?: string;
-    phoneNumber?: string;
-};

@@ -4,6 +4,7 @@ import { FormValidatorComponent } from '../../../../core/components/form-validat
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { AbstractCreateItemComponent } from '../../../../core/abstract/abstract-create-item/abstract-create-item.component';
 import { StudentFormComponent } from './../student-form/student-form.component';
+import { FormStudent } from '../../models/types';
 @Component({
     selector: 'app-create-student',
     standalone: true,
@@ -16,7 +17,7 @@ import { StudentFormComponent } from './../student-form/student-form.component';
     templateUrl: './create-student.component.html',
     styleUrl: './create-student.component.css',
 })
-export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedStudent> {
+export class CreateStudentComponent extends AbstractCreateItemComponent<FormStudent> {
     override PATH = 'students';
     override REDIRECT = '/students';
 
@@ -43,7 +44,7 @@ export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedS
         );
     }
 
-    override getCreatedItem(): CreatedStudent {
+    override getCreatedItem(): FormStudent {
         return {
             firstName: this.form.value.firstName,
             lastName: this.form.value.lastName,
@@ -56,10 +57,3 @@ export class CreateStudentComponent extends AbstractCreateItemComponent<CreatedS
         this.loading = false;
     }
 }
-
-type CreatedStudent = {
-    firstName: string;
-    lastName: string;
-    schoolId: number;
-    email: string;
-};

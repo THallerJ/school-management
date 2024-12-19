@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { CourseDto, CourseDtoSchema } from '../../../../core/types';
-import { Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
 import { RegistrationInterface } from '../../../../core/interfaces/registration-interface';
 import { SelectItemComponent } from '../../../../core/components/select-item/select-item.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
@@ -12,6 +12,12 @@ import { ViewItemWrapperComponent } from '../../../../core/components/view-item-
 import { StudentRegistrationPipe } from '../../pipes/student-registration.pipe';
 import { AddRegistration } from '../../../../core/types';
 import { CourseFormComponent } from '../course-form/course-form.component';
+import { FormCourse } from '../../models/types';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { ApiService } from '../../../../core/services/api-service.service';
+import { ModalService } from '../../../../core/services/modal-service.service';
+import { CourseFormService } from '../../services/course-form.service';
 @Component({
     selector: 'app-view-course',
     standalone: true,
@@ -30,7 +36,7 @@ import { CourseFormComponent } from '../course-form/course-form.component';
     styleUrl: './view-course.component.css',
 })
 export class ViewCourseComponent
-    extends AbstractViewItemComponent<CourseDto, UpdatedCourse>
+    extends AbstractViewItemComponent<CourseDto, FormCourse>
     implements RegistrationInterface
 {
     override SCHEMA = CourseDtoSchema;
@@ -42,29 +48,23 @@ export class ViewCourseComponent
     loadingTeachers = true;
     loadingRegistrations = true;
 
-    override getUpdatedItem(): UpdatedCourse {
-        return {
-            name: this.form.value.name,
-            credits: this.form.value.credits,
-            schoolId: this.form.value.school,
-            teacherId: this.form.value.teacher,
-        };
+    constructor(
+        override route: ActivatedRoute,
+        override apiService: ApiService,
+        override router: Router,
+        override modalService: ModalService,
+        override formBuilder: FormBuilder,
+        private courseFormService: CourseFormService,
+    ) {
+        super(route, apiService, router, modalService, formBuilder);
+    }
+
+    override getUpdatedItem(): FormCourse {
+        return this.form.value;
     }
 
     override initForm(): void {
-        this.form = this.formBuilder.group(
-            {
-                name: '',
-                credits: '',
-                school: ['', Validators.pattern('^[0-9]*$')],
-                teacher: ['', Validators.pattern('^[0-9]*$')],
-            },
-            { updateOn: 'submit' },
-        );
-
-        this.registrationForm = this.formBuilder.group({
-            student: ['', Validators.required],
-        });
+        this.form = this.courseFormService.buildForm(this.formBuilder);
     }
 
     override patchForm(): void {
@@ -126,10 +126,3 @@ export class ViewCourseComponent
         this.loadingRegistrations = false;
     }
 }
-
-type UpdatedCourse = {
-    name?: string;
-    credits?: number;
-    schoolId?: number;
-    teacherId?: number;
-};
