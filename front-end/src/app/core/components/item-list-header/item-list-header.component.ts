@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-item-list-header',
@@ -7,11 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
     templateUrl: './item-list-header.component.html',
     styleUrl: './item-list-header.component.css',
 })
-export class ItemListHeaderComponent implements OnInit {
+export class ItemListHeaderComponent {
     @Input({ required: true }) columns!: string[];
-    width!: string;
-
-    ngOnInit() {
-        this.width = `${100 / this.columns.length}%`;
-    }
+    @Input() hasButton?: boolean;
 }

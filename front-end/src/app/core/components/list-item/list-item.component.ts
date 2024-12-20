@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Item } from '../../types';
 @Component({
     selector: 'app-list-item',
@@ -7,15 +7,10 @@ import { Item } from '../../types';
     templateUrl: './list-item.component.html',
     styleUrl: './list-item.component.css',
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent {
     @Input({ required: true }) item!: Item;
     @Output() clickEvent = new EventEmitter();
     @Output() buttonEvent = new EventEmitter();
-    width!: string;
-
-    ngOnInit() {
-        this.width = `${100 / this.item.properties.length}%`;
-    }
 
     onClick() {
         this.clickEvent.emit();

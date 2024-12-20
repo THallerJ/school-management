@@ -6,3 +6,11 @@
     font-weight: 700;
     justify-content: space-between;
 }
+
+.btn-heading {
+    flex: 3;
+}
+
+span {
+    flex: 2;
+}

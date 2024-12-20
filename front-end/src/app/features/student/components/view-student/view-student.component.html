@@ -44,7 +44,10 @@
         </div>
     </form>
     <h2>Current Courses</h2>
-    <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
+    <app-item-list-header
+        [columns]="['Name', 'Teacher', 'Credits']"
+        [hasButton]="true"
+    />
     <app-conditional-message
         [condition]="!loading && item?.registrations?.length === 0"
         message="This student isn't taking any courses"
