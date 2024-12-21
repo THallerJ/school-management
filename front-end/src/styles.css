@@ -4,15 +4,16 @@ body {
 }
 
 :root {
-    --light-color: #f4f4f9;
-    --dark-color: #1f2421;
-    --dark-text: #dce1de;
-    --accent-color: #9cc5a1;
-    --offwhite: #ccc;
-    --body-color: #fff;
-    --light-red: #ffcdd2;
-    --dark-red: #e57373;
-    --darkest-red: #ef5350;
+    --light-color: hsl(240, 29%, 97%);
+    --dark-color: hsl(144, 7%, 13%);
+    --dark-text: hsl(144, 8%, 87%);
+    --accent-color: hsl(127, 26%, 69%);
+    --offwhite-light: hsl(0, 0%, 90%);
+    --offwhite: hsl(0, 0%, 75%);
+    --body-color: hsl(0, 0%, 100%);
+    --light-red: hsl(354, 100%, 90%);
+    --dark-red: hsl(0, 69%, 67%);
+    --darkest-red: hsl(1, 83%, 63%);
 }
 
 .btn {

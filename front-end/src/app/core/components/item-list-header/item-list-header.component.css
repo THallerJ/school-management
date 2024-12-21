@@ -2,17 +2,29 @@
     display: flex;
     align-items: center;
     padding: 1rem 0 1rem 0;
-    border-bottom: 1px solid var(--offwhite);
+    border-bottom: 3px solid var(--offwhite-light);
     font-weight: 700;
+    width: 100%;
 }
 
 .btn-heading {
-    flex: 3;
+    flex: 4;
 }
 
 span {
     flex: 2;
-    overflow: hidden;
     text-overflow: ellipsis;
-    padding-right: 1rem;
+    padding: 0 1rem 0 1rem;
+    font-size: 0.75rem;
+    min-width: 0;
+}
+
+@media screen and (min-width: 460px) {
+    .btn-heading {
+        flex: 3;
+    }
+
+    span {
+        font-size: 1rem;
+    }
 }

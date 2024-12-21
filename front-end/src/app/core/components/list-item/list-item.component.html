@@ -5,7 +5,9 @@
 >
     <div class="list-item-info">
         @for (prop of item.properties; track item.id + prop; let i = $index) {
-            <span>{{ prop }}</span>
+            <div class="column">
+                <span>{{ prop }}</span>
+            </div>
         }
 
         @if (buttonEvent.observed) {
