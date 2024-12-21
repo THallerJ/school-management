@@ -4,9 +4,10 @@
     [style.cursor]="clickEvent.observed ? 'pointer' : 'default'"
 >
     <div class="list-item-info">
-        @for (prop of item.properties; track item.id + prop) {
+        @for (prop of item.properties; track item.id + prop; let i = $index) {
             <span>{{ prop }}</span>
         }
+
         @if (buttonEvent.observed) {
             <button class="remove-btn" (click)="onButtonClick()">remove</button>
         }
