@@ -16,14 +16,20 @@
     color: var(--dark-text);
 }
 
-.content-wrapper > span {
+.alt-btn-msg {
+    align-self: end;
+    justify-self: end;
+    text-align: end;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 0.75rem;
     color: var(--dark-color);
 }
 
-.altButtonMessage {
-    align-self: end;
-    text-align: end;
+.btn-error {
+    background-color: var(--light-red);
+    outline: var(--dark-red) 2px solid;
+    border-radius: 0.25rem;
+    padding: 0.25rem 1rem 0.25rem 1rem;
+    margin-bottom: 1rem;
 }

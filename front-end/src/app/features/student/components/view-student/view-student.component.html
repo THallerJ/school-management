@@ -4,7 +4,7 @@
     (deleteEvent)="onDelete()"
     altButtonMessage="This student cannot be deleted"
     [hideButton]="item?.registrations?.length !== 0"
-    [errorFlag]="errorFlag"
+    [errorFlag]="isFetchError"
 >
     <h2>Edit Student</h2>
     <app-student-form

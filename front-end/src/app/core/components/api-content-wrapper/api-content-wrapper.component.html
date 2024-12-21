@@ -1,4 +1,8 @@
 <div class="content-wrapper">
+    @if (isButtonError) {
+        <span class="btn-error">{{ buttonErrorMsg }}</span>
+    }
+
     @if (!loading && !hideButton && !errorFlag) {
         <button
             class="btn align-btn"
@@ -8,7 +12,7 @@
             {{ buttonText }}
         </button>
     } @else if (altButtonMessage && !loading && !errorFlag) {
-        <span class="altButtonMessage">{{ altButtonMessage }}</span>
+        <span class="alt-btn-msg">{{ altButtonMessage }}</span>
     }
 
     @if (loading) {

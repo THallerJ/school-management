@@ -6,7 +6,7 @@
     (deleteEvent)="onDelete()"
     altButtonMessage="This course cannot be deleted"
     [hideButton]="item?.registrations?.length !== 0"
-    [errorFlag]="errorFlag"
+    [errorFlag]="isFetchError"
 >
     <h2>Edit Course</h2>
     <app-course-form

@@ -1,10 +1,11 @@
 <app-view-item-wrapper
     [loading]="loading"
     [item]="item"
-    [errorFlag]="errorFlag"
+    [errorFlag]="isFetchError"
     (deleteEvent)="onDelete()"
     altButtonMessage="This school cannot be deleted"
     [hideButton]="item?.courses?.length !== 0 || !item"
+    [isButtonError]="isDeleteError"
 >
     <h2>Edit School</h2>
     <app-school-form

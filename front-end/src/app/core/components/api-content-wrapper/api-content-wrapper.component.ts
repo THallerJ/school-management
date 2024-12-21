@@ -12,6 +12,9 @@ export class ApiContentWrapperComponent {
     @Input({ required: true }) loading!: boolean;
     @Input() errorFlag?: boolean;
     @Input() buttonText?: string;
+    @Input() isButtonError?: boolean;
+    @Input() buttonErrorMsg: string =
+        'This item could not be deleted since it still has dependents.';
     @Input() useAltButtonColor?: boolean;
     @Input() hideButton?: boolean;
     @Input() altButtonMessage?: string;

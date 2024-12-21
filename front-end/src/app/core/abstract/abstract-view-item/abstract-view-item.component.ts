@@ -23,7 +23,8 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
     protected loading = false;
     protected form!: FormGroup;
     protected item?: T;
-    protected errorFlag = false;
+    protected isFetchError = false;
+    protected isDeleteError = false;
 
     constructor(
         protected route: ActivatedRoute,
@@ -38,7 +39,7 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
 
     getItem(id: number) {
         this.loading = true;
-        this.errorFlag = false;
+        this.isFetchError = false;
 
         this.apiService.get(this.PATH, { id }).subscribe({
             next: data => {
@@ -52,7 +53,7 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
                     return;
                 } else {
                     this.loading = false;
-                    this.errorFlag = true;
+                    this.isFetchError = true;
                 }
             },
         });
@@ -60,8 +61,15 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
 
     onDelete = () => {
         if (this.id) {
-            this.apiService.delete(this.PATH, { id: this.id }).subscribe(() => {
-                this.router.navigate([this.REDIRECT]);
+            this.isDeleteError = false;
+
+            this.apiService.delete(this.PATH, { id: this.id }).subscribe({
+                next: () => {
+                    this.router.navigate([this.REDIRECT]);
+                },
+                error: () => {
+                    this.isDeleteError = true;
+                },
             });
         }
     };
