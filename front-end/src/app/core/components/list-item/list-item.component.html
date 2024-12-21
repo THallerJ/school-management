@@ -11,7 +11,9 @@
         }
 
         @if (buttonEvent.observed) {
-            <button class="remove-btn" (click)="onButtonClick()">remove</button>
+            <button class="remove-btn" (click)="onButtonClick()">
+                <app-remove-icon />
+            </button>
         }
     </div>
 </div>
