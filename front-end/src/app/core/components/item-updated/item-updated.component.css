@@ -1,0 +1,11 @@
+div {
+    width: 100%;
+    background-color: var(--light-green);
+    outline: 2px solid var(--green);
+    border-radius: 1rem;
+}
+
+span {
+    display: block;
+    padding: 1rem;
+}

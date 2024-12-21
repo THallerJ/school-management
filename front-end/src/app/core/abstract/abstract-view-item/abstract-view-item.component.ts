@@ -25,6 +25,7 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
     protected item?: T;
     protected isFetchError = false;
     protected isDeleteError = false;
+    protected updatedFlag = false;
 
     constructor(
         protected route: ActivatedRoute,
@@ -75,6 +76,7 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
     };
 
     updateItem() {
+        this.updatedFlag = false;
         const updatedItem = this.form.value;
 
         this.form.markAsTouched();
@@ -83,7 +85,7 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
             this.apiService
                 .put(this.PATH, this.id, updatedItem)
                 .subscribe(() => {
-                    this.router.navigate([this.REDIRECT]);
+                    this.updatedFlag = true;
                 });
         }
     }

@@ -14,6 +14,8 @@ body {
     --light-red: hsl(354, 100%, 90%);
     --dark-red: hsl(0, 69%, 67%);
     --darkest-red: hsl(1, 83%, 63%);
+    --green: hsl(123, 38%, 57%);
+    --light-green: hsl(122, 37%, 74%);
 }
 
 .btn {

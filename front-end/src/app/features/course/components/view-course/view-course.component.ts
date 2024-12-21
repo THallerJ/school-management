@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
 import { ModalService } from '../../../../core/services/modal.service';
 import { CourseFormService } from '../../services/course-form.service';
+import { ItemUpdatedComponent } from '../../../../core/components/item-updated/item-updated.component';
 @Component({
     selector: 'app-view-course',
     standalone: true,
@@ -35,6 +36,7 @@ import { CourseFormService } from '../../services/course-form.service';
         ReactiveFormsModule,
         StudentRegistrationPipe,
         CourseFormComponent,
+        ItemUpdatedComponent,
     ],
     templateUrl: './view-course.component.html',
     styleUrl: './view-course.component.css',
