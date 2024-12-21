@@ -4,7 +4,7 @@
     padding: 1rem 0 1rem 0;
     border-bottom: 1px solid var(--offwhite);
     font-weight: 700;
-    justify-content: space-between;
+    gap: 1rem;
 }
 
 .btn-heading {
@@ -13,4 +13,6 @@
 
 span {
     flex: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -4,12 +4,14 @@
     position: relative;
     align-items: stretch;
     min-height: 5rem;
+    justify-content: center;
 }
 
 .list-item-info {
     width: 100%;
     display: flex;
     align-items: enter;
+    gap: 1rem;
 }
 
 .remove-btn {
@@ -28,6 +30,7 @@
 
 span {
     overflow: hidden;
+    text-overflow: ellipsis;
     flex: 2;
     align-self: center;
 }
