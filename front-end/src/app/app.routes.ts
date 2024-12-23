@@ -25,4 +25,5 @@ export const routes: Routes = [
     { path: 'create-student', component: CreateStudentComponent },
     { path: 'create-teacher', component: CreateTeacherComponent },
     { path: 'create-course', component: CreateCourseComponent },
+    { path: '**', redirectTo: 'schools', pathMatch: 'full' },
 ];

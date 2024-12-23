@@ -14,16 +14,12 @@ a {
     text-decoration: none;
 }
 
-.header-body h1 a {
+.header-body h1 {
     font-size: 1.3rem;
     display: inline;
     text-wrap: nowrap;
-}
-
-.header-body h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    cursor: default;
+    color: var(--accent-color);
 }
 
 .header-nav {
