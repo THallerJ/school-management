@@ -18,8 +18,9 @@
                 <li>Name and address fields must have at least 3 characters</li>
                 <li>Phone number must be 10 digits</li>
             </ul>
-        </app-form-validator></app-school-form
-    >
+        </app-form-validator>
+        <app-item-updated [show]="updatedFlag" />
+    </app-school-form>
     <h2>Courses at school</h2>
     <app-item-list-header [columns]="['Name', 'Teacher', 'Credits']" />
     <app-conditional-message

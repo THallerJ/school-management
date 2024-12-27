@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
 import { ModalService } from '../../../../core/services/modal.service';
+import { ItemUpdatedComponent } from '../../../../core/components/item-updated/item-updated.component';
 @Component({
     selector: 'app-view-school',
     standalone: true,
@@ -26,6 +27,7 @@ import { ModalService } from '../../../../core/services/modal.service';
         CourseNoSchoolPipe,
         ConditionalMessageComponent,
         SchoolFormComponent,
+        ItemUpdatedComponent,
     ],
     templateUrl: './view-school.component.html',
     styleUrl: './view-school.component.css',
