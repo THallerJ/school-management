@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -13,8 +13,10 @@ export class ApiService {
 
     get(path: string, options?: GetOptions): Observable<unknown> {
         const id = options?.id ?? '';
-        const params = options?.params || {};
+        const getParams = options?.params || {};
         const url = `${this.apiUrl}/${path}/${id}`;
+
+        const params = new HttpParams({ fromObject: { ...getParams } });
 
         return this.http.get(url, { params });
     }
@@ -37,18 +39,18 @@ export class ApiService {
     }
 }
 
-type GetOptions = {
+interface GetOptions {
     id?: number;
     params?: Params;
-};
+}
 
-type DeleteOptions<T> = {
+interface DeleteOptions<T> {
     id?: number;
     body?: T;
-};
+}
 
-type Params = {
+interface Params {
     pageNumber?: number;
     pageSize?: number;
     disablePaging?: boolean;
-};
+}

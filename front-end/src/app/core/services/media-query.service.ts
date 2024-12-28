@@ -6,10 +6,10 @@ import { Observable, Subject } from 'rxjs';
     providedIn: 'root',
 })
 export class MediaQueryService {
-    private widthSubject: Subject<number> = new Subject();
+    private widthSubject = new Subject<number>();
     private width?: number;
 
-    constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    constructor(@Inject(PLATFORM_ID) private platformId: object) {
         if (isPlatformBrowser(this.platformId)) {
             this.udpateWidth();
 

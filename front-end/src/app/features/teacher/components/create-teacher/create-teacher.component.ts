@@ -41,9 +41,3 @@ export class CreateTeacherComponent extends AbstractCreateItemComponent {
         this.loading = false;
     }
 }
-
-type CreatedTeacher = {
-    firstName: string;
-    lastName: string;
-    schoolId: number;
-};

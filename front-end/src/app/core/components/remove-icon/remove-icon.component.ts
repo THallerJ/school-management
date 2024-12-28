@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
     styleUrl: './remove-icon.component.css',
 })
 export class RemoveIconComponent {
-    @Input() height: number = 24;
-    @Input() width: number = 24;
+    @Input() height = 24;
+    @Input() width = 24;
 }

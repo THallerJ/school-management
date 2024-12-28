@@ -1,6 +1,6 @@
 import { TeacherDto } from './../../../../core/types';
 import { Component } from '@angular/core';
-import { TeacherDtoRespSchema, TeacherDtoResp } from '../../../../core/types';
+import { TeacherDtoRespSchema } from '../../../../core/types';
 import { ConditionalMessageComponent } from './../../../../core/components/conditional-message/conditional-message.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';

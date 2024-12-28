@@ -1,7 +1,9 @@
 <div
     class="list-item"
     (click)="onClick()"
+    (keyup.enter)="onClick()"
     [style.cursor]="clickEvent.observed ? 'pointer' : 'default'"
+    tabindex="0"
 >
     <div class="list-item-info">
         @for (prop of item.properties; track item.id + prop; let i = $index) {

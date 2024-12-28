@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { ItemNoPaging, ItemsNoPagingRespSchema } from '../../types';
@@ -12,7 +12,7 @@ import { ItemsNoPagingPipe } from './items-no-paging.pipe';
     templateUrl: './select-item.component.html',
     styleUrl: './select-item.component.css',
 })
-export class SelectItemComponent {
+export class SelectItemComponent implements OnInit {
     @Input({ required: true }) path!: string;
     @Input({ required: true }) message!: string;
     @Input({ required: true }) name!: string;

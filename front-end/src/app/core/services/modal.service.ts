@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
     providedIn: 'root',
 })
 export class ModalService {
-    private isOpen: boolean = false;
+    private isOpen = false;
     private isOpenSubject: Subject<boolean> = new Subject<boolean>();
 
     observeState() {

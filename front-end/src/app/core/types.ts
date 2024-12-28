@@ -133,12 +133,12 @@ export type FormGroupType<T> = {
     [K in keyof T]: FormControl<T[K]>;
 };
 
-export type Item = {
+export interface Item {
     id: number;
     properties: string[];
-};
+}
 
-export type SelectOption = { value: string; label: string };
+export interface SelectOption { value: string; label: string }
 
 export const ItemNoPagingSchema = zod.object({
     id: zod.number(),
@@ -151,4 +151,4 @@ export type ItemNoPaging = zod.infer<typeof ItemNoPagingSchema>;
 
 export type ItemsNoPagingResp = zod.infer<typeof ItemsNoPagingRespSchema>;
 
-export type AddRegistration = { courseId: number; studentId: number };
+export interface AddRegistration { courseId: number; studentId: number }

@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
@@ -13,7 +13,7 @@ export class ApiContentWrapperComponent {
     @Input() errorFlag?: boolean;
     @Input() buttonText?: string;
     @Input() isButtonError?: boolean;
-    @Input() buttonErrorMsg: string =
+    @Input() buttonErrorMsg =
         'This item could not be deleted since it still has dependents.';
     @Input() useAltButtonColor?: boolean;
     @Input() hideButton?: boolean;

@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-    StudentDto,
-    StudentDtoResp,
-    StudentDtoRespSchema,
-} from '../../../../core/types';
+import { StudentDto, StudentDtoRespSchema } from '../../../../core/types';
 import { ConditionalMessageComponent } from './../../../../core/components/conditional-message/conditional-message.component';
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ListItemComponent } from '../../../../core/components/list-item/list-item.component';
