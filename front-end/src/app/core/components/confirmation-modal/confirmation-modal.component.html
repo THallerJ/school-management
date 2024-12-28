@@ -2,8 +2,16 @@
     <div class="confirm-modal">
         <span>Are you sure?</span>
         <div class="confirm-modal-buttons">
-            <button class="btn" (click)="onClose()">Cancel</button>
-            <button class="btn" (click)="onClickOk()">Ok</button>
+            <button
+                class="btn"
+                (click)="onClose()"
+                aria-label="close modal without confirming"
+            >
+                Cancel
+            </button>
+            <button class="btn" (click)="onClickOk()" aria-label="confirm">
+                Ok
+            </button>
         </div>
     </div>
 </app-modal>

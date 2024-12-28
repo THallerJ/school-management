@@ -36,7 +36,13 @@
                 label="course"
                 message="No courses found"
             />
-            <button class="btn" type="submit">Submit</button>
+            <button
+                class="btn"
+                type="submit"
+                aria-label="submit registration form"
+            >
+                Submit
+            </button>
             <app-form-validator [form]="registrationForm">
                 <ul>
                     <li>Invalid input</li>

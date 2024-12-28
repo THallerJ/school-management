@@ -17,6 +17,12 @@
         }
     </app-conditional-message>
     @if (items && items.length >= PAGE_SIZE) {
-        <button class="load-more-btn" (click)="getItems()">Load more</button>
+        <button
+            class="load-more-btn"
+            (click)="getItems()"
+            aria-label="load more teachers"
+        >
+            Load more
+        </button>
     }
 </app-api-content-wrapper>

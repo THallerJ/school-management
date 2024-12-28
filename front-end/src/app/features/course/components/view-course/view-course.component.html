@@ -40,7 +40,13 @@
                 label="student"
                 message="No students found"
             />
-            <button class="btn" type="submit">Submit</button>
+            <button
+                class="btn"
+                type="submit"
+                aria-label="submit registration form"
+            >
+                Submit
+            </button>
             <app-form-validator [form]="registrationForm">
                 <ul>
                     <li>Invalid input</li>

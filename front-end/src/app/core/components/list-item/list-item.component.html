@@ -13,7 +13,11 @@
         }
 
         @if (buttonEvent.observed) {
-            <button class="remove-btn" (click)="onButtonClick()">
+            <button
+                class="remove-btn"
+                (click)="onButtonClick()"
+                [ariaLabel]="'remove ' + item.properties[0]"
+            >
                 <app-remove-icon />
             </button>
         }

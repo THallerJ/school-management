@@ -22,7 +22,9 @@
             label="teacher"
             message="No teachers found"
         />
-        <button class="btn" type="submit">{{ buttonText }}</button>
+        <button class="btn" type="submit" aria-label="submit course form">
+            {{ buttonText }}
+        </button>
         <ng-content />
     </div>
 </form>

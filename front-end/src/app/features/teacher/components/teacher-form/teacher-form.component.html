@@ -14,7 +14,9 @@
             label="school"
             message="No schools found"
         />
-        <button class="btn" type="submit">{{ buttonText }}</button>
+        <button class="btn" type="submit" aria-label="submit teacher form">
+            {{ buttonText }}
+        </button>
         <ng-content />
     </div>
 </form>
