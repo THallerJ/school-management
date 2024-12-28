@@ -2,21 +2,26 @@
     aria-label="menu-button"
     class="menu-button"
     (click)="toggleMenuButton()"
+    (mouseenter)="onMouseEnter()"
+    (mouseleave)="onMouseLeave()"
     aria-label="open navigation menu"
 >
     <span
-        class="top-menu line button-animation"
+        class="top-menu line"
         [class.open]="toggled"
         [class.closed]="!toggled"
+        [class.button-animation]="hovering"
     ></span>
     <span
-        class="mid-menu line button-animation"
+        class="mid-menu line"
         [class.open]="toggled"
         [class.closed]="!toggled"
+        [class.button-animation]="hovering"
     ></span>
     <span
-        class="bottom-menu line button-animation"
+        class="bottom-menu line"
         [class.open]="toggled"
         [class.closed]="!toggled"
+        [class.button-animation]="hovering"
     ></span>
 </button>

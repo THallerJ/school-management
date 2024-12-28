@@ -10,9 +10,18 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 export class MenuButtonComponent {
     @Input({ required: true }) toggled!: boolean;
     @Output() clickEvent = new EventEmitter();
+    hovering = false;
 
     toggleMenuButton() {
         this.toggled = !this.toggled;
         this.clickEvent.emit();
+    }
+
+    onMouseEnter() {
+        this.hovering = true;
+    }
+
+    onMouseLeave() {
+        this.hovering = false;
     }
 }
