@@ -36,6 +36,7 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<SchoolDto> {
     override PATH = 'schools';
     override SCHEMA = SchoolDtoSchema;
     override REDIRECT = '/schools';
+    override VIEW_REDIRECT = 'courses';
 
     constructor(
         override route: ActivatedRoute,

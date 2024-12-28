@@ -64,6 +64,7 @@
                 <app-list-item
                     (buttonEvent)="removeRegistration(course.course.id)"
                     [item]="course.course | courseRegistration"
+                    (clickEvent)="viewItem(course.course.id)"
                 />
             }
         }

@@ -16,6 +16,7 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
     protected abstract SCHEMA: z.ZodSchema<T>;
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
+    protected abstract VIEW_REDIRECT: string;
 
     protected REGISTRATIONS_PATH = 'registrations';
 
@@ -88,6 +89,10 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
                     this.updatedFlag = true;
                 });
         }
+    }
+
+    viewItem(id: number) {
+        this.router.navigate([`/${this.VIEW_REDIRECT}/${id}`]);
     }
 
     protected initId() {

@@ -52,6 +52,7 @@ export class ViewStudentComponent
     override PATH = 'students';
     override REDIRECT = '/students';
     override SCHEMA = StudentDtoSchema;
+    override VIEW_REDIRECT = 'courses';
 
     registrationForm!: FormGroup;
     loadingSchools = true;

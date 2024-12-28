@@ -68,6 +68,7 @@
                 <app-list-item
                     (buttonEvent)="removeRegistration(student.student.id)"
                     [item]="student.student | studentRegistration"
+                    (clickEvent)="viewItem(student.student.id)"
                 />
             }
         }

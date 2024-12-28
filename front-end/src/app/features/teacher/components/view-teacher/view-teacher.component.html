@@ -28,7 +28,10 @@
         message="This teacher has no courses"
     >
         @for (course of item?.courses; track course.id) {
-            <app-list-item [item]="course | courseNoTeacher" />
+            <app-list-item
+                [item]="course | courseNoTeacher"
+                (clickEvent)="viewItem(course.id)"
+            />
         }
     </app-conditional-message>
 </app-view-item-wrapper>
