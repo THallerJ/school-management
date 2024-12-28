@@ -1,9 +1,11 @@
 <div class="item-list-header">
-    @for (col of columns; track col; let i = $index) {
-        @if (i === columns.length - 1 && hasButton) {
-            <span class="btn-heading">{{ col }}</span>
-        } @else {
-            <span>{{ col }}</span>
+    <div class="columns">
+        @for (col of columns; track col; let i = $index) {
+            <span class="column">{{ col }}</span>
         }
+    </div>
+
+    @if (hasButton) {
+        <span class="btn-heading"></span>
     }
 </div>

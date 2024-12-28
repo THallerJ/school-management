@@ -7,24 +7,29 @@
     width: 100%;
 }
 
-.btn-heading {
-    flex: 4;
+.columns {
+    display: flex;
+    flex: 5;
 }
 
-span {
-    flex: 2;
-    text-overflow: ellipsis;
+.column {
+    flex: 1;
     padding: 0 1rem 0 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
     font-size: 0.75rem;
-    min-width: 0;
+}
+
+.btn-heading {
+    flex: 1;
 }
 
 @media screen and (min-width: 460px) {
-    .btn-heading {
-        flex: 3;
+    .columns {
+        flex: 10;
     }
 
-    span {
+    .column {
         font-size: 1rem;
     }
 }

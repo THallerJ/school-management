@@ -6,10 +6,9 @@
     min-height: 5rem;
 }
 
-.list-item-info {
-    width: 100%;
+.columns {
     display: flex;
-    flex-shrink: 1;
+    flex: 5;
 }
 
 .remove-btn {
@@ -19,7 +18,7 @@
     outline: none;
     border: none;
     min-width: 0;
-    flex: 2;
+    flex: 1;
 }
 
 .remove-btn:hover {
@@ -28,7 +27,7 @@
 }
 
 .column {
-    flex: 2;
+    flex: 1;
     display: flex;
     align-items: center;
     min-width: 0;
@@ -46,8 +45,8 @@ span {
 }
 
 @media screen and (min-width: 460px) {
-    .remove-btn {
-        flex: 1;
+    .columns {
+        flex: 10;
     }
 
     span {

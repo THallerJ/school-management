@@ -1,25 +1,27 @@
 <div
     class="list-item"
-    (click)="onClick()"
-    (keyup.enter)="onClick()"
     [style.cursor]="clickEvent.observed ? 'pointer' : 'default'"
-    tabindex="0"
 >
-    <div class="list-item-info">
+    <div
+        class="columns"
+        (click)="onClick()"
+        (keyup.enter)="onClick()"
+        tabindex="0"
+    >
         @for (prop of item.properties; track item.id + prop; let i = $index) {
             <div class="column">
                 <span>{{ prop }}</span>
             </div>
         }
-
-        @if (buttonEvent.observed) {
-            <button
-                class="remove-btn"
-                (click)="onButtonClick()"
-                [ariaLabel]="'remove ' + item.properties[0]"
-            >
-                <app-remove-icon />
-            </button>
-        }
     </div>
+
+    @if (buttonEvent.observed) {
+        <button
+            class="remove-btn"
+            (click)="onButtonClick()"
+            [ariaLabel]="'remove ' + item.properties[0]"
+        >
+            <app-remove-icon />
+        </button>
+    }
 </div>
