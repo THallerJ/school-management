@@ -66,6 +66,7 @@ namespace school_management.Repository
             studentToUpdate.FirstName = studentDto.FirstName;
             studentToUpdate.LastName = studentDto.LastName;
             studentToUpdate.SchoolId = studentDto.SchoolId;
+            studentToUpdate.Email = studentDto.Email;
 
             await _context.SaveChangesAsync();
 

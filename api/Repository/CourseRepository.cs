@@ -66,6 +66,7 @@ namespace school_management.Repository
             courseToUpdate.TeacherId = courseDto.TeacherId;
             courseToUpdate.SchoolId = courseDto.SchoolId;
             courseToUpdate.Name = courseDto.Name;
+            courseToUpdate.Credits = courseDto.Credits;
 
             await _context.SaveChangesAsync();
 
