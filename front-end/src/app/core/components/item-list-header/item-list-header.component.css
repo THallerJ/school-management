@@ -14,7 +14,7 @@
 
 .column {
     flex: 1;
-    padding: 0 1rem 0 1rem;
+    padding: 0 0.5rem 0 0.5rem;
     text-overflow: ellipsis;
     overflow: hidden;
     font-size: 0.75rem;
@@ -31,5 +31,6 @@
 
     .column {
         font-size: 1rem;
+        padding: 0 1rem 0 1rem;
     }
 }

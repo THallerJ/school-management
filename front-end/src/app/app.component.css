@@ -30,7 +30,7 @@
 }
 
 .app-router-outlet {
-    padding: 1rem 1rem 4rem 1rem;
+    padding: 1rem 1rem 0rem 1rem;
 }
 
 @media screen and (min-width: 780px) {
@@ -39,7 +39,7 @@
     }
 
     .app-router-outlet {
-        padding: 1rem 2rem 4rem 2rem;
+        padding: 1rem 2rem 0rem 2rem;
     }
 }
 
