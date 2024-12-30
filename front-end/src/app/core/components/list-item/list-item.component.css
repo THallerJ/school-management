@@ -6,6 +6,10 @@
     min-height: 4rem;
 }
 
+.alt-color {
+    background-color: var(--body-color-alt);
+}
+
 .columns {
     display: flex;
     flex: 5;
@@ -19,11 +23,13 @@
     border: none;
     min-width: 0;
     flex: 1;
+    background-color: var(--dark-red);
 }
 
 .remove-btn:hover {
     cursor: pointer;
     background-color: var(--dark-text);
+    background-color: var(--darkest-red);
 }
 
 .column {

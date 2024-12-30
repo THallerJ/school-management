@@ -9,10 +9,11 @@
         [condition]="!loading && items?.length === 0"
         message="No schools found"
     >
-        @for (school of items; track school.id) {
+        @for (school of items; track school.id; let i = $index) {
             <app-list-item
                 (clickEvent)="viewItem(school.id)"
                 [item]="school | schoolDto"
+                [altColor]="i % 2 === 1"
             />
         }
     </app-conditional-message>

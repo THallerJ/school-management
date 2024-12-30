@@ -59,12 +59,17 @@
         [condition]="!loading && item?.registrations?.length === 0"
         message="This student isn't taking any courses"
     >
-        @for (course of item?.registrations; track course.course?.id) {
+        @for (
+            course of item?.registrations;
+            track course.course?.id;
+            let i = $index
+        ) {
             @if (course.course) {
                 <app-list-item
                     (buttonEvent)="removeRegistration(course.course.id)"
                     [item]="course.course | courseRegistration"
                     (clickEvent)="viewItem(course.course.id)"
+                    [altColor]="i % 2 === 1"
                 />
             }
         }

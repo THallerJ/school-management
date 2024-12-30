@@ -12,6 +12,7 @@ export class ListItemComponent {
     @Input({ required: true }) item!: Item;
     @Output() clickEvent = new EventEmitter();
     @Output() buttonEvent = new EventEmitter();
+    @Input() altColor?: boolean;
 
     onClick() {
         this.clickEvent.emit();

@@ -11,10 +11,11 @@
         [condition]="!loading && items?.length === 0"
         message="No courses found"
     >
-        @for (course of items; track course.id) {
+        @for (course of items; track course.id; let i = $index) {
             <app-list-item
                 (clickEvent)="viewItem(course.id)"
                 [item]="course | courseDto"
+                [altColor]="i % 2 === 1"
             />
         }
     </app-conditional-message>

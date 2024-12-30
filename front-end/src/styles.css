@@ -11,6 +11,7 @@ body {
     --offwhite-light: hsl(0, 0%, 90%);
     --offwhite: hsl(0, 0%, 75%);
     --body-color: hsl(0, 0%, 100%);
+    --body-color-alt: hsl(0, 0%, 97%);
     --light-red: hsl(354, 100%, 90%);
     --dark-red: hsl(0, 69%, 67%);
     --darkest-red: hsl(1, 83%, 63%);
