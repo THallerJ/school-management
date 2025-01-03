@@ -1,0 +1,6 @@
+services:
+  school-management:
+    image: ${DOCKER_REGISTRY-}schoolmanagement
+    build:
+      context: .
+      dockerfile: api/Dockerfile
