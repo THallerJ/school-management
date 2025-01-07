@@ -9,7 +9,7 @@
         (keyup.enter)="onClick()"
         tabindex="0"
     >
-        @for (prop of item.properties; track item.id + prop; let i = $index) {
+        @for (prop of item.properties; track $index + prop; let i = $index) {
             <div class="column">
                 <span>{{ prop }}</span>
             </div>
