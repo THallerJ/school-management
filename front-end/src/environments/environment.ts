@@ -1,3 +1,3 @@
 export const environment = {
-    apiUrl: '',
+    apiUrl: 'https://school-management-bpsv.onrender.com/api',
 };
