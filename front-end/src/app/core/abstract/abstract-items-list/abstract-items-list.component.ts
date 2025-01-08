@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, NgZone, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { z } from 'zod';
+import { filter, take } from 'rxjs';
 
 @Component({
     selector: 'app-abstract-items-list',
@@ -23,33 +24,37 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
     constructor(
         protected apiService: ApiService,
         protected router: Router,
+        private appRef: ApplicationRef,
+        private zone: NgZone,
     ) {}
 
     getItems() {
         const params = { pageNumber: this.page, pageSize: this.PAGE_SIZE };
 
-        this.apiService.get(this.PATH, { params }).subscribe({
-            next: data => {
-                const result = this.SCHEMA.safeParse(data);
-                if (result.success) {
-                    if (this.page === 1) {
-                        this.items = result.data;
-                    } else if (result.data.length > 0 && this.items) {
-                        this.items = [...this.items, ...result.data];
+        this.zone.run(() => {
+            this.apiService.get(this.PATH, { params }).subscribe({
+                next: data => {
+                    const result = this.SCHEMA.safeParse(data);
+                    if (result.success) {
+                        if (this.page === 1) {
+                            this.items = result.data;
+                        } else if (result.data.length > 0 && this.items) {
+                            this.items = [...this.items, ...result.data];
+                        }
+
+                        this.page = this.page + 1;
                     }
 
-                    this.page = this.page + 1;
-                }
+                    this.loading = false;
+                },
+                error: error => {
+                    this.loading = false;
 
-                this.loading = false;
-            },
-            error: error => {
-                this.loading = false;
-
-                if (error.status === 0) {
-                    return;
-                }
-            },
+                    if (error.status === 0) {
+                        return;
+                    }
+                },
+            });
         });
     }
 
@@ -62,6 +67,13 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getItems();
+        this.appRef.isStable
+            .pipe(
+                filter(stable => stable),
+                take(1),
+            )
+            .subscribe(() => {
+                this.getItems();
+            });
     }
 }

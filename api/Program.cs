@@ -43,7 +43,12 @@ if (app.Environment.IsDevelopment())
     .SetIsOriginAllowed(origin => true)
     .AllowCredentials());
 } else {
-    app.UseHttpsRedirection();
+    string acceptedOrigins = Environment.GetEnvironmentVariable("ACCEPTED_ORIGINS") ?? string.Empty;
+    
+    string[] originsArray = acceptedOrigins.Replace(" ", string.Empty).Split(',');
+
+    app.UseCors(x => x.WithOrigins(originsArray)
+        .AllowAnyMethod().AllowAnyHeader());
 }
 
 app.UseAuthorization();
