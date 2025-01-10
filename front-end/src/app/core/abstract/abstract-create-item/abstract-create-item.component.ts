@@ -14,6 +14,7 @@ export abstract class AbstractCreateItemComponent implements OnInit {
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
 
+    protected disableButton = false;
     protected form!: FormGroup;
 
     constructor(
@@ -24,12 +25,14 @@ export abstract class AbstractCreateItemComponent implements OnInit {
     abstract initForm(): void;
 
     protected createItem() {
+        this.disableButton = true;
         const createdSchool = this.form.value;
 
         this.form?.markAsTouched();
 
         if (this.form?.valid && createdSchool) {
             this.apiService.post(this.PATH, createdSchool).subscribe(() => {
+                this.disableButton = false;
                 this.router.navigate([this.REDIRECT]);
             });
         }

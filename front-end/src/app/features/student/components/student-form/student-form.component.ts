@@ -12,6 +12,7 @@ import { SelectItemComponent } from '../../../../core/components/select-item/sel
 export class StudentFormComponent {
     @Input({ required: true }) form!: FormGroup;
     @Input({ required: true }) buttonText!: string;
+    @Input({ required: true }) disableButton!: boolean;
     @Output() submitEvent = new EventEmitter();
     @Output() loadCoursesEvent = new EventEmitter();
 

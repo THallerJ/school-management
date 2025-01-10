@@ -12,6 +12,7 @@
         [form]="form"
         buttonText="Update School"
         (submitEvent)="updateItem()"
+        [disableButton]="updatedFlag"
     >
         <app-form-validator [form]="form">
             <ul>

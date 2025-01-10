@@ -10,6 +10,7 @@
             (loadSchoolsEvent)="finishLoadingSchools()"
             (loadTeachersEvent)="finishLoadingTeachers()"
             (submitItemEvent)="createItem()"
+            [disableButton]="disableButton"
         >
             <app-form-validator [form]="form">
                 <ul>

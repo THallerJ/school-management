@@ -11,6 +11,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class SchoolFormComponent {
     @Input({ required: true }) form!: FormGroup;
     @Input({ required: true }) buttonText!: string;
+    @Input({ required: true }) disableButton!: boolean;
     @Output() submitEvent = new EventEmitter();
 
     submitItem() {

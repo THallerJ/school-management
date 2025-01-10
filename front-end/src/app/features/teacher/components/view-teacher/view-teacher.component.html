@@ -13,6 +13,7 @@
         buttonText="Update Teacher"
         (submitEvent)="updateItem()"
         (loadSchoolsEvent)="finishLoadingSchools()"
+        [disableButton]="updatedFlag"
     >
         <app-form-validator [form]="form">
             <ul>

@@ -5,6 +5,7 @@
         buttonText="Create Teacher"
         (loadSchoolsEvent)="finishLoading()"
         (submitEvent)="createItem()"
+        [disableButton]="disableButton"
     >
         <app-form-validator [form]="form">
             <ul>

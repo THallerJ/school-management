@@ -15,6 +15,7 @@
         (loadTeachersEvent)="finishLoadingTeachers()"
         (submitItemEvent)="updateItem()"
         buttonText="Update Course"
+        [disableButton]="updatedFlag"
     >
         <app-form-validator [form]="form">
             <li>

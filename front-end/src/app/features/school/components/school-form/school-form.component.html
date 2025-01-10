@@ -9,7 +9,12 @@
         <app-input-label [group]="form" name="phoneNumber" type="tel">
             School Phone Number
         </app-input-label>
-        <button class="btn" type="submit" aria-label="submit school form">
+        <button
+            class="btn"
+            type="submit"
+            aria-label="submit school form"
+            [disabled]="disableButton"
+        >
             {{ buttonText }}
         </button>
         <ng-content />

@@ -4,6 +4,7 @@
         [form]="form"
         (submitEvent)="createItem()"
         buttonText="Create School"
+        [disableButton]="disableButton"
     >
         <app-form-validator [form]="form">
             <ul>
