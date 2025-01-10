@@ -3,6 +3,7 @@
         <ng-content />
     </label>
     <select [id]="name" [name]="name" [value]="value" [formControlName]="name">
+        <option disabled selected class="empty-option"></option>
         @for (option of options; track option.value) {
             <option [value]="option.value">
                 {{ option.label }}

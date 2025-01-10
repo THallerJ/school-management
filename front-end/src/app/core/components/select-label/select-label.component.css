@@ -14,3 +14,7 @@
 .select-label > select {
     padding: 0.5rem 0.5rem;
 }
+
+.empty-option {
+    display: none;
+}

@@ -14,4 +14,5 @@ export class SelectLabelComponent {
     @Input({ required: true }) group!: FormGroup;
     @Input() value?: string;
     @Input() options?: SelectOption[];
+    @Input() loading?: boolean;
 }
