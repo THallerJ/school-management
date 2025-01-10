@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -12,7 +12,9 @@ import { z } from 'zod';
     templateUrl: './abstract-view-item.component.html',
     styleUrl: './abstract-view-item.component.css',
 })
-export abstract class AbstractViewItemComponent<T> implements OnInit {
+export abstract class AbstractViewItemComponent<T>
+    implements OnInit, AfterViewInit
+{
     protected abstract SCHEMA: z.ZodSchema<T>;
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
@@ -105,7 +107,10 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
     }
 
     ngOnInit() {
-        this.initId();
         this.form = this.initForm();
+    }
+
+    ngAfterViewInit() {
+        this.initId();
     }
 }
