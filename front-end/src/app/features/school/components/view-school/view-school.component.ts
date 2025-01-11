@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { SchoolDto, SchoolDtoSchema } from '../../../../core/types';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
@@ -43,9 +43,10 @@ export class ViewSchoolComponent extends AbstractViewItemComponent<SchoolDto> {
         override apiService: ApiService,
         override router: Router,
         override modalService: ModalService,
+        override cdr: ChangeDetectorRef,
         private schoolFormService: SchoolFormService,
     ) {
-        super(route, apiService, router, modalService);
+        super(route, apiService, router, modalService, cdr);
     }
 
     override patchForm() {

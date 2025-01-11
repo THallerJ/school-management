@@ -1,4 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    OnInit,
+    ChangeDetectorRef,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -35,6 +40,7 @@ export abstract class AbstractViewItemComponent<T>
         protected apiService: ApiService,
         protected router: Router,
         protected modalService: ModalService,
+        protected cdr: ChangeDetectorRef,
     ) {}
 
     abstract patchForm(): void;
@@ -51,6 +57,7 @@ export abstract class AbstractViewItemComponent<T>
                 if (result.success) this.item = result.data;
                 this.patchForm();
                 this.loading = false;
+                this.cdr.detectChanges();
             },
             error: error => {
                 if (error.status === 0) {
@@ -58,6 +65,7 @@ export abstract class AbstractViewItemComponent<T>
                 } else {
                     this.loading = false;
                     this.isFetchError = true;
+                    this.cdr.detectChanges();
                 }
             },
         });

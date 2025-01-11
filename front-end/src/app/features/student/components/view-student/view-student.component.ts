@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import {
     StudentDto,
     StudentDtoSchema,
@@ -63,10 +63,11 @@ export class ViewStudentComponent
         override apiService: ApiService,
         override router: Router,
         override modalService: ModalService,
+        override cdr: ChangeDetectorRef,
         private studentFormService: StudentFormService,
         private formBuilder: FormBuilder,
     ) {
-        super(route, apiService, router, modalService);
+        super(route, apiService, router, modalService, cdr);
     }
 
     override patchForm(): void {
