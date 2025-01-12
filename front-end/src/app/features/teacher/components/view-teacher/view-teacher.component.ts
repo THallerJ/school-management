@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { TeacherDto, TeacherDtoSchema } from '../../../../core/types';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormValidatorComponent } from '../../../../core/components/form-validator/form-validator.component';
@@ -43,10 +43,9 @@ export class ViewTeacherComponent extends AbstractViewItemComponent<TeacherDto> 
         override apiService: ApiService,
         override router: Router,
         override modalService: ModalService,
-        override cdr: ChangeDetectorRef,
         private teacherFormService: TeacherFormService,
     ) {
-        super(route, apiService, router, modalService, cdr);
+        super(route, apiService, router, modalService);
     }
 
     loadingSchools = true;
@@ -61,9 +60,5 @@ export class ViewTeacherComponent extends AbstractViewItemComponent<TeacherDto> 
 
     override initForm() {
         return this.teacherFormService.buildForm();
-    }
-
-    finishLoadingSchools() {
-        this.loadingSchools = false;
     }
 }

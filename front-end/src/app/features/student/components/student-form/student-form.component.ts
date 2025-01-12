@@ -14,13 +14,8 @@ export class StudentFormComponent {
     @Input({ required: true }) buttonText!: string;
     @Input({ required: true }) disableButton!: boolean;
     @Output() submitEvent = new EventEmitter();
-    @Output() loadCoursesEvent = new EventEmitter();
 
     submitItem() {
         this.submitEvent.emit();
-    }
-
-    finishLoading() {
-        this.loadCoursesEvent.emit();
     }
 }

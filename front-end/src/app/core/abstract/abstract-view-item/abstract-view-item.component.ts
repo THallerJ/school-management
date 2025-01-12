@@ -1,9 +1,4 @@
-import {
-    AfterViewInit,
-    Component,
-    OnInit,
-    ChangeDetectorRef,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
@@ -17,9 +12,7 @@ import { z } from 'zod';
     templateUrl: './abstract-view-item.component.html',
     styleUrl: './abstract-view-item.component.css',
 })
-export abstract class AbstractViewItemComponent<T>
-    implements OnInit, AfterViewInit
-{
+export abstract class AbstractViewItemComponent<T> implements OnInit {
     protected abstract SCHEMA: z.ZodSchema<T>;
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
@@ -40,7 +33,6 @@ export abstract class AbstractViewItemComponent<T>
         protected apiService: ApiService,
         protected router: Router,
         protected modalService: ModalService,
-        protected cdr: ChangeDetectorRef,
     ) {}
 
     abstract patchForm(): void;
@@ -57,7 +49,6 @@ export abstract class AbstractViewItemComponent<T>
                 if (result.success) this.item = result.data;
                 this.patchForm();
                 this.loading = false;
-                this.cdr.detectChanges();
             },
             error: error => {
                 if (error.status === 0) {
@@ -65,7 +56,6 @@ export abstract class AbstractViewItemComponent<T>
                 } else {
                     this.loading = false;
                     this.isFetchError = true;
-                    this.cdr.detectChanges();
                 }
             },
         });
@@ -116,9 +106,6 @@ export abstract class AbstractViewItemComponent<T>
 
     ngOnInit() {
         this.form = this.initForm();
-    }
-
-    ngAfterViewInit() {
         this.initId();
     }
 }

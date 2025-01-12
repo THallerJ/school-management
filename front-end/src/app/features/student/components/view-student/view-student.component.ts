@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import {
     StudentDto,
     StudentDtoSchema,
@@ -63,11 +63,10 @@ export class ViewStudentComponent
         override apiService: ApiService,
         override router: Router,
         override modalService: ModalService,
-        override cdr: ChangeDetectorRef,
         private studentFormService: StudentFormService,
         private formBuilder: FormBuilder,
     ) {
-        super(route, apiService, router, modalService, cdr);
+        super(route, apiService, router, modalService);
     }
 
     override patchForm(): void {
@@ -123,10 +122,6 @@ export class ViewStudentComponent
                     window.location.reload();
                 });
         }
-    }
-
-    finishLoadingSchools() {
-        this.loadingSchools = false;
     }
 
     finishLoadingRegistrations() {

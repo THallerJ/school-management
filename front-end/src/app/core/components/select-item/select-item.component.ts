@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { ItemNoPaging, ItemsNoPagingRespSchema } from '../../types';
@@ -18,7 +18,6 @@ export class SelectItemComponent implements OnInit {
     @Input({ required: true }) name!: string;
     @Input({ required: true }) group!: FormGroup;
     @Input({ required: true }) label!: string;
-    @Output() loadingEvent = new EventEmitter<boolean>();
 
     loading = true;
     items?: ItemNoPaging[];
@@ -36,11 +35,9 @@ export class SelectItemComponent implements OnInit {
                 }
 
                 this.loading = false;
-                this.loadingEvent.emit(this.loading);
             },
             error: error => {
                 this.loading = false;
-                this.loadingEvent.emit(this.loading);
 
                 if (error.status === 0) {
                     return;

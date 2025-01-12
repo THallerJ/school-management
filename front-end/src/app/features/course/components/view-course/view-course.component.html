@@ -1,7 +1,5 @@
 <app-view-item-wrapper
-    [loading]="
-        loading || loadingSchools || loadingTeachers || loadingRegistrations
-    "
+    [loading]="loading"
     [item]="item"
     (deleteEvent)="onDelete()"
     altButtonMessage="This course cannot be deleted"
@@ -11,8 +9,6 @@
     <h2>Edit Course</h2>
     <app-course-form
         [form]="form"
-        (loadSchoolsEvent)="finishLoadingSchools()"
-        (loadTeachersEvent)="finishLoadingTeachers()"
         (submitItemEvent)="updateItem()"
         buttonText="Update Course"
         [disableButton]="updatedFlag"
