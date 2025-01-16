@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ApplicationRef, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { ModalService } from '../../services/modal.service';
 import { z } from 'zod';
+import { filter, Subscription, take } from 'rxjs';
 
 @Component({
     selector: 'app-abstract-view-item',
@@ -12,7 +13,9 @@ import { z } from 'zod';
     templateUrl: './abstract-view-item.component.html',
     styleUrl: './abstract-view-item.component.css',
 })
-export abstract class AbstractViewItemComponent<T> implements OnInit {
+export abstract class AbstractViewItemComponent<T>
+    implements OnInit, OnDestroy
+{
     protected abstract SCHEMA: z.ZodSchema<T>;
     protected abstract PATH: string;
     protected abstract REDIRECT: string;
@@ -21,18 +24,21 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
     protected REGISTRATIONS_PATH = 'registrations';
 
     protected id?: number;
-    protected loading = false;
+    protected loading = true;
     protected form!: FormGroup;
     protected item?: T;
     protected isFetchError = false;
     protected isDeleteError = false;
     protected updatedFlag = false;
 
+    private stableSub!: Subscription;
+
     constructor(
         protected route: ActivatedRoute,
         protected apiService: ApiService,
         protected router: Router,
         protected modalService: ModalService,
+        protected appRef: ApplicationRef,
     ) {}
 
     abstract patchForm(): void;
@@ -104,8 +110,20 @@ export abstract class AbstractViewItemComponent<T> implements OnInit {
         this.modalService.openModal();
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.form = this.initForm();
-        this.initId();
+
+        this.stableSub = this.appRef.isStable
+            .pipe(
+                filter(stable => stable),
+                take(1),
+            )
+            .subscribe(() => {
+                this.initId();
+            });
+    }
+
+    ngOnDestroy() {
+        this.stableSub.unsubscribe();
     }
 }

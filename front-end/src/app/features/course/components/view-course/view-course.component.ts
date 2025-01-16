@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ApplicationRef } from '@angular/core';
 import { AbstractViewItemComponent } from '../../../../core/abstract/abstract-view-item/abstract-view-item.component';
 import { CourseDto, CourseDtoSchema } from '../../../../core/types';
 import {
@@ -60,10 +60,11 @@ export class ViewCourseComponent
         override apiService: ApiService,
         override router: Router,
         override modalService: ModalService,
+        override appRef: ApplicationRef,
         private courseFormService: CourseFormService,
         private formBuilder: FormBuilder,
     ) {
-        super(route, apiService, router, modalService);
+        super(route, apiService, router, modalService, appRef);
     }
 
     override initForm() {

@@ -1,8 +1,14 @@
-import { ApplicationRef, Component, NgZone, OnInit } from '@angular/core';
+import {
+    ApplicationRef,
+    Component,
+    NgZone,
+    OnDestroy,
+    OnInit,
+} from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { z } from 'zod';
-import { filter, take } from 'rxjs';
+import { filter, Subscription, take } from 'rxjs';
 
 @Component({
     selector: 'app-abstract-items-list',
@@ -11,7 +17,9 @@ import { filter, take } from 'rxjs';
     templateUrl: './abstract-items-list.component.html',
     styleUrl: './abstract-items-list.component.css',
 })
-export abstract class AbstractItemsListComponent<T> implements OnInit {
+export abstract class AbstractItemsListComponent<T>
+    implements OnInit, OnDestroy
+{
     protected abstract PATH: string;
     protected abstract SCHEMA: z.ZodSchema<T[]>;
     protected abstract CREATE_ITEM_PATH: string;
@@ -20,6 +28,8 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
     protected readonly PAGE_SIZE = 20;
     protected loading = true;
     items?: T[];
+
+    private stableSub!: Subscription;
 
     constructor(
         protected apiService: ApiService,
@@ -67,7 +77,7 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
     }
 
     ngOnInit(): void {
-        this.appRef.isStable
+        this.stableSub = this.appRef.isStable
             .pipe(
                 filter(stable => stable),
                 take(1),
@@ -75,5 +85,9 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
             .subscribe(() => {
                 this.getItems();
             });
+    }
+
+    ngOnDestroy(): void {
+        this.stableSub.unsubscribe();
     }
 }
