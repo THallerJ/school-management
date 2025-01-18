@@ -6,6 +6,7 @@ import { ListItemComponent } from '../../../../core/components/list-item/list-it
 import { ApiContentWrapperComponent } from '../../../../core/components/api-content-wrapper/api-content-wrapper.component';
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-items-list/abstract-items-list.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 @Component({
     selector: 'app-schools',
     standalone: true,
@@ -17,6 +18,8 @@ import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-i
         SchoolDtoPipe,
         ApiContentWrapperComponent,
         ConditionalMessageComponent,
+        NgIf,
+        AsyncPipe,
     ],
 })
 export class SchoolsComponent extends AbstractItemsListComponent<SchoolDto> {

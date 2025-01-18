@@ -1,14 +1,16 @@
-import {
-    ApplicationRef,
-    Component,
-    NgZone,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { z } from 'zod';
-import { filter, Subscription, take } from 'rxjs';
+import {
+    filter,
+    take,
+    catchError,
+    scan,
+    Observable,
+    switchMap,
+    map,
+} from 'rxjs';
 
 @Component({
     selector: 'app-abstract-items-list',
@@ -17,9 +19,7 @@ import { filter, Subscription, take } from 'rxjs';
     templateUrl: './abstract-items-list.component.html',
     styleUrl: './abstract-items-list.component.css',
 })
-export abstract class AbstractItemsListComponent<T>
-    implements OnInit, OnDestroy
-{
+export abstract class AbstractItemsListComponent<T> implements OnInit {
     protected abstract PATH: string;
     protected abstract SCHEMA: z.ZodSchema<T[]>;
     protected abstract CREATE_ITEM_PATH: string;
@@ -27,47 +27,34 @@ export abstract class AbstractItemsListComponent<T>
     protected page = 1;
     protected readonly PAGE_SIZE = 20;
     protected loading = true;
-    items?: T[];
-
-    private stableSub!: Subscription;
+    items$?: Observable<T[]>;
 
     constructor(
         protected apiService: ApiService,
         protected router: Router,
         private appRef: ApplicationRef,
-        private zone: NgZone,
     ) {}
 
     getItems() {
         const params = { pageNumber: this.page, pageSize: this.PAGE_SIZE };
+        this.loading = true;
 
-        this.zone.run(() => {
-            this.apiService.get(this.PATH, { params }).subscribe({
-                next: data => {
-                    const result = this.SCHEMA.safeParse(data);
-                    if (result.success) {
-                        if (this.page === 1) {
-                            this.items = result.data;
-                        } else if (result.data.length > 0 && this.items) {
-                            this.items = [...this.items, ...result.data];
-                        }
-
-                        this.page = this.page + 1;
-                    }
-
-                    this.loading = false;
-                },
-                error: error => {
-                    this.loading = false;
-
-                    if (error.status === 0) {
-                        return;
-                    }
-                },
-            });
-        });
+        return this.apiService.get(this.PATH, { params }).pipe(
+            map(data => {
+                const result = this.SCHEMA.safeParse(data);
+                return result.success ? result.data : [];
+            }),
+            scan((acc, curr) => {
+                this.page = this.page + 1;
+                this.loading = false;
+                return [...acc, ...curr];
+            }, [] as T[]),
+            catchError(() => {
+                this.loading = false;
+                return [];
+            }),
+        );
     }
-
     createItem() {
         this.router.navigate([this.CREATE_ITEM_PATH]);
     }
@@ -76,18 +63,11 @@ export abstract class AbstractItemsListComponent<T>
         this.router.navigate([`/${this.PATH}/${id}`]);
     }
 
-    ngOnInit(): void {
-        this.stableSub = this.appRef.isStable
-            .pipe(
-                filter(stable => stable),
-                take(1),
-            )
-            .subscribe(() => {
-                this.getItems();
-            });
-    }
-
-    ngOnDestroy(): void {
-        this.stableSub.unsubscribe();
+    ngOnInit() {
+        this.items$ = this.appRef.isStable.pipe(
+            filter(stable => stable),
+            take(1),
+            switchMap(() => this.getItems()),
+        );
     }
 }

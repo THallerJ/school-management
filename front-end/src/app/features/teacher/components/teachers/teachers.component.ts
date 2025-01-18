@@ -7,6 +7,7 @@ import { ListItemComponent } from '../../../../core/components/list-item/list-it
 import { ItemListHeaderComponent } from '../../../../core/components/item-list-header/item-list-header.component';
 import { TeacherDtoPipe } from '../../pipes/teacher-dto.pipe';
 import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-items-list/abstract-items-list.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 @Component({
     selector: 'app-teachers',
     standalone: true,
@@ -18,6 +19,8 @@ import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-i
         ListItemComponent,
         ItemListHeaderComponent,
         TeacherDtoPipe,
+        NgIf,
+        AsyncPipe
     ],
 })
 export class TeachersComponent extends AbstractItemsListComponent<TeacherDto> {

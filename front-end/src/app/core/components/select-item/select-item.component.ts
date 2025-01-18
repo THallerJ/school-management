@@ -10,7 +10,7 @@ import { ApiService } from '../../services/api.service';
 import { ItemNoPaging, ItemsNoPagingRespSchema } from '../../types';
 import { SelectLabelComponent } from './../select-label/select-label.component';
 import { ItemsNoPagingPipe } from './items-no-paging.pipe';
-import { filter, take, map, catchError, switchMap, Observable } from 'rxjs';
+import { filter, take, map, catchError, switchMap, Observable, of } from 'rxjs';
 import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
@@ -48,7 +48,7 @@ export class SelectItemComponent implements OnInit {
             }),
             catchError(() => {
                 this.loading = false;
-                return [];
+                return of([]);
             }),
         );
     }

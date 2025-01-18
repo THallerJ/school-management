@@ -3,29 +3,31 @@
     (clickEvent)="createItem()"
     [loading]="loading"
 >
-    <h2>All Courses</h2>
-    <app-item-list-header
-        [columns]="['Name', 'Teacher', 'School', 'Credits']"
-    />
-    <app-conditional-message
-        [condition]="!loading && items?.length === 0"
-        message="No courses found"
-    >
-        @for (course of items; track course.id; let i = $index) {
-            <app-list-item
-                (clickEvent)="viewItem(course.id)"
-                [item]="course | courseDto"
-                [altColor]="i % 2 === 1"
-            />
-        }
-    </app-conditional-message>
-    @if (items && items.length >= PAGE_SIZE) {
-        <button
-            class="load-more-btn"
-            (click)="getItems()"
-            aria-label="load more courses"
+    <ng-container *ngIf="items$ | async as items">
+        <h2>All Courses</h2>
+        <app-item-list-header
+            [columns]="['Name', 'Teacher', 'School', 'Credits']"
+        />
+        <app-conditional-message
+            [condition]="!loading && items?.length === 0"
+            message="No courses found"
         >
-            Load more
-        </button>
-    }
+            @for (course of items; track course.id; let i = $index) {
+                <app-list-item
+                    (clickEvent)="viewItem(course.id)"
+                    [item]="course | courseDto"
+                    [altColor]="i % 2 === 1"
+                />
+            }
+        </app-conditional-message>
+        @if (items && items.length >= PAGE_SIZE) {
+            <button
+                class="load-more-btn"
+                (click)="getItems()"
+                aria-label="load more courses"
+            >
+                Load more
+            </button>
+        }
+    </ng-container>
 </app-api-content-wrapper>

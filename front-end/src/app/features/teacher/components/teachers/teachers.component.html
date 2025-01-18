@@ -3,27 +3,31 @@
     (clickEvent)="createItem()"
     [loading]="loading"
 >
-    <h2>All Teachers</h2>
-    <app-item-list-header [columns]="['First Name', 'Last Name', 'School']" />
-    <app-conditional-message
-        [condition]="!loading && items?.length === 0"
-        message="No Teachers found"
-    >
-        @for (teacher of items; track teacher.id; let i = $index) {
-            <app-list-item
-                (clickEvent)="viewItem(teacher.id)"
-                [item]="teacher | teacherDto"
-                [altColor]="i % 2 === 1"
-            />
-        }
-    </app-conditional-message>
-    @if (items && items.length >= PAGE_SIZE) {
-        <button
-            class="load-more-btn"
-            (click)="getItems()"
-            aria-label="load more teachers"
+    <ng-content *ngIf="items$ | async as items">
+        <h2>All Teachers</h2>
+        <app-item-list-header
+            [columns]="['First Name', 'Last Name', 'School']"
+        />
+        <app-conditional-message
+            [condition]="!loading && items?.length === 0"
+            message="No Teachers found"
         >
-            Load more
-        </button>
-    }
+            @for (teacher of items; track teacher.id; let i = $index) {
+                <app-list-item
+                    (clickEvent)="viewItem(teacher.id)"
+                    [item]="teacher | teacherDto"
+                    [altColor]="i % 2 === 1"
+                />
+            }
+        </app-conditional-message>
+        @if (items && items.length >= PAGE_SIZE) {
+            <button
+                class="load-more-btn"
+                (click)="getItems()"
+                aria-label="load more teachers"
+            >
+                Load more
+            </button>
+        }
+    </ng-content>
 </app-api-content-wrapper>

@@ -6,6 +6,7 @@ import { ListItemComponent } from '../../../../core/components/list-item/list-it
 import { ConditionalMessageComponent } from '../../../../core/components/conditional-message/conditional-message.component';
 import { CourseDtoPipe } from './../../pipes/course-dto.pipe';
 import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-items-list/abstract-items-list.component';
+import { NgIf, AsyncPipe } from '@angular/common';
 @Component({
     selector: 'app-courses',
     standalone: true,
@@ -15,6 +16,8 @@ import { AbstractItemsListComponent } from '../../../../core/abstract/abstract-i
         ItemListHeaderComponent,
         ConditionalMessageComponent,
         CourseDtoPipe,
+        AsyncPipe,
+        NgIf,
     ],
     templateUrl: './courses.component.html',
     styleUrls: ['./courses.component.css'],
