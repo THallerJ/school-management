@@ -4,6 +4,8 @@ import {
     OnInit,
     ApplicationRef,
     ChangeDetectionStrategy,
+    Output,
+    EventEmitter,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
@@ -27,6 +29,7 @@ export class SelectItemComponent implements OnInit {
     @Input({ required: true }) name!: string;
     @Input({ required: true }) group!: FormGroup;
     @Input({ required: true }) label!: string;
+    @Output() loadingEvent = new EventEmitter();
 
     loading = true;
     items$?: Observable<ItemNoPaging[]>;
@@ -36,18 +39,22 @@ export class SelectItemComponent implements OnInit {
         private appRef: ApplicationRef,
     ) {}
 
+    private setLoadingEvent(loading: boolean) {
+        this.loading = loading;
+        this.loadingEvent.emit(loading);
+    }
+
     getItems() {
-        this.loading = true;
         const params = { params: { disablePaging: true } };
 
         return this.apiService.get(this.path, params).pipe(
             map(data => {
                 const result = ItemsNoPagingRespSchema.safeParse(data);
-                this.loading = false;
+                this.setLoadingEvent(false);
                 return result.success ? result.data : [];
             }),
             catchError(() => {
-                this.loading = false;
+                this.setLoadingEvent(false);
                 return of([]);
             }),
         );

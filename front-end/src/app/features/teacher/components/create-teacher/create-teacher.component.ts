@@ -23,7 +23,7 @@ export class CreateTeacherComponent extends AbstractCreateItemComponent {
     override PATH = 'teachers';
     override REDIRECT = '/teachers';
 
-    loading = true;
+    loadingSchools = true;
 
     constructor(
         override apiService: ApiService,
@@ -37,7 +37,7 @@ export class CreateTeacherComponent extends AbstractCreateItemComponent {
         this.form = this.teacherFormService.buildForm();
     }
 
-    finishLoading() {
-        this.loading = false;
+    finishLoadingSchools() {
+        this.loadingSchools = false;
     }
 }

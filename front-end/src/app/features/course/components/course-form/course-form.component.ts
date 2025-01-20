@@ -14,9 +14,19 @@ export class CourseFormComponent {
     @Input({ required: true }) form!: FormGroup;
     @Input({ required: true }) buttonText!: string;
     @Input({ required: true }) disableButton!: boolean;
+    @Output() loadSchoolsEvent = new EventEmitter();
+    @Output() loadTeachersEvent = new EventEmitter();
     @Output() submitItemEvent = new EventEmitter();
 
     submitItem() {
         this.submitItemEvent.emit();
+    }
+
+    loadingSchools() {
+        this.loadSchoolsEvent.emit(false);
+    }
+
+    loadingTeachers() {
+        this.loadTeachersEvent.emit(false);
     }
 }

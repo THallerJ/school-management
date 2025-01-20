@@ -1,10 +1,10 @@
-<app-api-content-wrapper [hideButton]="true" [loading]="loading">
+<app-api-content-wrapper [hideButton]="true" [loading]="loadingSchools">
     <h2>Create Student</h2>
     <app-student-form
         [form]="form"
         buttonText="Create Student"
         (submitEvent)="createItem()"
-        (loadCoursesEvent)="finishLoading()"
+        (loadSchoolsEvent)="finishLoadingSchools()"
         [disableButton]="disableButton"
     >
         <app-form-validator [form]="form">
