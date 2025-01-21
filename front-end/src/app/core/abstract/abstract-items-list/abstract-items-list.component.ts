@@ -10,6 +10,7 @@ import {
     Observable,
     switchMap,
     map,
+    BehaviorSubject,
 } from 'rxjs';
 
 @Component({
@@ -24,7 +25,7 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
     protected abstract SCHEMA: z.ZodSchema<T[]>;
     protected abstract CREATE_ITEM_PATH: string;
 
-    protected page = 1;
+    private page$ = new BehaviorSubject<number>(1);
     protected readonly PAGE_SIZE = 20;
     protected loading = true;
     items$?: Observable<T[]>;
@@ -36,25 +37,14 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
     ) {}
 
     getItems() {
-        const params = { pageNumber: this.page, pageSize: this.PAGE_SIZE };
-        this.loading = true;
+        const params = {
+            pageNumber: this.page$.value,
+            pageSize: this.PAGE_SIZE,
+        };
 
-        return this.apiService.get(this.PATH, { params }).pipe(
-            map(data => {
-                const result = this.SCHEMA.safeParse(data);
-                return result.success ? result.data : [];
-            }),
-            scan((acc, curr) => {
-                this.page = this.page + 1;
-                this.loading = false;
-                return [...acc, ...curr];
-            }, [] as T[]),
-            catchError(() => {
-                this.loading = false;
-                return [];
-            }),
-        );
+        return this.apiService.get(this.PATH, { params });
     }
+
     createItem() {
         this.router.navigate([this.CREATE_ITEM_PATH]);
     }
@@ -67,7 +57,24 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
         this.items$ = this.appRef.isStable.pipe(
             filter(stable => stable),
             take(1),
+            switchMap(() => this.page$),
             switchMap(() => this.getItems()),
+            map(data => {
+                const result = this.SCHEMA.safeParse(data);
+                return result.success ? result.data : [];
+            }),
+            scan((acc, curr) => {
+                this.loading = false;
+                return [...acc, ...curr];
+            }, [] as T[]),
+            catchError(() => {
+                this.loading = false;
+                return [];
+            }),
         );
+    }
+
+    loadMore() {
+        this.page$.next(this.page$.value + 1);
     }
 }

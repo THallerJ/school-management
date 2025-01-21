@@ -46,8 +46,14 @@ export class SelectItemComponent implements OnInit {
 
     getItems() {
         const params = { params: { disablePaging: true } };
+        return this.apiService.get(this.path, params);
+    }
 
-        return this.apiService.get(this.path, params).pipe(
+    ngOnInit() {
+        this.items$ = this.appRef.isStable.pipe(
+            filter(stable => stable),
+            take(1),
+            switchMap(() => this.getItems()),
             map(data => {
                 const result = ItemsNoPagingRespSchema.safeParse(data);
                 this.setLoadingEvent(false);
@@ -57,14 +63,6 @@ export class SelectItemComponent implements OnInit {
                 this.setLoadingEvent(false);
                 return of([]);
             }),
-        );
-    }
-
-    ngOnInit() {
-        this.items$ = this.appRef.isStable.pipe(
-            filter(stable => stable),
-            take(1),
-            switchMap(() => this.getItems()),
         );
     }
 }
