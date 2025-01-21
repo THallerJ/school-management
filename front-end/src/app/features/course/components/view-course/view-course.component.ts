@@ -122,6 +122,14 @@ export class ViewCourseComponent
         }
     }
 
+    finishLoadingTeachers() {
+        this.loadingTeachers = false;
+    }
+
+    finishLoadingSchools() {
+        this.loadingSchools = false;
+    }
+
     finishLoadingRegistrations() {
         this.loadingRegistrations = false;
     }

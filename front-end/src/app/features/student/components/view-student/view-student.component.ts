@@ -125,6 +125,10 @@ export class ViewStudentComponent
         }
     }
 
+    finishLoadingSchools() {
+        this.loadingSchools =false;
+    }
+
     finishLoadingRegistrations() {
         this.loadingRegistrations = false;
     }

@@ -62,4 +62,8 @@ export class ViewTeacherComponent extends AbstractViewItemComponent<TeacherDto> 
     override initForm() {
         return this.teacherFormService.buildForm();
     }
+
+    finishLoadingSchools() {
+        this.loadingSchools = false;
+    }
 }

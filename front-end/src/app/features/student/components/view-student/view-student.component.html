@@ -1,5 +1,5 @@
 <app-view-item-wrapper
-    [loading]="loading"
+    [loading]="loading && loadingSchools"
     [item]="item"
     (deleteEvent)="onDelete()"
     altButtonMessage="This student cannot be deleted"
@@ -12,6 +12,7 @@
         buttonText="Update Student"
         (submitEvent)="updateItem()"
         [disableButton]="updatedFlag"
+        (loadSchoolsEvent)="finishLoadingSchools()"
     >
         <app-form-validator [form]="form">
             <ul>
