@@ -35,6 +35,8 @@ export abstract class AbstractCreateItemComponent implements OnInit {
                 this.disableButton = false;
                 this.router.navigate([this.REDIRECT]);
             });
+        } else {
+            this.disableButton = false;
         }
     }
 
