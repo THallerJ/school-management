@@ -1,4 +1,4 @@
-@if (isOpen) {
+@if (isOpen$ | async) {
     <div
         class="modal-background"
         (click)="close()"

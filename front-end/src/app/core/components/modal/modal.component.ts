@@ -1,24 +1,24 @@
+import { Observable } from 'rxjs';
 import { ModalService } from '../../services/modal.service';
 import { Component, OnInit } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-modal',
     standalone: true,
-    imports: [],
+    imports: [AsyncPipe],
     templateUrl: './modal.component.html',
     styleUrl: './modal.component.css',
 })
 export class ModalComponent implements OnInit {
-    isOpen?: boolean;
     constructor(private modalService: ModalService) {}
+    isOpen$!: Observable<boolean>;
 
     close() {
         this.modalService.closeModal();
     }
 
     ngOnInit() {
-        this.modalService.observeState().subscribe(isOpen => {
-            this.isOpen = isOpen;
-        });
+        this.isOpen$ = this.modalService.getIsOpen();
     }
 }
