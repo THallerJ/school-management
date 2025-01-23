@@ -26,6 +26,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../../../core/services/api.service';
 import { ModalService } from '../../../../core/services/modal.service';
 import { ItemUpdatedComponent } from '../../../../core/components/item-updated/item-updated.component';
+import { switchMap } from 'rxjs';
 
 @Component({
     selector: 'app-view-student',
@@ -87,26 +88,14 @@ export class ViewStudentComponent
         return this.studentFormService.buildForm();
     }
 
-    removeLocalRegistration(courseId: number) {
-        this.item?.registrations.map(r => {
-            if (r.course?.id === courseId) {
-                this.item?.registrations.splice(
-                    this.item?.registrations.indexOf(r),
-                    1,
-                );
-            }
-        });
-    }
-
     removeRegistration(courseId: number) {
         if (this.item) {
             this.apiService
                 .delete(this.REGISTRATIONS_PATH, {
                     body: { courseId: courseId, studentId: this.item.id },
                 })
-                .subscribe(() => {
-                    this.removeLocalRegistration(courseId);
-                });
+                .pipe(switchMap(() => this.getCurrItem()))
+                .subscribe();
         }
     }
 
@@ -119,14 +108,13 @@ export class ViewStudentComponent
                     studentId: this.item.id,
                     courseId: this.registrationForm.value.course,
                 })
-                .subscribe(() => {
-                    window.location.reload();
-                });
+                .pipe(switchMap(() => this.getCurrItem()))
+                .subscribe();
         }
     }
 
     finishLoadingSchools() {
-        this.loadingSchools =false;
+        this.loadingSchools = false;
     }
 
     finishLoadingRegistrations() {

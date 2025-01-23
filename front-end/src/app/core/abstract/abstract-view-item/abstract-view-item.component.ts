@@ -4,7 +4,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { ModalService } from '../../services/modal.service';
 import { z } from 'zod';
-import { filter, Subscription, take } from 'rxjs';
+import {
+    filter,
+    map,
+    Subscription,
+    take,
+    tap,
+    of,
+    catchError,
+    switchMap,
+} from 'rxjs';
 
 @Component({
     selector: 'app-abstract-view-item',
@@ -46,25 +55,28 @@ export abstract class AbstractViewItemComponent<T>
     abstract initForm(): FormGroup;
 
     getItem(id: number) {
-        this.loading = true;
         this.isFetchError = false;
+        return this.apiService.get(this.PATH, { id });
+    }
 
-        this.apiService.get(this.PATH, { id }).subscribe({
-            next: data => {
-                const result = this.SCHEMA.safeParse(data);
-                if (result.success) this.item = result.data;
-                this.patchForm();
-                this.loading = false;
-            },
-            error: error => {
-                if (error.status === 0) {
-                    return;
-                } else {
+    getCurrItem() {
+        if (this.id)
+            return this.getItem(this.id).pipe(
+                map(data => {
+                    const result = this.SCHEMA.safeParse(data);
+                    return result.success ? result.data : null;
+                }),
+                tap(item => {
+                    if (item) this.item = item;
                     this.loading = false;
+                    this.patchForm();
+                }),
+                catchError(() => {
                     this.isFetchError = true;
-                }
-            },
-        });
+                    return of(undefined);
+                }),
+            );
+        else return of(undefined);
     }
 
     onDelete = () => {
@@ -101,13 +113,13 @@ export abstract class AbstractViewItemComponent<T>
         this.router.navigate([`/${this.VIEW_REDIRECT}/${id}`]);
     }
 
-    protected initId() {
-        this.id = Number(this.route.snapshot.paramMap.get('id'));
-        if (this.id) this.getItem(this.id);
+    openModal() {
+        this.modalService.openModal();
     }
 
-    protected openModal() {
-        this.modalService.openModal();
+    private initComponent() {
+        this.id = Number(this.route.snapshot.paramMap.get('id'));
+        return this.getCurrItem();
     }
 
     ngOnInit(): void {
@@ -117,10 +129,9 @@ export abstract class AbstractViewItemComponent<T>
             .pipe(
                 filter(stable => stable),
                 take(1),
+                switchMap(() => this.initComponent()),
             )
-            .subscribe(() => {
-                this.initId();
-            });
+            .subscribe();
     }
 
     ngOnDestroy() {

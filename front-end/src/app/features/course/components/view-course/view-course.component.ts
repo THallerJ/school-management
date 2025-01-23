@@ -23,6 +23,7 @@ import { ApiService } from '../../../../core/services/api.service';
 import { ModalService } from '../../../../core/services/modal.service';
 import { CourseFormService } from '../../services/course-form.service';
 import { ItemUpdatedComponent } from '../../../../core/components/item-updated/item-updated.component';
+import { switchMap } from 'rxjs';
 @Component({
     selector: 'app-view-course',
     standalone: true,
@@ -84,26 +85,14 @@ export class ViewCourseComponent
         });
     }
 
-    removeLocalRegistration(id: number): void {
-        this.item?.registrations.map(r => {
-            if (r.student?.id === id) {
-                this.item?.registrations.splice(
-                    this.item?.registrations.indexOf(r),
-                    1,
-                );
-            }
-        });
-    }
-
     removeRegistration(studentId: number) {
         if (this.item) {
             this.apiService
                 .delete(this.REGISTRATIONS_PATH, {
                     body: { courseId: this.item.id, studentId: studentId },
                 })
-                .subscribe(() => {
-                    this.removeLocalRegistration(studentId);
-                });
+                .pipe(switchMap(() => this.getCurrItem()))
+                .subscribe();
         }
     }
 
@@ -116,9 +105,8 @@ export class ViewCourseComponent
                     studentId: this.registrationForm.value.student,
                     courseId: this.item.id,
                 })
-                .subscribe(() => {
-                    window.location.reload();
-                });
+                .pipe(switchMap(() => this.getCurrItem()))
+                .subscribe();
         }
     }
 

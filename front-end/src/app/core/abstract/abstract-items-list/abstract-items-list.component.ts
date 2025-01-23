@@ -11,6 +11,7 @@ import {
     switchMap,
     map,
     BehaviorSubject,
+    tap,
 } from 'rxjs';
 
 @Component({
@@ -64,11 +65,12 @@ export abstract class AbstractItemsListComponent<T> implements OnInit {
                 return result.success ? result.data : [];
             }),
             scan((acc, curr) => {
-                this.loading = false;
                 return [...acc, ...curr];
             }, [] as T[]),
-            catchError(() => {
+            tap(() => {
                 this.loading = false;
+            }),
+            catchError(() => {
                 return [];
             }),
         );
