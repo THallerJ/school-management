@@ -15,4 +15,5 @@ export class SelectLabelComponent {
     @Input() value?: string;
     @Input() options?: SelectOption[];
     @Input() loading?: boolean;
+    @Input() placeholder?: string;
 }

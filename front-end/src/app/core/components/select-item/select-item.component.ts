@@ -29,6 +29,7 @@ export class SelectItemComponent implements OnInit {
     @Input({ required: true }) name!: string;
     @Input({ required: true }) group!: FormGroup;
     @Input({ required: true }) label!: string;
+    @Input() placeholder?: string;
     @Output() loadingEvent = new EventEmitter();
 
     loading = true;
