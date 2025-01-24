@@ -1,6 +1,6 @@
 <app-view-item-wrapper
     [loading]="
-        loading && loadingRegistrations && loadingTeachers && loadingSchools
+        loading || loadingRegistrations || loadingTeachers || loadingSchools
     "
     [item]="item"
     (deleteEvent)="onDelete()"

@@ -1,5 +1,5 @@
 <app-view-item-wrapper
-    [loading]="loading && loadingSchools"
+    [loading]="loading || loadingSchools"
     [item]="item"
     (deleteEvent)="onDelete()"
     altButtonMessage="This teacher cannot be deleted"
