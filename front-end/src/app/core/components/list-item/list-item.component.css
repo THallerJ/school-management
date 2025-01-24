@@ -24,13 +24,13 @@
     border: none;
     min-width: 0;
     flex: 1;
-    background-color: var(--dark-red);
+    background-color: var(--light-red);
 }
 
 .remove-btn:hover {
     cursor: pointer;
     background-color: var(--dark-text);
-    background-color: var(--darkest-red);
+    background-color: var(--med-red);
 }
 
 .column {
