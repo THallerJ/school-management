@@ -24,11 +24,11 @@
                     (clickEvent)="toggleMenu()"
                 />
             </div>
-        } @else {
-            <nav class="header-nav">
-                <ng-template [ngTemplateOutlet]="links" />
-            </nav>
         }
+
+        <nav class="header-nav">
+            <ng-template [ngTemplateOutlet]="links" />
+        </nav>
 
         <div class="mobile-nav" [class.open]="showMobileNav && isMobile">
             <ng-template [ngTemplateOutlet]="links" />

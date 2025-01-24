@@ -28,6 +28,7 @@ a {
     align-items: center;
     justify-content: space-evenly;
     font-weight: 600;
+    display: none;
 }
 
 .header-body {
@@ -96,11 +97,13 @@ a {
     .mobile-nav {
         display: none;
     }
-}
 
-@media screen and (min-width: 780px) {
     .header-body {
         width: 80%;
+    }
+
+    .header-nav {
+        display: flex;
     }
 }
 
