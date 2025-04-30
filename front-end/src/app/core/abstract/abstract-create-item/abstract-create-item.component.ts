@@ -26,12 +26,12 @@ export abstract class AbstractCreateItemComponent implements OnInit {
 
     protected createItem() {
         this.disableButton = true;
-        const createdSchool = this.form.value;
+        const createdItem = this.form.value;
 
         this.form?.markAsTouched();
 
-        if (this.form?.valid && createdSchool) {
-            this.apiService.post(this.PATH, createdSchool).subscribe(() => {
+        if (this.form?.valid && createdItem) {
+            this.apiService.post(this.PATH, createdItem).subscribe(() => {
                 this.disableButton = false;
                 this.router.navigate([this.REDIRECT]);
             });
